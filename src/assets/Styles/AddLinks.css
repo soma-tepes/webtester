@@ -1,0 +1,17 @@
+.addForm{
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    background-color:white;
+    text-align: center;
+  
+    
+}
+
+.add_form form input{
+ 
+
+
+}

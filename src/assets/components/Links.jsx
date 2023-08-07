@@ -1,84 +1,117 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import AddLink from "./AddComponents/AddLink";
+const Links = () => {
 
-const Link = ({ linkApp }) => {
+
+  const [linkUrl, setlinkUrl] = useState([])
+ const [modal, setModal] = useState(null)
+  const petitionlink = () => {
+    axios
+      .get('http://localhost:3000/api/v1/url/')
+      .then(({ data }) => setlinkUrl(data.user))
+      .catch(() => console.log("error"))
+  }
+
+  const handleRedirect = (url) => {
+    window.open(url, "_blank");
+  };
+  useEffect(() => {
+    petitionlink()
+  }, [])
+
+  
+
+
   return (
+
     <div id="main">
-      <div class="container">
-        <div class="row main-row">
-          <div class="col-4 col-12-medium">
+  {/*     <AddLink postLink={postLink} /> */}
+      <div className="container">
+        <div className="row main-row">
+          <div className="col-4 col-12-medium">
             <section>
               <h2>Oregon Resources</h2>
               <div>
-                <div class="row">
-                  <div class="col-6 col-12-small">
-                    <ul class="link-list">
+                <div className="row">
+                  <div className="col-6 col-12-small">
+                    <ul className="link-list">
                       <li>
-                        <a href="http://10.131.17.30/#!/view/all-production">
+                        <Link to="http://10.131.17.30/#!/view/all-production">
                           Vorne OEE
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="http://orsqlsvr/mcx/" target="_blank">
+                        <Link to="http://orsqlsvr/mcx/" target="_blank">
                           Maintenance Connection Express
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="https://jor-ex1/owa">Outlook Web Access</a>
+                        <Link to="https://jor-ex1/owa">Outlook Web Access</Link>
                       </li>
                       <li>
-                        <a href="https://jaeoregon.on.spiceworks.com/portal">
+                        <Link to="https://jaeoregon.on.spiceworks.com/portal">
                           IT Helpdesk
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="https://forms.office.com/r/qsyTKgrT6e">
+                        <Link to="https://forms.office.com/r/qsyTKgrT6e">
                           Safety and Incident Reporting{" "}
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="http://ordbsvr2/WashBookMolds">
+                        <Link to="http://ordbsvr2/WashBookMolds">
                           WashbookMolds
-                        </a>
+                        </Link>
                       </li>
+
+                      {
+                        linkUrl && linkUrl.map(e =>
+                          <li>
+                            <Link onClick={() => handleRedirect(e.link)}>
+                              {e.url}
+                            </Link>
+
+                          </li>
+                        )
+
+                      }
+
                       <li>
-                        {/* <Link to={handleAdd && handleAdd.name}></Link>
-                        {handleAdd && handleAdd.link} */}
+                        <Link to="http://ordbsvr2/WashBookMolds">
+                          WashbookMolds
+                        </Link>
                       </li>
-                      {linkApp &&
-                        linkApp.map((e) => {
-                          {
-                            e.name;
-                          }
-                        })}
                     </ul>
                   </div>
-                  <div class="col-6 col-12-small">
-                    <ul class="link-list">
+                  <div className="col-6 col-12-small">
+                    <ul className="link-list">
                       <li>
-                        <a href="https://www.workforcenow.adp.com">ADP WFN</a>
+                        <Link to="https://www.workforcenow.adp.com">ADP WFN</Link>
                       </li>
                       <li>
-                        <a href="https://jaeoregon.litmos.com/account/login/">
+                        <Link to="https://jaeoregon.litmos.com/account/login/">
                           Litmos
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="https://us.ctmsmart.com/">Concur</a>
+                        <Link to="https://us.ctmsmart.com/">Concur</Link>
                       </li>
                       <li>
-                        <a href="http://orsqlsvr/mc_web/onsite/mc_login.htm">
+                        <Link to="http://orsqlsvr/mc_web/onsite/mc_login.htm">
                           Maintenance Connection Technician
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="https://adpeet2.adp.com/112lc2p/logon">
+                        <Link to="https://adpeet2.adp.com/112lc2p/logon">
                           ADP Time and Attendance
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="H:\Public\Benefits\Benefit 2023 to 2024">
+                        <Link to="H:\Public\Benefits\Benefit 2023 to 2024">
                           2023 ADP Benefits rates comparison
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -86,58 +119,58 @@ const Link = ({ linkApp }) => {
               </div>
             </section>
           </div>
-          <div class="col-4 col-6-medium col-12-small">
+          <div className="col-4 col-6-medium col-12-small">
             <section>
               <h2>Headquarter Resources</h2>
               <div>
-                <div class="row">
-                  <div class="col-6 col-12-small">
-                    <ul class="link-list">
+                <div className="row">
+                  <div className="col-6 col-12-small">
+                    <ul className="link-list">
                       <li>
-                        <a href="http://webf201s.sgs.jae.co.jp/">SAP</a>
+                        <Link to="http://webf201s.sgs.jae.co.jp/">SAP</Link>
                       </li>
                       <li>
-                        <a href="https://teams.microsoft.com/">
+                        <Link to="https://teams.microsoft.com/">
                           Microsoft Teams
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="http://aeensv1c.aee.jae.co.jp/inavi/service">
+                        <Link to="http://aeensv1c.aee.jae.co.jp/inavi/service">
                           JAE e-Learning
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="http://tsvda-web.jae.co.jp/cqnet/">CQ Net</a>
+                        <Link to="http://tsvda-web.jae.co.jp/cqnet/">CQ Net</Link>
                       </li>
                       <li>
-                        <a href="http://jaew-svr/JAE/">HQ Intranet</a>
+                        <Link to="http://jaew-svr/JAE/">HQ Intranet</Link>
                       </li>
                     </ul>
                   </div>
-                  <div class="col-6 col-12-small">
-                    <ul class="link-list">
+                  <div className="col-6 col-12-small">
+                    <ul className="link-list">
                       <li>
-                        <a href="ContactInfo/JAEOR_ExtList.pdf">
+                        <Link to="ContactInfo/JAEOR_ExtList.pdf">
                           Oregon Phone List
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="ContactInfo/JAETJ_ExtList.pdf">
+                        <Link to="ContactInfo/JAETJ_ExtList.pdf">
                           Tijuana Phone List
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="ContactInfo/JAEUS_ExtList.pdf">
+                        <Link to="ContactInfo/JAEUS_ExtList.pdf">
                           Irvine and Detroit Phone List
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="ContactInfo/JAEEU_ExtList.pdf">
+                        <Link to="ContactInfo/JAEEU_ExtList.pdf">
                           Europe Phone List
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="#">Other Phone Lists</a>
+                        <Link to="#">Other Phone Lists</Link>
                       </li>
                     </ul>
                   </div>
@@ -145,58 +178,58 @@ const Link = ({ linkApp }) => {
               </div>
             </section>
           </div>
-          <div class="col-4 col-6-medium col-12-small">
+          <div className="col-4 col-6-medium col-12-small">
             <section>
               <h2>Tijuana Resources</h2>
               <div>
-                <div class="row">
-                  <div class="col-6 col-12-small">
-                    <ul class="link-list">
+                <div className="row">
+                  <div className="col-6 col-12-small">
+                    <ul className="link-list">
                       <li>
-                        <a href="https://jaeoregon.on.spiceworks.com/portal">
+                        <Link to="https://jaeoregon.on.spiceworks.com/portal">
                           IT Helpdesk
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="https://jor-ex1/owa">Outlook Web Access</a>
+                        <Link to="https://jor-ex1/owa">Outlook Web Access</Link>
                       </li>
                       <li>
-                        <a href="https://www.maintenanceconnection.com/mcv18/online/mc_login_form.asp?">
+                        <Link to="https://www.maintenanceconnection.com/mcv18/online/mc_login_form.asp?">
                           Maintenance Connection
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="http://webf201s.sgs.jae.co.jp/">SAP</a>
+                        <Link to="http://webf201s.sgs.jae.co.jp/">SAP</Link>
                       </li>
                       <li>
-                        <a href="https://teams.microsoft.com/">
+                        <Link to="https://teams.microsoft.com/">
                           Microsoft Teams
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </div>
-                  <div class="col-6 col-12-small">
-                    <ul class="link-list">
+                  <div className="col-6 col-12-small">
+                    <ul className="link-list">
                       <li>
-                        <a href="PDF/TJNewsletter.pdf">Conexion</a>
+                        <Link to="PDF/TJNewsletter.pdf">Conexion</Link>
                       </li>
                       <li>
-                        <a href="http://10.131.33.179:5000/sharing/hJ6rULMQO">
+                        <Link to="http://10.131.33.179:5000/sharing/hJ6rULMQO">
                           Traceability
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="ContactInfo/JAEUS_ExtList.pdf">
+                        <Link to="ContactInfo/JAEUS_ExtList.pdf">
                           Irvine and Detroit Phone List
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="ContactInfo/JAEEU_ExtList.pdf">
+                        <Link to="ContactInfo/JAEEU_ExtList.pdf">
                           Europe Phone List
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a href="https://us.ctmsmart.com/">Concur</a>
+                        <Link to="https://us.ctmsmart.com/">Concur</Link>
                       </li>
                     </ul>
                   </div>
@@ -204,15 +237,15 @@ const Link = ({ linkApp }) => {
               </div>
             </section>
           </div>
-          <div class="col-6 col-12-medium">
+          <div className="col-6 col-12-medium">
             <section>
               <h2>Covid Preventive Measures</h2>
               <p>Help keep our workplace safe</p>
-              <ul class="big-image-list">
+              <ul className="big-image-list">
                 <li>
-                  <a href="#">
-                    <img src="images/hands.jpg" alt="" class="left" />
-                  </a>
+                  <Link to="#">
+                    <img src="images/hands.jpg" alt="" className="left" />
+                  </Link>
                   <h3>Wash Hands</h3>
                   <p>
                     Wash your hands frequently with warm, soapy water for at
@@ -221,9 +254,9 @@ const Link = ({ linkApp }) => {
                   </p>
                 </li>
                 <li>
-                  <a href="#">
-                    <img src="images/mask.jpg" alt="" class="left" />
-                  </a>
+                  <Link to="#">
+                    <img src="images/mask.jpg" alt="" className="left" />
+                  </Link>
                   <h3>Wear your face mask properly</h3>
                   <p>
                     Face masks are suggested in areas where social distancing
@@ -232,37 +265,37 @@ const Link = ({ linkApp }) => {
                   </p>
                 </li>
                 <li>
-                  <a href="#">
-                    <img src="images/6ft.jpg" alt="" class="left" />
-                  </a>
+                  <Link to="#">
+                    <img src="images/6ft.jpg" alt="" className="left" />
+                  </Link>
                   <h3>Social Distance</h3>
                   <p>
-                    Practice safe social distancing, which is allowing a minimum
+                    Practice safe social distancing, which is allowing Link minimum
                     of 6 feet between you and another person as much as possible
                   </p>
                 </li>
               </ul>
             </section>
           </div>
-          <div class="col-6 col-12-medium">
-            <article class="blog-post">
+          <div className="col-6 col-12-medium">
+            <article className="blog-post">
               <h2>Thank you for being the best part of JAE!</h2>
-              <a href="#">
+              <Link to="#">
                 <img
                   src="images/molding.jpg"
                   alt=""
-                  class="top blog-post-image"
+                  className="top blog-post-image"
                 />
-              </a>
+              </Link>
               <h3>Thank you!</h3>
               <p>
                 With all the challenges we face, we know you work hard at
                 keeping us running. Thank you to everyone for doing all the
-                little things and tackling big problems to support JAE as a
+                little things and tackling big problems to support JAE as Link
                 team. Without your help we would not be where we are. Continue
                 the great work and let's strive to make each day better.
               </p>
-              <footer class="controls"></footer>
+              <footer className="controls"></footer>
             </article>
           </div>
         </div>
@@ -271,4 +304,4 @@ const Link = ({ linkApp }) => {
   );
 };
 
-export default Link;
+export default Links;

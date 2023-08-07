@@ -1,33 +1,37 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import Links from "../../components/Links";
-const AddLink = () => {
-  const [linkApp, setlinkApp] = useState([]);
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import '../../Styles/AddLinks.css'
 
-  const handleAdd = (e) => {
+const AddLink = () => {
+const handleAdd = (e) => {
     e.preventDefault();
     const data = {
-      name: e.target.name.value,
+      url: e.target.url.value,
       link: e.target.link.value,
     };
-    console.log(data);
-    setlinkApp([...linkApp, data]);
+     postLink(data);
     e.target.reset();
   };
+  
+  const postLink = (data) => {
+
+    axios
+      .post('http://localhost:3000/api/v1/url/',data)
+      .then(() => {console.log("success")})
+      .catch(() => { console.log("error") })
+  }
   return (
-    <div>
-      <article>
+    <div className="addForm">
+      <article className="add_form">
         <form onSubmit={handleAdd}>
-          Add Name
-          <input type="text" name="name" />
-          <br />
-          Add Link
+         <span>Add Name:</span>
+          <input type="text" name="url" />
+        
+        <span>Add Url:</span>
           <input type="text" name="link" />
           <button>Add</button>
         </form>
       </article>
-      {/*      <Links /> */}
-      {/*  {linkApp.length > 0 && <Links linkApp={linkApp} />} */}
     </div>
   );
 };
