@@ -1,32 +1,30 @@
-import React from 'react'
-import '../../assets/css/main.css'
-
-
+import React from "react";
+import "../../assets/css/main.css";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <div id="header-wrapper">
-
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-
-                <header id="header">
-                  {/*   <h1><a href="" id="logo">JAE Oregon</a></h1> */}
-                  <h1>{/*  <Link id="logo" to="./AddLink">JAE Oregon</Link> */}
-               
-                  </h1>
-                    <nav id="nav">
-                        <a href="index.html" className="current-page-item">Homepage</a>
-                     
-                    </nav>
-                </header>
-
-            </div>
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <header id="header">
+              <Link to={"/add"}>
+                <h1>JAE Oregon</h1>
+              </Link>
+              {/*   <h1><Link to="" id="logo">JAE Oregon</Link></h1> */}
+              <h1>{/*  <Link id="logo" to="./AddLink">JAE Oregon</Link> */}</h1>
+              <nav id="nav">
+                <Link to="/" className="current-page-item">
+                  Homepage
+                </Link>
+              </nav>
+            </header>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
