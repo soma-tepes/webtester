@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import '../../Styles/AddLinks.css'
 import FormLinks from "./FormLinks";
-
+// add -1
 const AddLink = () => {
-
+  const URL = 'http://localhost:3000/api/v1/url/search/'
   const [optionValueSelect, setOptionValueSelect] = useState(null)
 
   const handleAdd = (e) => {
@@ -20,7 +20,7 @@ const AddLink = () => {
   const postLink = (data) => {
 
     axios
-      .post('http://localhost:3000/api/v1/url/', data)
+      .post(`${URL}${+optionValueSelect != 1 ? +optionValueSelect + "/" : "/"}`, data)
       .then(() => { console.log("success") })
       .catch(() => { console.log("error") })
   }
@@ -34,20 +34,27 @@ const AddLink = () => {
   return (
     <>
       <div className="addForm">
-        <h2> <span>Select Form Link !</span>
+        <div className="addFormSelect">
+          <div>
+            <h2> <span>Select Form Link !</span></h2>
+          </div>
+          <div>
+            <select value={optionValueSelect} onChange={(e) => setOptionValueSelect(e.target.value)} >
+              <option value={0}>Select Option!</option>
+              {
+                count.map(e =>
+                  <option value={e}>List URL {"=>"}{e}</option>
+                )}
+            </select>
 
-          <select name="" id="" value={optionValueSelect} onChange={(e) => setOptionValueSelect(e.target.value)} >
-            <option value={0}>Select Option!</option>
-            {
-              count.map(e =>
-                <option value={e}>List URL {"=>"}{e}</option>
-              )}
-          </select>
-        </h2>
+          </div>
+        </div>
+
+        <div className="formLinksContainer">
+          {optionValueSelect != 0 ? <FormLinks handleAdd={handleAdd} optionValueSelect={optionValueSelect} /> : null}
+        </div>
 
 
-        {optionValueSelect != 0?<FormLinks handleAdd={handleAdd} optionValueSelect={optionValueSelect} /> : null}
-      
 
       </div>
 
