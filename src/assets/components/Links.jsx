@@ -4,10 +4,15 @@ import { Link } from "react-router-dom";
 
 const Links = () => {
  const [linkUrl, setlinkUrl] = useState([])
+ const [linkUr2, setlinkUrl2] = useState([])
+ const [linkUr3, setlinkUrl3] = useState([])
+ const [linkUr4, setlinkUrl4] = useState([])
+ const [linkUr5, setlinkUrl5] = useState([])
+ const [linkUr6, setlinkUrl6] = useState([])
  const URL = `http://localhost:3000/api/v1/url/search/a`
 
 
- const petitionlink = (link) => {
+ const petitionlink = () => {
   const endpointA = axios.get('http://localhost:3000/api/v1/url/search/a');
   const endpointB = axios.get('http://localhost:3000/api/v1/url/search/b');
   const endpointC = axios.get('http://localhost:3000/api/v1/url/search/c');
@@ -15,14 +20,23 @@ const Links = () => {
   const endpointE = axios.get('http://localhost:3000/api/v1/url/search/e');
   const endpointF = axios.get('http://localhost:3000/api/v1/url/search/f');
   
-  Promise.all([endpointA, endpointB])
+  Promise.all([endpointA, endpointB ,endpointC,endpointD,endpointE,endpointF])
     .then(responses => {
       // Manejar las respuestas de ambos endpoints aquí
-      const responseA = responses[0].data;
-      const responseB = responses[1].data;
-      console.log(responseA);
-      console.log(responseB);
-      setlinkUrl([responseA,responseB])
+      const responseA = responses[0].data.user;
+      const responseB = responses[1].data.user;
+      const responseC = responses[2].data.user;
+      const responseD = responses[3].data.user;
+      const responseE = responses[4].data.user;
+      const responseF = responses[5].data.user;
+    
+      setlinkUrl(responseA)
+      setlinkUrl2(responseB)
+      setlinkUrl3(responseC)
+      setlinkUrl4(responseD)
+      setlinkUrl5(responseE)
+      setlinkUrl6(responseF)
+   
     })
     .catch(error => {
       // Manejar errores de ambos endpoints aquí
@@ -30,7 +44,6 @@ const Links = () => {
     });
 };
 
- 
   const handleRedirect = (url) => {
     window.open(url, "_blank");
   };
@@ -104,6 +117,17 @@ const Links = () => {
                   </div>
                   <div className="col-6 col-12-small">
                     <ul className="link-list">
+                    {
+                        linkUr2 && linkUr2.map(e =>
+                          <li>
+                            <Link onClick={() => handleRedirect(e.nameurl)}>
+                              {e.namelink}
+                            </Link>
+
+                          </li>
+                        )
+
+                      }
                       <li>
                         <Link to="https://www.workforcenow.adp.com">ADP WFN</Link>
                       </li>
