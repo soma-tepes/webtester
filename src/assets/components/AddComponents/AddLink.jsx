@@ -20,16 +20,12 @@ const AddLink = () => {
   const postLink = (data) => {
 
     axios
-      .post(`${URL}${+optionValueSelect != 1 ? +optionValueSelect + "/" : "/"}`, data)
+      .post(`${URL}`, data)
       .then(() => { console.log("success") })
       .catch(() => { console.log("error") })
   }
-  const count = []
-  for (let i = 1; i < 7; i++) {
-    count.push(i)
 
-  }
-
+console.log(count)
 
   return (
     <>

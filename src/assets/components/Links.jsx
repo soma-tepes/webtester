@@ -1,19 +1,36 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AddLink from "./AddComponents/AddLink";
+
 const Links = () => {
+ const [linkUrl, setlinkUrl] = useState([])
+ const URL = `http://localhost:3000/api/v1/url/search/a`
 
 
-  const [linkUrl, setlinkUrl] = useState([])
- const [modal, setModal] = useState(null)
-  const petitionlink = () => {
-    axios
-      .get('http://localhost:3000/api/v1/url/')
-      .then(({ data }) => setlinkUrl(data.user))
-      .catch(() => console.log("error"))
-  }
+ const petitionlink = (link) => {
+  const endpointA = axios.get('http://localhost:3000/api/v1/url/search/a');
+  const endpointB = axios.get('http://localhost:3000/api/v1/url/search/b');
+  const endpointC = axios.get('http://localhost:3000/api/v1/url/search/c');
+  const endpointD = axios.get('http://localhost:3000/api/v1/url/search/d');
+  const endpointE = axios.get('http://localhost:3000/api/v1/url/search/e');
+  const endpointF = axios.get('http://localhost:3000/api/v1/url/search/f');
+  
+  Promise.all([endpointA, endpointB])
+    .then(responses => {
+      // Manejar las respuestas de ambos endpoints aquí
+      const responseA = responses[0].data;
+      const responseB = responses[1].data;
+      console.log(responseA);
+      console.log(responseB);
+      setlinkUrl([responseA,responseB])
+    })
+    .catch(error => {
+      // Manejar errores de ambos endpoints aquí
+      console.error(error);
+    });
+};
 
+ 
   const handleRedirect = (url) => {
     window.open(url, "_blank");
   };
@@ -69,8 +86,8 @@ const Links = () => {
                       {
                         linkUrl && linkUrl.map(e =>
                           <li>
-                            <Link onClick={() => handleRedirect(e.link)}>
-                              {e.url}
+                            <Link onClick={() => handleRedirect(e.nameurl)}>
+                              {e.namelink}
                             </Link>
 
                           </li>
