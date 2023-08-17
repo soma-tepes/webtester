@@ -7,6 +7,8 @@ const AddLink = () => {
   const URL = 'http://localhost:3000/api/v1/url/search/'
   const [optionValueSelect, setOptionValueSelect] = useState(null)
 
+  
+
   const handleAdd = (e) => {
     e.preventDefault();
     const data = {
@@ -17,16 +19,37 @@ const AddLink = () => {
     e.target.reset();
   };
 
+
   const postLink = (data) => {
-
     axios
-      .post(`${URL}`, data)
-      .then(() => { console.log("success") })
-      .catch(() => { console.log("error") })
-  }
+      .post(`${URL}${optionValueSelect ? optionValueSelect : ""}`, data)
+      .then(() => {
+        console.log("Link added successfully");
+        fetchUpdatedLinks(); // Call the function to fetch updated data
+      })
+      .catch(() => {
+        console.log("Error adding link");
+      });
+  };
 
-console.log(count)
+  const fetchUpdatedLinks = () => {
+    axios
+      .get(`${URL}${optionValueSelect ? optionValueSelect : ""}`)
+      .then(response => {
+        // Here you can update the links in the same component
+        const updatedLinks = response.data.user;
+        console.log("Updated links:", updatedLinks);
+      })
+      .catch(error => {
+        console.log("Error fetching updated links", error);
+      });
+  };
+  useEffect(() => {
+    // Cargar los datos iniciales desde la API
+    fetchUpdatedLinks()
+  }, []);
 
+ const endpoints = ['a','b','c','d','e','f']
   return (
     <>
       <div className="addForm">
@@ -38,8 +61,8 @@ console.log(count)
             <select value={optionValueSelect} onChange={(e) => setOptionValueSelect(e.target.value)} >
               <option value={0}>Select Option!</option>
               {
-                count.map(e =>
-                  <option value={e}>List URL {"=>"}{e}</option>
+                endpoints.map((e,i) =>
+                  <option value={e}>List URL {i+1}</option>
                 )}
             </select>
 
@@ -47,7 +70,7 @@ console.log(count)
         </div>
 
         <div className="formLinksContainer">
-          {optionValueSelect != 0 ? <FormLinks handleAdd={handleAdd} optionValueSelect={optionValueSelect} /> : null}
+          {optionValueSelect != 0 ? <FormLinks handleAdd={handleAdd} optionValueSelect={optionValueSelect} postLink={postLink}/> : null}
         </div>
 
 

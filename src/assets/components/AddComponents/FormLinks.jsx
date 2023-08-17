@@ -5,31 +5,65 @@ import "../../Styles/FormLink.css";
 const FormLinks = ({ handleAdd, optionValueSelect }) => {
   const [linkShow, setLinkShow] = useState([]);
   const [editData, setEditData] = useState(null);
-  const URL = 'http://localhost:3000/api/v1/url/search/a';
+  const URL = `http://localhost:3000/api/v1/url/search/`;
+
+
 
   const petitionlink = () => {
     axios
-      .get('http://localhost:3000/api/v1/url/search/a')
+      .get(`${URL}${optionValueSelect ? optionValueSelect : ""}`)
+
       .then(({ data }) => setLinkShow(data.user))
       .catch(() => console.log("error"))
   }
 
 
-  const handleDelete = (id) => {
-    delet(id);
-  };
+  const handleUpdate = (e, id) => {
+    e.preventDefault()
+    const data = {
 
+      namelink: e.target.namelink.value,
+      nameurl: e.target.nameurl.value
+    }
+
+    updateAxios(id, data)
+    e.target.reset()
+    setEditData(null)
+    setLinkShow([])
+  }
+
+  const updateAxios = (id, data) => {
+    axios
+      .patch(`${URL}${optionValueSelect}/${id}`, data)
+      .then(() => petitionlink())
+      .catch((err) => console.log(err))
+  }
+
+/*   const handleDelete = (id) => {
+    delet(id);
+
+  }; */
+
+  const deletLink = (id)=>{
+    console.log(`${URL}${optionValueSelect}/${id}`)
+    axios
+    .delete(`${URL}${optionValueSelect}/${id}`)
+    .then(() => petitionlink())
+    .catch((err) => console.log(err))
+  }
 
 
   const handleEditData = (id) => {
     setEditData(id);
+
   };
 
   useEffect(() => {
     petitionlink()
-  }, []);
 
-  const allowedValues = [1, 2, 3, 4, 5, 6];
+  }, [optionValueSelect]);
+
+
   const current = linkShow.find((e) => e.id === editData);
 
   return (
@@ -52,24 +86,24 @@ const FormLinks = ({ handleAdd, optionValueSelect }) => {
 
       <div className='formLinkShowData'>
         {editData ? (
-          <form>
-            <input type="text" name="" id="" defaultValue={current.url} />
-            <input type="text" name="" id="" defaultValue={current.link} />
-            <button>Save</button>
+          <form onSubmit={(e) => handleUpdate(e, current.id)}>
+            <input type="text" name="nameurl" id="" defaultValue={current.nameurl} />
+            <input type="text" name="namelink" id="" defaultValue={current.namelink} />
+            <button >Save</button>
             <button onClick={(e) => { e.preventDefault(); setEditData(null) }}>Cancel</button>
           </form>
         ) : (
-          allowedValues.includes(+optionValueSelect) && (
+          (
             linkShow &&
             linkShow.map((e) => (
               <div>
                 <ul key={e.id}>
-                  <li>{e.url}</li>
-                  <li>{e.link}</li>
+                  <li>{e.nameurl}</li>
+                  <li>{e.namelink}</li>
                 </ul>
                 <div>
                   <button onClick={() => handleEditData(e.id)}>Edit</button>
-                  <button onClick={() => handleDelete(e.id)}>Delete</button>
+                  <button onClick={() => deletLink(e.id)}>Delete</button>
                 </div>
               </div>
             ))
