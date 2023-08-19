@@ -7,7 +7,7 @@ const Links = () => {
   const [linkUrl, setlinkUrl] = useState([])
 
   const BASE_URL = `http://localhost:3000/api/v1/url/search/`;
-  const endpoints = ['a', 'b', 'c', 'd','f'];
+  const endpoints = ['a', 'b', 'c', 'd', 'e','f'];
 
   const petitionlink = () => {
     Promise.all(
@@ -19,7 +19,7 @@ const Links = () => {
       )
     ).then(data => setlinkUrl(data));
   };
-  
+
 
   const handleRedirect = (url) => {
     window.open(url, "_blank");
@@ -40,8 +40,8 @@ const Links = () => {
               <div>
                 <div className="row">
                   <div className="col-6 col-12-small">
-                    <ul className="link-list">
-                      <li>
+                    <ul className="link-list" key={linkUrl.id}>
+                      {/*  <li>
                         <Link to="http://10.131.17.30/#!/view/all-production">
                           Vorne OEE
                         </Link>
@@ -68,12 +68,12 @@ const Links = () => {
                         <Link to="http://ordbsvr2/WashBookMolds">
                           WashbookMolds
                         </Link>
-                      </li>
+                      </li> */}
 
                       {
                         linkUrl[0] && linkUrl[0].map(e =>
                           <li>
-                          
+
                             <Link onClick={() => handleRedirect(e.nameurl)}>
                               {e.namelink}
                             </Link>
@@ -83,11 +83,6 @@ const Links = () => {
 
                       }
 
-                      <li>
-                        <Link to="http://ordbsvr2/WashBookMolds">
-                          WashbookMolds
-                        </Link>
-                      </li>
                     </ul>
                   </div>
                   <div className="col-6 col-12-small">
@@ -103,7 +98,7 @@ const Links = () => {
                         )
 
                       }
-                      <li>
+                   {/*    <li>
                         <Link to="https://www.workforcenow.adp.com">ADP WFN</Link>
                       </li>
                       <li>
@@ -128,7 +123,7 @@ const Links = () => {
                         <Link to="H:\Public\Benefits\Benefit 2023 to 2024">
                           2023 ADP Benefits rates comparison
                         </Link>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                 </div>
@@ -142,7 +137,18 @@ const Links = () => {
                 <div className="row">
                   <div className="col-6 col-12-small">
                     <ul className="link-list">
-                      <li>
+                    {
+                        linkUrl[2] && linkUrl[2].map(e =>
+                          <li>
+                            <Link onClick={() => handleRedirect(e.nameurl)}>
+                              {e.namelink}
+                            </Link>
+
+                          </li>
+                        )
+
+                      }
+                     {/*  <li>
                         <Link to="http://webf201s.sgs.jae.co.jp/">SAP</Link>
                       </li>
                       <li>
@@ -160,12 +166,23 @@ const Links = () => {
                       </li>
                       <li>
                         <Link to="http://jaew-svr/JAE/">HQ Intranet</Link>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                   <div className="col-6 col-12-small">
                     <ul className="link-list">
-                      <li>
+                    {
+                        linkUrl[3] && linkUrl[3].map(e =>
+                          <li>
+                            <Link onClick={() => handleRedirect(e.nameurl)}>
+                              {e.namelink}
+                            </Link>
+
+                          </li>
+                        )
+
+                      }
+                {/*       <li>
                         <Link to="ContactInfo/JAEOR_ExtList.pdf">
                           Oregon Phone List
                         </Link>
@@ -187,7 +204,7 @@ const Links = () => {
                       </li>
                       <li>
                         <Link to="#">Other Phone Lists</Link>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                 </div>
@@ -201,7 +218,18 @@ const Links = () => {
                 <div className="row">
                   <div className="col-6 col-12-small">
                     <ul className="link-list">
-                      <li>
+                    {
+                        linkUrl[4] && linkUrl[4].map(e =>
+                          <li>
+                            <Link onClick={() => handleRedirect(e.nameurl)}>
+                              {e.namelink}
+                            </Link>
+
+                          </li>
+                        )
+
+                      }
+                      {/* <li>
                         <Link to="https://jaeoregon.on.spiceworks.com/portal">
                           IT Helpdesk
                         </Link>
@@ -221,12 +249,23 @@ const Links = () => {
                         <Link to="https://teams.microsoft.com/">
                           Microsoft Teams
                         </Link>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                   <div className="col-6 col-12-small">
                     <ul className="link-list">
-                      <li>
+                    {
+                        linkUrl[5] && linkUrl[5].map(e =>
+                          <li>
+                            <Link onClick={() => handleRedirect(e.nameurl)}>
+                              {e.namelink}
+                            </Link>
+
+                          </li>
+                        )
+
+                      }
+                     {/*  <li>
                         <Link to="PDF/TJNewsletter.pdf">Conexion</Link>
                       </li>
                       <li>
@@ -246,7 +285,7 @@ const Links = () => {
                       </li>
                       <li>
                         <Link to="https://us.ctmsmart.com/">Concur</Link>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                 </div>

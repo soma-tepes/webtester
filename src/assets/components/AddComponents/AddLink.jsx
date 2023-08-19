@@ -6,8 +6,29 @@ import FormLinks from "./FormLinks";
 const AddLink = () => {
   const URL = 'http://localhost:3000/api/v1/url/search/'
   const [optionValueSelect, setOptionValueSelect] = useState(null)
+  const [linkShow, setLinkShow] = useState([]);
 
-  
+
+  const postLink = (data) => {
+    axios
+      .post(`${URL}${optionValueSelect ? optionValueSelect : ""}`,data)
+      .then(() => {
+        console.log("Link added successfully");
+        petitionlink()
+      })
+      .catch(() => {
+        console.log("Error adding link");
+      });
+  };
+
+  const petitionlink = () => {
+    axios
+      .get(`${URL}${optionValueSelect ? optionValueSelect : ""}`)
+
+      .then(({ data }) => setLinkShow(data.user))
+      .catch(() => console.log("error"))
+  }
+
 
   const handleAdd = (e) => {
     e.preventDefault();
@@ -15,41 +36,11 @@ const AddLink = () => {
       url: e.target.url.value,
       link: e.target.link.value,
     };
-    postLink(data);
+    postLink(data)
     e.target.reset();
   };
 
-
-  const postLink = (data) => {
-    axios
-      .post(`${URL}${optionValueSelect ? optionValueSelect : ""}`, data)
-      .then(() => {
-        console.log("Link added successfully");
-        fetchUpdatedLinks(); // Call the function to fetch updated data
-      })
-      .catch(() => {
-        console.log("Error adding link");
-      });
-  };
-
-  const fetchUpdatedLinks = () => {
-    axios
-      .get(`${URL}${optionValueSelect ? optionValueSelect : ""}`)
-      .then(response => {
-        // Here you can update the links in the same component
-        const updatedLinks = response.data.user;
-        console.log("Updated links:", updatedLinks);
-      })
-      .catch(error => {
-        console.log("Error fetching updated links", error);
-      });
-  };
-  useEffect(() => {
-    // Cargar los datos iniciales desde la API
-    fetchUpdatedLinks()
-  }, []);
-
- const endpoints = ['a','b','c','d','e','f']
+const endpoints = ['a','b','c','d','e','f']
   return (
     <>
       <div className="addForm">
@@ -58,8 +49,8 @@ const AddLink = () => {
             <h2> <span>Select Form Link !</span></h2>
           </div>
           <div>
-            <select value={optionValueSelect} onChange={(e) => setOptionValueSelect(e.target.value)} >
-              <option value={0}>Select Option!</option>
+            <select className="addOption"  value={optionValueSelect} onChange={(e) => setOptionValueSelect(e.target.value)} >
+              <option  value={0}>Select Option!</option>
               {
                 endpoints.map((e,i) =>
                   <option value={e}>List URL {i+1}</option>
@@ -70,7 +61,10 @@ const AddLink = () => {
         </div>
 
         <div className="formLinksContainer">
-          {optionValueSelect != 0 ? <FormLinks handleAdd={handleAdd} optionValueSelect={optionValueSelect} postLink={postLink}/> : null}
+          {optionValueSelect != 0 ? 
+          <FormLinks
+          linkShow={linkShow} setLinkShow={setLinkShow} petitionlink={petitionlink}
+          handleAdd={handleAdd} optionValueSelect={optionValueSelect} postLink={postLink}/> : null}
         </div>
 
 

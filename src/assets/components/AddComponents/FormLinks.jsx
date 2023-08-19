@@ -2,21 +2,10 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import "../../Styles/FormLink.css";
 
-const FormLinks = ({ handleAdd, optionValueSelect }) => {
-  const [linkShow, setLinkShow] = useState([]);
+const FormLinks = ({ handleAdd, optionValueSelect, linkShow, setLinkShow, petitionlink }) => {
+
   const [editData, setEditData] = useState(null);
   const URL = `http://localhost:3000/api/v1/url/search/`;
-
-
-
-  const petitionlink = () => {
-    axios
-      .get(`${URL}${optionValueSelect ? optionValueSelect : ""}`)
-
-      .then(({ data }) => setLinkShow(data.user))
-      .catch(() => console.log("error"))
-  }
-
 
   const handleUpdate = (e, id) => {
     e.preventDefault()
@@ -39,17 +28,12 @@ const FormLinks = ({ handleAdd, optionValueSelect }) => {
       .catch((err) => console.log(err))
   }
 
-/*   const handleDelete = (id) => {
-    delet(id);
-
-  }; */
-
-  const deletLink = (id)=>{
+  const deletLink = (id) => {
     console.log(`${URL}${optionValueSelect}/${id}`)
     axios
-    .delete(`${URL}${optionValueSelect}/${id}`)
-    .then(() => petitionlink())
-    .catch((err) => console.log(err))
+      .delete(`${URL}${optionValueSelect}/${id}`)
+      .then(() => petitionlink())
+      .catch((err) => console.log(err))
   }
 
 
@@ -72,43 +56,50 @@ const FormLinks = ({ handleAdd, optionValueSelect }) => {
         <div>
           <h2>Form File {optionValueSelect}</h2>
         </div>
-        <div>
+        <div className='addFormSpanInput'>
           <form onSubmit={handleAdd}>
+
             <span>Add Name:</span>
-            <input type="text" name="url" />
+            <input className='linkFormLink' type="text" name="link" required placeholder={`Register Data Form: ${optionValueSelect}`}/>
 
             <span>Add Url:</span>
-            <input type="text" name="link" />
+            <input className='linkFormUrl' type="text" name="url" required placeholder={`Register Data Form: ${optionValueSelect}`}/>
+           
             <button>Add</button>
           </form>
         </div>
       </div>
 
       <div className='formLinkShowData'>
-        {editData ? (
-          <form onSubmit={(e) => handleUpdate(e, current.id)}>
-            <input type="text" name="nameurl" id="" defaultValue={current.nameurl} />
-            <input type="text" name="namelink" id="" defaultValue={current.namelink} />
-            <button >Save</button>
-            <button onClick={(e) => { e.preventDefault(); setEditData(null) }}>Cancel</button>
-          </form>
-        ) : (
-          (
-            linkShow &&
-            linkShow.map((e) => (
-              <div>
-                <ul key={e.id}>
-                  <li>{e.nameurl}</li>
-                  <li>{e.namelink}</li>
-                </ul>
-                <div>
-                  <button onClick={() => handleEditData(e.id)}>Edit</button>
-                  <button onClick={() => deletLink(e.id)}>Delete</button>
+        {
+          editData ? (
+            <form onSubmit={(e) => handleUpdate(e, current.id)}>
+              <input type="text" name="nameurl" id="" defaultValue={current.nameurl}  />
+              <input type="text" name="namelink" id="" defaultValue={current.namelink} />
+              <button >Save</button>
+              <button onClick={(e) => { e.preventDefault(); setEditData(null) }}>Cancel</button>
+            </form>
+          ) : (
+            (
+              linkShow &&
+              linkShow.map((e) => (
+                <div className='showDataFormLisks' key={e.id}>
+                  <div>
+                    <ul >
+                      <li>{e.namelink}</li>
+                      <li>{e.nameurl}</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <button onClick={() => handleEditData(e.id)}> 📝</button>
+                    <button onClick={() => deletLink(e.id)}> ❌</button>
+                  </div>
                 </div>
-              </div>
-            ))
+              ))
+            )
           )
-        )}
+        }
       </div>
     </div>
   );
