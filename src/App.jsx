@@ -7,6 +7,7 @@ import AddLink from "./assets/components/AddComponents/AddLink";
 import Undefined from "./assets/components/Not/Undefined";
 import Header from "./assets/components/Header";
 import Footer from "./assets/components/Footer";
+import CaptureHores from "./assets/components/AddComponents/CaptureHores";
 function App() {
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Page />} />
           <Route path="/add" element={<AddLink />} />
+          <Route path="/capturehours" element={<CaptureHores/>} />
           <Route path="*" element={<Undefined />} />
         </Routes>
         <Footer />

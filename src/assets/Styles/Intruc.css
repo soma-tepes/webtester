@@ -1,0 +1,9 @@
+.textAreaIntruccion{
+    min-height: 200px;
+    font-size: 20px;
+    width: 45vw;
+}
+
+.textAreaIntruccion p{
+    display: block;
+}

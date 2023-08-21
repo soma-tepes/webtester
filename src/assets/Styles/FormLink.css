@@ -1,13 +1,13 @@
-.add_form{
+.add_form {
     display: flex;
     flex-direction: column;
     gap: 3vh;
-    border: 1px solid red;
-  
+ /*    border: 1px solid red; */
+
     align-items: center;
 }
 
-.addFormTitle{
+.addFormTitle {
     margin-top: 40px;
     display: flex;
     align-items: center;
@@ -15,36 +15,55 @@
     gap: 30px;
     flex-direction: column;
 }
-.addFormSpanInput span{
+
+.addFormSpanInput span {
     display: block;
     padding: 1.8vh;
     text-align: center;
     font-size: 1.3rem;
 }
 
-.linkFormLink{
-    width: 30vw;
-   height: 3.5vh;
-   border-radius: 50px;
-   text-align: center;
-}
-.linkFormUrl{
+.linkFormLink {
     width: 30vw;
     height: 3.5vh;
     border-radius: 50px;
     text-align: center;
 }
-.formLinkShowData{
-  
- 
-   width: 50vw;
-   font-size: 3vh;
+
+.linkFormUrl {
+    width: 30vw;
+    height: 3.5vh;
+    border-radius: 50px;
+    text-align: center;
 }
 
-.showDataFormLisks{
+.formLinkShowData {
 
-   display: flex;
-   border: 1px solid black;
-   justify-content: space-between;
+
+    width: 50vw;
+    font-size: 3vh;
 }
 
+.showDataFormLisks {
+
+    display: flex;
+    border-bottom: 1px solid black;
+    justify-content: space-between;
+}
+
+.showDataFormLisksList ul {
+    display: flex;
+
+    flex-direction: column;
+    margin: 0;
+    gap: 10px;
+}
+
+.showDataFormLisksButton button {
+    display: flex;
+    width: 4vw;
+    height: 4vh;
+   justify-content: center;
+    align-items: center;
+    border: none;
+}

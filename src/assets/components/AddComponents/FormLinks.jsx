@@ -6,7 +6,7 @@ const FormLinks = ({ handleAdd, optionValueSelect, linkShow, setLinkShow, petiti
 
   const [editData, setEditData] = useState(null);
   const URL = `http://localhost:3000/api/v1/url/search/`;
-
+   const [modal, setModal] = useState(null)
   const handleUpdate = (e, id) => {
     e.preventDefault()
     const data = {
@@ -53,18 +53,22 @@ const FormLinks = ({ handleAdd, optionValueSelect, linkShow, setLinkShow, petiti
   return (
     <div className="add_form">
       <div className='addFormTitle'>
+        
         <div>
+          
           <h2>Form File {optionValueSelect}</h2>
         </div>
         <div className='addFormSpanInput'>
+         
+      
           <form onSubmit={handleAdd}>
 
             <span>Add Name:</span>
-            <input className='linkFormLink' type="text" name="link" required placeholder={`Register Data Form: ${optionValueSelect}`}/>
+            <input className='linkFormLink' type="text" name="link" required placeholder={`Register Data Form: ${optionValueSelect}`} />
 
             <span>Add Url:</span>
-            <input className='linkFormUrl' type="text" name="url" required placeholder={`Register Data Form: ${optionValueSelect}`}/>
-           
+            <input className='linkFormUrl' type="text" name="url" required placeholder={`Register Data Form: ${optionValueSelect}`} />
+
             <button>Add</button>
           </form>
         </div>
@@ -74,24 +78,26 @@ const FormLinks = ({ handleAdd, optionValueSelect, linkShow, setLinkShow, petiti
         {
           editData ? (
             <form onSubmit={(e) => handleUpdate(e, current.id)}>
-              <input type="text" name="nameurl" id="" defaultValue={current.nameurl}  />
+              <input type="text" name="nameurl" id="" defaultValue={current.nameurl} />
               <input type="text" name="namelink" id="" defaultValue={current.namelink} />
               <button >Save</button>
               <button onClick={(e) => { e.preventDefault(); setEditData(null) }}>Cancel</button>
             </form>
           ) : (
             (
+
+
               linkShow &&
               linkShow.map((e) => (
                 <div className='showDataFormLisks' key={e.id}>
-                  <div>
+                  <div className='showDataFormLisksList'>
                     <ul >
                       <li>{e.namelink}</li>
                       <li>{e.nameurl}</li>
                     </ul>
                   </div>
 
-                  <div>
+                  <div className='showDataFormLisksButton'>
                     <button onClick={() => handleEditData(e.id)}> 📝</button>
                     <button onClick={() => deletLink(e.id)}> ❌</button>
                   </div>
