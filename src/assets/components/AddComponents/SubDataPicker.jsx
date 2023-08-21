@@ -8,14 +8,18 @@ import '../../Styles/CaptureHours.css'
 const SubDataPicker = () => {
     const [time, setTime] = useState('00:00');
     const [time2, setTime2] = useState('00:00');
+
+    const rangeTime = 87.50
   return (
 
-    <div>
-            <div>
-            <h3>CaptureHores</h3>
+    <div className='datapicker'>
+            <div className='range'>
+            <h3>CaptureHores-- </h3>
+            <p>{`${rangeTime}%`}</p>
+       
             </div>
           
-            <div className='datapicker'>
+            <div >
                 <TimePicker
                     format="HH:mm"
                     value={time}
@@ -28,7 +32,7 @@ const SubDataPicker = () => {
                 />
             </div>
             <div>
-                Capture Employeeds!
+              <span>Capture Employe!</span>
                 <input type="number" />
             </div>
             </div>

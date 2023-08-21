@@ -9,7 +9,6 @@ const CaptureHores = () => {
         <div className='captureHrs' >
 
             <div>
-
                 <SubDataPicker />
             </div>
              <div>
