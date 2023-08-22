@@ -1,9 +1,36 @@
-.datapicker{
-   
-    font-size: 30px;
-    border: 1px solid black;
+.datapicker {
+
+    font-size: 20px;
+    border: 1px solid rgb(240, 7, 7);
     display: flex;
     flex-direction: column;
-    height: 60vh;
+    height: 40vh;
+    width: 40vw;
     justify-content: space-around;
+    align-items: center;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    color: black;
+}
+
+.datetime input {}
+
+.range {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.datetime {
+  display: flex;
+  flex-direction: column;
+    border: 1px solid red;
+    gap: 10px;
+    
+}
+
+.ran text{
+    width: 40vw;
 }

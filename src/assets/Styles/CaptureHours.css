@@ -9,3 +9,10 @@
     border: 1px solid black;
 }
 
+
+.captureh2{
+    display: flex;
+    justify-content: center;
+margin-top: 3.5vh;
+}
+
