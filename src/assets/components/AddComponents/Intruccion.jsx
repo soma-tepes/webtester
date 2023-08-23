@@ -4,7 +4,9 @@ const Intruccion = () => {
     return (
         <div>
             <div><h3>Intrucciones</h3></div>
-            <div></div>
+            <div>
+            
+            </div>
             <span className='textAreaIntruccion' >
 
                 <p>1.- Introducir ""Hora de Inicio"" y ""Hora Final"" en formato militar; de las 00:00 a las 23:59.</p>
