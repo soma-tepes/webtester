@@ -7,3 +7,12 @@
     display: flex;
     justify-content: center;
 } 
+.dateTimePicker{
+    display: flex;
+    flex-direction: column;
+    justify-content:center ;
+    align-items: center;
+    font-size: 25px;
+    width: 7vw;
+    color: white;
+}

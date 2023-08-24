@@ -19,7 +19,7 @@ const CaptureHores = () => {
 
                 <div className='captureHrs' >
                     {interruptor &&
-                        <div>
+                        <div className='timePikers'>
                             <SubDataPicker />
                         </div>
                     }
