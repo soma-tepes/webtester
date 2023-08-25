@@ -7,10 +7,13 @@ import Links from "./Links";
 const Page = () => {
   return (
     <>
-      <div>
+ 
+     
         <Banner />
         <Links />
-      </div>
+       
+       
+   
     </>
   );
 };

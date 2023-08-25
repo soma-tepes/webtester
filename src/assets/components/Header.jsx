@@ -9,15 +9,16 @@ const Header = () => {
         <div className="row">
           <div className="col-12">
             <header id="header">
-              <Link to={"/capturehours"}>
-                <h1>JAE Oregon</h1>
+              <Link  to={"/capturehours"}>
+                <h1 >JAE Oregon</h1>
               </Link>
-              {/*   <h1><Link to="" id="logo">JAE Oregon</Link></h1> */}
-              <h1>{/*  <Link id="logo" to="./AddLink">JAE Oregon</Link> */}</h1>
+                <h1><Link to="" id="logo">JAE Oregon</Link></h1>
+           
               <nav id="nav">
                 <Link to="/" className="current-page-item">
                   Homepage
                 </Link>
+              
               </nav>
             </header>
           </div>

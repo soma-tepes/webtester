@@ -52,6 +52,7 @@
         font-size: 6vw;
 
     }
+   
 }
 
 /*   @media (max-width: 400px) {
@@ -159,4 +160,11 @@
     color: white;
     border-radius: 8px;
     cursor: pointer;
+}
+
+@media (max-width: 736px) {
+    .inputNumber {
+       
+        width: 20vw;
+    }
 }
