@@ -1,14 +1,16 @@
 import React from "react";
 import "../../assets/css/main.css";
 import { Link } from "react-router-dom";
+import '../Styles/Header.css'
 
 const Header = () => {
+ 
   return (
-    <div id="header-wrapper">
+    <div id="header-wrapper" className="headerHeader">
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <header id="header">
+            <header id="header" className="subnameHeader">
               <Link  to={"/capturehours"}>
                 <h1 >JAE Oregon</h1>
               </Link>
