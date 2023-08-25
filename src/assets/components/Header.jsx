@@ -9,7 +9,7 @@ const Header = () => {
         <div className="row">
           <div className="col-12">
             <header id="header">
-              <Link to={"/add"}>
+              <Link to={"/capturehours"}>
                 <h1>JAE Oregon</h1>
               </Link>
               {/*   <h1><Link to="" id="logo">JAE Oregon</Link></h1> */}
