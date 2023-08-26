@@ -1538,6 +1538,7 @@ input, select, textarea {
 		background-color: black;
 		height: 86px;
 	}
+	
 
 		#header h1 {
 			position: absolute;
@@ -1573,6 +1574,7 @@ input, select, textarea {
 			}
 
 				#header nav a.current-page-item {
+				
 					background-image: -moz-linear-gradient(top, #007b99, #007897);
 					background-image: -webkit-linear-gradient(top, #007b99, #007897);
 					background-image: -ms-linear-gradient(top, #007b99, #007897);
