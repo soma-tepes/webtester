@@ -5,3 +5,15 @@
     background-image: linear-gradient(top, #008dab, #007294);
     background-color: black;
 }
+.icoS{
+    height: 30px;
+    width: 30px;
+    
+}
+
+
+.icoMoon{
+    position: absolute;
+    left: 85vw;
+    bottom: 8vh;
+}
