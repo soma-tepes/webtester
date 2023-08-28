@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import AppContext from "../../Context/AppContext";
+
+
 
 const Footer = () => {
+
+  const { changeColor, setChangeColor } = useContext(AppContext);
+
+  
+
   return (
-    <div id="footer-wrapper">
+    <div id="footer-wrapper" style={{  background : changeColor ? "black" : "" }}>
       <div class="container">
         <div class="row">
           <div class="col-8 col-12-medium">

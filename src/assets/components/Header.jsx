@@ -9,7 +9,7 @@ const Header = () => {
 
   const { changeColor, setChangeColor } = useContext(AppContext);
   const [hovered, setHovered] = useState(false);
-  const [headerId, setHeaderId] = useState('header');
+
 
   const handleChange = () => {
     setChangeColor(!changeColor);
@@ -76,7 +76,7 @@ const Header = () => {
               </h1>
               <nav id="nav" style={styleNav}>
            
-                < Link to="/" onClick={handleChange} style={changeColor ? styleBlack : styleNav2}
+                < Link to="#" onClick={handleChange} style={changeColor ? styleBlack : styleNav2}
                   onMouseEnter={() => setHovered(true)}
                   onMouseLeave={() => setHovered(false)}
                 >
