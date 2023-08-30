@@ -1,0 +1,30 @@
+.addTitlesContainer{
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 80vh;
+    width: 80vw;
+  /*   border: 1px solid black;
+} */
+}
+
+.listTitles{
+  border: 1px solid black;
+  width: 50vw;
+  min-height: 30vw;
+
+  >ul{
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   border: 1px solid black;
+   height: 100%;
+  }
+ >ul li{
+    font-size: 2vw;
+    
+  }
+}
+

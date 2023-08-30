@@ -322,7 +322,7 @@ const Links = () => {
               <ul className="big-image-list">
                 <li>
                   <Link to="#">
-                    <img src={hands} alt="" className="left" />
+                    <img  src={hands} alt="" className="left" />
                   </Link>
                   <h3 style={h2}>Wash Hands</h3>
                   <p>

@@ -6,7 +6,7 @@ const FormLinks = ({ handleAdd, optionValueSelect, linkShow, setLinkShow, petiti
 
   const [editData, setEditData] = useState(null);
   const URL = `http://localhost:3000/api/v1/url/search/`;
-   const [modal, setModal] = useState(null)
+  
   const handleUpdate = (e, id) => {
     e.preventDefault()
     const data = {
