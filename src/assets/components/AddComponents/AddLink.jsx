@@ -10,12 +10,13 @@ const AddLink = () => {
   
 
   const URL = import.meta.env.VITE_URL
+  
   const [optionValueSelect, setOptionValueSelect] = useState(null)
   const [linkShow, setLinkShow] = useState([]);
   const [optionNavigator, setOptionNavigator] = useState()
  
+console.log(optionValueSelect)
 
- 
   const postLink = (data) => {
     axios
       .post(`${URL}${optionValueSelect ? optionValueSelect : ""}`, data)
@@ -26,8 +27,10 @@ const AddLink = () => {
   const petitionlink = () => {
     axios
       .get(`${URL}${optionValueSelect ? optionValueSelect : ""}`)
-      .then(({ data }) => setLinkShow(data.user))
-      .catch(() => console.log("error"))
+      .then(({ data }) =>{
+        console.log(data)
+        setLinkShow(data.user)})
+      .catch(() => console.log("error with server "))
   }
 
 

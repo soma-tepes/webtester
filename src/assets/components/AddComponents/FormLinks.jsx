@@ -6,7 +6,7 @@ const FormLinks = ({ handleAdd, optionValueSelect, linkShow, setLinkShow, petiti
 
   const [editData, setEditData] = useState(null);
   const URL = `http://localhost:3000/api/v1/url/search/`;
-  
+
   const handleUpdate = (e, id) => {
     e.preventDefault()
     const data = {
@@ -53,14 +53,14 @@ const FormLinks = ({ handleAdd, optionValueSelect, linkShow, setLinkShow, petiti
   return (
     <div className="add_form">
       <div className='addFormTitle'>
-        
+
         <div>
-          
+
           <h2>Form File {optionValueSelect}</h2>
         </div>
         <div className='addFormSpanInput'>
-         
-      
+
+
           <form onSubmit={handleAdd}>
 
             <span>Add Name:</span>
