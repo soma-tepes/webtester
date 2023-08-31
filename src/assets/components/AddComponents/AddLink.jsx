@@ -4,32 +4,35 @@ import '../../Styles/AddLinks.css'
 import FormLinks from "./FormLinks";
 import AddSelect from "./AddSelect";
 import AddTitles from "./AddTitles";
+import AddPost from "./AddComponentAdmin/AddPost";
+import AddArticles from "./AddComponentAdmin/AddArticles";
 
 // add -1
 const AddLink = () => {
-  
+
 
   const URL = import.meta.env.VITE_URL
-  
+
   const [optionValueSelect, setOptionValueSelect] = useState(null)
   const [linkShow, setLinkShow] = useState([]);
   const [optionNavigator, setOptionNavigator] = useState()
- 
-console.log(optionValueSelect)
+
+  console.log(optionValueSelect)
 
   const postLink = (data) => {
     axios
       .post(`${URL}${optionValueSelect ? optionValueSelect : ""}`, data)
-      .then(() => {  console.log("Link added successfully"); petitionlink() })
-      .catch(() => {console.log("Error adding link");});
+      .then(() => { console.log("Link added successfully"); petitionlink() })
+      .catch(() => { console.log("Error adding link"); });
   };
 
   const petitionlink = () => {
     axios
       .get(`${URL}${optionValueSelect ? optionValueSelect : ""}`)
-      .then(({ data }) =>{
+      .then(({ data }) => {
         console.log(data)
-        setLinkShow(data.user)})
+        setLinkShow(data.user)
+      })
       .catch(() => console.log("error with server "))
   }
 
@@ -56,6 +59,8 @@ console.log(optionValueSelect)
             <option value=""  >"Edit Option"</option>
             <option value="1">Add LINK</option>
             <option value="2">Add Titles</option>
+            <option value="3">Add Articles</option>
+            <option value="4">Add Post</option>
           </select>
         </div>
 
@@ -82,6 +87,20 @@ console.log(optionValueSelect)
           }
 
         </div>
+
+
+     <div>
+     {optionNavigator == 3 &&
+            <div className="formLinksContainer">
+              <AddArticles />
+            </div>
+
+          }
+     </div>
+
+
+      
+       
       </div>
 
 

@@ -39,13 +39,19 @@
     font-weight: 900;
     color: black;
     opacity: .9;
-    background: linear-gradient(to right, #008dad, #3b69a9);
+    
 
 
     border-radius: 15px;
 
 }
 
+.blue{
+    background: linear-gradient(to right, #008dad, #3b69a9);
+}
+.black{
+    background: linear-gradient(to right, black, white);
+}
 @media (max-width: 736px) {
     .datapicker {
         width: 70vw;

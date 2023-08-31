@@ -1,0 +1,17 @@
+.containerArtitle{
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 80vh;
+    border: 1px solid black;
+
+    >form input {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        
+
+    }
+}

@@ -18,15 +18,27 @@ const FormLinks = ({ handleAdd, optionValueSelect, linkShow, setLinkShow, petiti
     updateAxios(id, data)
     e.target.reset()
     setEditData(null)
-    setLinkShow([])
+   
   }
 
   const updateAxios = (id, data) => {
     axios
       .patch(`${URL}${optionValueSelect}/${id}`, data)
-      .then(() => petitionlink())
+      .then(() => {
+          // Obtener el índice del elemento que se está actualizando
+          const updatedIndex = linkShow.findIndex(e => e.id === id);
+
+          // Crear una copia del estado actual
+          const updatedLinkShow = [...linkShow];
+
+          // Actualizar los datos del elemento en la copia
+          updatedLinkShow[updatedIndex] = { ...updatedLinkShow[updatedIndex], ...data };
+
+          // Actualizar el estado con la lista ordenada
+          setLinkShow(updatedLinkShow);
+      })
       .catch((err) => console.log(err))
-  }
+}
 
   const deletLink = (id) => {
     console.log(`${URL}${optionValueSelect}/${id}`)
@@ -56,22 +68,26 @@ const FormLinks = ({ handleAdd, optionValueSelect, linkShow, setLinkShow, petiti
 
         <div>
 
-          <h2>Form File {optionValueSelect}</h2>
+          {optionValueSelect && <h2>Form File {optionValueSelect}</h2>}
         </div>
-        <div className='addFormSpanInput'>
+        {optionValueSelect &&
+          <div className='addFormSpanInput'>
 
 
-          <form onSubmit={handleAdd}>
+            <form onSubmit={handleAdd}>
 
-            <span>Add Name:</span>
-            <input className='linkFormLink' type="text" name="link" required placeholder={`Register Data Form: ${optionValueSelect}`} />
+              <span>Add Name:</span>
+              <input className='linkFormLink' type="text" name="link" required placeholder={`Register Data Form: ${optionValueSelect}`} />
 
-            <span>Add Url:</span>
-            <input className='linkFormUrl' type="text" name="url" required placeholder={`Register Data Form: ${optionValueSelect}`} />
+              <span>Add Url:</span>
+              <input className='linkFormUrl' type="text" name="url" required placeholder={`Register Data Form: ${optionValueSelect}`} />
 
-            <button>Add</button>
-          </form>
-        </div>
+              <button>Add</button>
+            </form>
+
+          </div>
+        }
+
       </div>
 
       <div className='formLinkShowData'>

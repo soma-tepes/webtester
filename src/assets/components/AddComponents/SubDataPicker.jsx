@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext,useState } from 'react';
 import TimePicker from 'react-time-picker';
 import moment from 'moment';
 import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
 import '../../Styles/CaptureHours.css';
+import AppContext from '../../../Context/AppContext';
+
+
 
 const SubDataPicker = () => {
+
+  const { changeColor, setChangeColor } = useContext(AppContext);
+
   const [time, setTime] = useState('00:00');
   const [time2, setTime2] = useState('00:00');
   const [input, setinput] = useState("")
@@ -47,7 +53,7 @@ const SubDataPicker = () => {
   }
 
   return (
-    <div className='datapicker'>
+    <div className={`datapicker ${changeColor ? "black":"blue"}`}>
       <div className='range'>
         {/*     <input type="text" name="wo" value={wo} onChange={(e)=>setWo(e.target.value)} placeholder='ingrese WO here!' /> */}
         <h3 className='tittleCaptureHors'>-- Hours Data -- </h3>
