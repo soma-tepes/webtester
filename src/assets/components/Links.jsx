@@ -14,18 +14,23 @@ const Links = () => {
   const { changeColor, setChangeColor } = useContext(AppContext);
 
   const BASE_URL = `http://localhost:3000/api/v1/url/search/`;
-  const endpoints = ['a', 'b', 'c', 'd', 'e','f'];
+  const endpoints = ['a', 'b', 'c', 'd', 'e','f','addtitle'];
 
   const petitionlink = () => {
     Promise.all(
       endpoints.map(endpoint =>
         axios
           .get(`${BASE_URL}${endpoint}`)
-          .then(res => res.data.user)
+          .then(res => {
+            
+          return  endpoint == 'addtitle'? res.data.title : res.data.user}
+            )
+         
           .catch(error => console.error(error))
       )
-    ).then(data => setlinkUrl(data));
+    ).then(data => setlinkUrl([...data]));
   };
+
 
 
   const handleRedirect = (url) => {
@@ -59,7 +64,7 @@ const Links = () => {
         <div className="row main-row">
           <div className="col-4 col-12-medium">
             <section>
-              <h2 style={h2}>Oregon Resources</h2>
+              <h2 style={h2}>{`jae oregon`}</h2>
               <div>
                 <div className="row">
                   <div className="col-6 col-12-small" key={linkUrl.id}>

@@ -34,7 +34,7 @@ const AddTitles = () => {
 
     }
 
-   const peticion = () => {
+    const peticion = () => {
         axios
             .get(URL)
             .then(({ data }) => {
@@ -103,7 +103,7 @@ const AddTitles = () => {
                         <input type="text" name='title' defaultValue={current.title !== null ? current.title : ''} key={`input-${editTitle}`} />
 
                         <button>Save Data</button>
-                        <button onClick={()=>setEditTitle(null)}>Cancel</button>
+                        <button onClick={() => setEditTitle(null)}>Cancel</button>
                     </form>
                 </div>
                 : <div>
@@ -119,13 +119,33 @@ const AddTitles = () => {
 
             <div className='listTitles'>
                 <ul>
-                    {titlesData.map((title, index) => (
-                        <li key={index}>
-                            {sectionNames[index]}: {title.title && `${title.title} `}
-                            <i onClick={() => handleEditTitles(title.id)}>📝</i>
-                      { !editTitle   &&   <i onClick={() => deleteTitles(title.id)}>❌</i>}
-                        </li>
-                    ))}
+                    {
+                        titlesData.map( (title) =>
+                       
+                            <li key={title.id}>
+                                <div className='listTitle'>
+                                    {
+                                        <div>
+                                            {`${sectionNames[title.id]}:`}
+                                        </div>
+                                    }
+
+                                    {
+                                        <div className='titlesList'>
+                                            {title.title && `${title.title} `}
+                                        </div>
+                                    }
+                                    <div>
+                                        <i className='iconTitle' onClick={() => handleEditTitles(title.id)}>📝</i>
+                                        {!editTitle && <i className='iconTitle' onClick={() => deleteTitles(title.id)}>❌</i>}
+                                    </div>
+
+                                </div>
+
+                            </li>
+                        
+                           )
+                          }
                 </ul>
             </div>
 

@@ -1,30 +1,52 @@
-.addTitlesContainer{
-   
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 80vh;
-    width: 80vw;
+.addTitlesContainer {
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 90vh;
+  width: 80vw;
+  padding-top: 2vh;
   /*   border: 1px solid black;
 } */
 }
 
-.listTitles{
-  border: 1px solid black;
-  width: 50vw;
+.listTitles {
+
+  width: 60vw;
   min-height: 30vw;
 
-  >ul{
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between;
-   border: 1px solid black;
-   height: 100%;
+  >ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+
   }
- >ul li{
+
+  >ul li {
     font-size: 2vw;
-    
+
   }
+
+  >ul li i {
+    font-size: 1vw;
+  }
+
+
 }
 
+.listTitle {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid black;
+
+}
+
+.titlesList{
+/* Ajusta el tamaño de cada elemento según sea necesario */
+  text-align: justify;
+}
