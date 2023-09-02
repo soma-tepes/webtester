@@ -38,7 +38,7 @@ const AddTitles = () => {
         axios
             .get(URL)
             .then(({ data }) => {
-                console.log(data);
+
                 setTitlesData(data.title)
             })
 
@@ -78,6 +78,7 @@ const AddTitles = () => {
     useEffect(() => {
         peticion()
     }, [])
+
     const sectionNames = [
         "Title Principal",
         "Header",
@@ -120,8 +121,8 @@ const AddTitles = () => {
             <div className='listTitles'>
                 <ul>
                     {
-                        titlesData.map( (title) =>
-                       
+                        titlesData.map((title) =>
+
                             <li key={title.id}>
                                 <div className='listTitle'>
                                     {
@@ -143,9 +144,9 @@ const AddTitles = () => {
                                 </div>
 
                             </li>
-                        
-                           )
-                          }
+
+                        )
+                    }
                 </ul>
             </div>
 

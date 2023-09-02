@@ -4,7 +4,7 @@ import '../../Styles/AddLinks.css'
 import FormLinks from "./FormLinks";
 import AddSelect from "./AddSelect";
 import AddTitles from "./AddTitles";
-import AddPost from "./AddComponentAdmin/AddPost";
+
 import AddArticles from "./AddComponentAdmin/AddArticles";
 
 // add -1
@@ -17,7 +17,7 @@ const AddLink = () => {
   const [linkShow, setLinkShow] = useState([]);
   const [optionNavigator, setOptionNavigator] = useState()
 
-  console.log(optionValueSelect)
+
 
   const postLink = (data) => {
     axios

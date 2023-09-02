@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AppContext from "../../Context/AppContext";
-
 import hands from "../css/images/hands.jpg";
 import mask from "../css/images/mask.jpg";
 import ft from "../css/images/6ft.jpg";
@@ -12,8 +11,10 @@ const Links = () => {
   const [linkUrl, setlinkUrl] = useState([]);
   const { changeColor, setChangeColor } = useContext(AppContext);
 
+
   const BASE_URL = `http://localhost:3000/api/v1/url/search/`;
   const endpoints = ["a", "b", "c", "d", "e", "f", "addtitle"];
+
 
   const petitionlink = () => {
     Promise.all(
@@ -26,8 +27,13 @@ const Links = () => {
 
           .catch((error) => console.error(error))
       )
-    ).then((data) => setlinkUrl([...data]));
+    ).then((data) => {
+      setlinkUrl([...data]);
+
+    });
+
   };
+
 
   const handleRedirect = (url) => {
     window.open(url, "_blank");
@@ -55,58 +61,24 @@ const Links = () => {
         <div className="row main-row">
           <div className="col-4 col-12-medium">
             <section>
-              <h2 style={h2}>{linkUrl[6]?.[0]?.title || "url"}</h2>
+              <h2 style={h2}>{linkUrl[6]?.map(e => e.id == 4 && e.title)}</h2>
               <div>
                 <div className="row">
                   <div className="col-6 col-12-small" key={linkUrl.id}>
                     <ul className="link-list">
-                      {linkUrl[0] &&
-                        linkUrl[0].map((e) => (
-                          <li>
-                            <Link onClick={() => handleRedirect(e.nameurl)}>
-                              {e.namelink}
-                            </Link>
-                          </li>
-                        ))}
+                      {linkUrl[0]?.map((e) => (
+                        <li>
+                          <Link onClick={() => handleRedirect(e.nameurl)}>
+                            {e.namelink}
+                          </Link>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                   <div className="col-6 col-12-small">
                     <ul className="link-list">
-                      {linkUrl[1] &&
-                        linkUrl[1].map((e) => (
-                          <li>
-                            <Link onClick={() => handleRedirect(e.nameurl)}>
-                              {e.namelink}
-                            </Link>
-                          </li>
-                        ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-          <div className="col-4 col-6-medium col-12-small">
-            <section>
-              <h2 style={h2}>Headquarter Resources</h2>
-              <div>
-                <div className="row">
-                  <div className="col-6 col-12-small">
-                    <ul className="link-list">
-                      {linkUrl[2] &&
-                        linkUrl[2].map((e) => (
-                          <li>
-                            <Link onClick={() => handleRedirect(e.nameurl)}>
-                              {e.namelink}
-                            </Link>
-                          </li>
-                        ))}
-                    </ul>
-                  </div>
-                  <div className="col-6 col-12-small">
-                    <ul className="link-list">
-                      {linkUrl[3] &&
-                        linkUrl[3].map((e) => (
+                      {
+                        linkUrl[1]?.map((e) => (
                           <li>
                             <Link onClick={() => handleRedirect(e.nameurl)}>
                               {e.namelink}
@@ -121,13 +93,13 @@ const Links = () => {
           </div>
           <div className="col-4 col-6-medium col-12-small">
             <section>
-              <h2 style={h2}>Tijuana Resources</h2>
+              <h2 style={h2}>{linkUrl[6]?.map(e => e.id == 5 && e.title)}</h2>
               <div>
                 <div className="row">
                   <div className="col-6 col-12-small">
                     <ul className="link-list">
-                      {linkUrl[4] &&
-                        linkUrl[4].map((e) => (
+                      {
+                        linkUrl[2]?.map((e) => (
                           <li>
                             <Link onClick={() => handleRedirect(e.nameurl)}>
                               {e.namelink}
@@ -138,8 +110,41 @@ const Links = () => {
                   </div>
                   <div className="col-6 col-12-small">
                     <ul className="link-list">
-                      {linkUrl[5] &&
-                        linkUrl[5].map((e) => (
+                      {
+                        linkUrl[3]?.map((e) => (
+                          <li>
+                            <Link onClick={() => handleRedirect(e.nameurl)}>
+                              {e.namelink}
+                            </Link>
+                          </li>
+                        ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div className="col-4 col-6-medium col-12-small">
+            <section>
+              <h2 style={h2}>{linkUrl[6]?.map(e => e.id == 6 && e.title)}</h2>
+              <div>
+                <div className="row">
+                  <div className="col-6 col-12-small">
+                    <ul className="link-list">
+                      {
+                        linkUrl[4]?.map((e) => (
+                          <li>
+                            <Link onClick={() => handleRedirect(e.nameurl)}>
+                              {e.namelink}
+                            </Link>
+                          </li>
+                        ))}
+                    </ul>
+                  </div>
+                  <div className="col-6 col-12-small">
+                    <ul className="link-list">
+                      {
+                        linkUrl[5]?.map((e) => (
                           <li>
                             <Link onClick={() => handleRedirect(e.nameurl)}>
                               {e.namelink}
@@ -154,8 +159,8 @@ const Links = () => {
           </div>
           <div className="col-6 col-12-medium">
             <section>
-              <h2 style={h2}>Covid Preventive Measures</h2>
-              <p>Help keep our workplace safe</p>
+              <h2 style={h2}>{linkUrl[6]?.map(e => e.id == 7 && e.title)}</h2>
+              <p>{linkUrl[6]?.map(e => e.id == 8 && e.title)}</p>
               <ul className="big-image-list">
                 <li>
                   <Link to="#">
