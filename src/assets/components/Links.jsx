@@ -29,10 +29,12 @@ const Links = () => {
       )
     ).then((data) => {
       setlinkUrl([...data]);
-
+     
+      
     });
 
   };
+   
 
 
   const handleRedirect = (url) => {
