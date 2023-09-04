@@ -6,39 +6,18 @@ import hands from "../css/images/hands.jpg";
 import mask from "../css/images/mask.jpg";
 import ft from "../css/images/6ft.jpg";
 import molding from "../css/images/molding.jpg";
+import useStore, { calculateTitlesById } from "../../utils/store";
+import useFetchData from "../../utils/hookEfect";
 
 const Links = () => {
-  const [linkUrl, setlinkUrl] = useState([]);
+  const { fetchData } = useFetchData()
+  const { data } = useStore()
   const { changeColor, setChangeColor } = useContext(AppContext);
+  const titleID = calculateTitlesById(data)
 
-  const BASE_URL = `http://localhost:3000/api/v1/url/search/`;
-  const endpoints = ["a", "b", "c", "d", "e", "f", "addtitle"];
-
-  const petitionlink = () => {
-    Promise.all(
-      endpoints.map((endpoint) =>
-        axios
-          .get(`${BASE_URL}${endpoint}`)
-          .then((res) => {
-            return endpoint == "addtitle" ? res.data.title : res.data.user;
-          })
-
-          .catch((error) => console.error(error))
-      )
-    ).then((data) => {
-      setlinkUrl([...data]);
-
-    });
-  };
-
-
-  const handleRedirect = (url) => {
+ const handleRedirect = (url) => {
     window.open(url, "_blank");
   };
-  useEffect(() => {
-    petitionlink();
-  }, []);
-
   const h2 = {
     color: changeColor ? "#008ead" : "",
   };
@@ -58,12 +37,12 @@ const Links = () => {
         <div className="row main-row">
           <div className="col-4 col-12-medium">
             <section>
-              <h2 style={h2}>{linkUrl[6]?.map((e) => e.id == 4 && e.title)}</h2>
+              <h2 style={h2}>{titleID?.[4]}</h2>
               <div>
                 <div className="row">
-                  <div className="col-6 col-12-small" key={linkUrl.id}>
+                  <div className="col-6 col-12-small" key={data.id}>
                     <ul className="link-list">
-                      {linkUrl[0]?.map((e, i) => (
+                      {data[0]?.map((e, i) => (
                         <li key={i}>
                           <Link onClick={() => handleRedirect(e.nameurl)}>
                             {e.namelink}
@@ -74,7 +53,39 @@ const Links = () => {
                   </div>
                   <div className="col-6 col-12-small">
                     <ul className="link-list">
-                      {linkUrl[1]?.map((e, i) => (
+                      {data[1]?.map((e, i) => (
+                        <li key={i}>
+                          <Link onClick={() => handleRedirect(e.nameurl)}>
+                            {e.namelink}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </section>
+            
+          </div>
+          <div className="col-4 col-6-medium col-12-small">
+            <section>
+              <h2 style={h2}>{titleID?.[5]}</h2>
+              <div>
+                <div className="row">
+                  <div className="col-6 col-12-small">
+                    <ul className="link-list">
+                      {data[2]?.map((e, i) => (
+                        <li key={i}>
+                          <Link onClick={() => handleRedirect(e.nameurl)}>
+                            {e.namelink}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="col-6 col-12-small">
+                    <ul className="link-list">
+                      {data[3]?.map((e, i) => (
                         <li key={i}>
                           <Link onClick={() => handleRedirect(e.nameurl)}>
                             {e.namelink}
@@ -89,12 +100,12 @@ const Links = () => {
           </div>
           <div className="col-4 col-6-medium col-12-small">
             <section>
-              <h2 style={h2}>{linkUrl[6]?.map((e) => e.id == 5 && e.title)}</h2>
+              <h2 style={h2}>{titleID?.[6]}</h2>
               <div>
                 <div className="row">
                   <div className="col-6 col-12-small">
                     <ul className="link-list">
-                      {linkUrl[2]?.map((e, i) => (
+                      {data[4]?.map((e, i) => (
                         <li key={i}>
                           <Link onClick={() => handleRedirect(e.nameurl)}>
                             {e.namelink}
@@ -105,38 +116,7 @@ const Links = () => {
                   </div>
                   <div className="col-6 col-12-small">
                     <ul className="link-list">
-                      {linkUrl[3]?.map((e, i) => (
-                        <li key={i}>
-                          <Link onClick={() => handleRedirect(e.nameurl)}>
-                            {e.namelink}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-          <div className="col-4 col-6-medium col-12-small">
-            <section>
-              <h2 style={h2}>{linkUrl[6]?.map((e) => e.id == 6 && e.title)}</h2>
-              <div>
-                <div className="row">
-                  <div className="col-6 col-12-small">
-                    <ul className="link-list">
-                      {linkUrl[4]?.map((e, i) => (
-                        <li key={i}>
-                          <Link onClick={() => handleRedirect(e.nameurl)}>
-                            {e.namelink}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="col-6 col-12-small">
-                    <ul className="link-list">
-                      {linkUrl[5]?.map((e, i) => (
+                      {data[5]?.map((e, i) => (
                         <li key={i}>
                           <Link onClick={() => handleRedirect(e.nameurl)}>
                             {e.namelink}
@@ -151,8 +131,8 @@ const Links = () => {
           </div>
           <div className="col-6 col-12-medium">
             <section>
-              <h2 style={h2}>{linkUrl[6]?.map((e) => e.id == 7 && e.title)}</h2>
-              <p>{linkUrl[6]?.map((e) => e.id == 8 && e.title)}</p>
+              <h2 style={h2}>{titleID?.[7]}</h2>
+              <p>{titleID?.[8]}</p>
               <ul className="big-image-list">
                 <li>
                   <Link to="#">
@@ -192,7 +172,7 @@ const Links = () => {
           </div>
           <div className="col-6 col-12-medium">
             <article className="blog-post">
-              <h2 style={h2}>Thank you for being the best part of JAE!</h2>
+              <h2 style={h2}>{titleID?.[9]}</h2>
               <Link to="#">
                 <img src={molding} alt="" className="top blog-post-image" />
               </Link>

@@ -4,7 +4,7 @@ import useFetchData from "../../utils/hookEfect";
 import useStore, { calculateTitlesById } from "../../utils/store";
 
 const Footer = () => {
-  const { changeColor, setChangeColor } = useContext(AppContext);
+  const { changeColor} = useContext(AppContext);
   const { fetchData } = useFetchData();
   const { data } = useStore();
   const titlesById = calculateTitlesById(data);
