@@ -1,3 +1,5 @@
+
+
 /*
 	Minimaxing by HTML5 UP
 	html5up.net | @ajlkn
@@ -20,14 +22,20 @@
 
   // Title Bar.
   $(document).ready(function () {
+    var test = "toggle";
     $(
-      '<div id="titleBar">' +
-        '<a href="#navPanel" class="toggle"></a>' +
-        '<span class="title">' +
-        $("#logo").html() +
-        "</span>" +
-        "</div>"
+      `<div id="titleBar">
+        <a href="#navPanel" class="${test}"></a>
+        <p id="myParagraph" style="background-color: ; cursor: pointer;">Hello</p>
+        <span class="title">
+          ${$("#logo").html()}
+        </span>
+      </div>`
     ).appendTo($body);
+  
+    $("#myParagraph").click(function () {
+      $(this).toggleClass("blue black");
+    });
   });
   // Navigation Panel.
   $('<div id="navPanel">' + "<nav>" + $("#nav").navList() + "</nav>" + "</div>")
