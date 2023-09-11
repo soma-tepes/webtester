@@ -18,7 +18,7 @@ const Carrousel = () => {
         slidesToScroll: 1,
         adaptiveHeight: true,
         autoplay: true,  // Añade esta línea para activar el autoplay
-        autoplaySpeed: 5000, // Puedes ajustar la velocidad del autoplay en milisegundos (en este caso 2 segundos)
+        autoplaySpeed: 7000, // Puedes ajustar la velocidad del autoplay en milisegundos (en este caso 2 segundos)
     };
     return (
 
