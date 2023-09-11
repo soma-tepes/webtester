@@ -29,21 +29,20 @@
     /* border: 1px solid rgb(240, 7, 7); */
     display: flex;
     flex-direction: column;
-    height: auto;
-    min-height: 70vh;
-    width: 40vw;
-    justify-content: space-around;
+    height: 28rem;
+   
+    width: 25rem;
+    
     align-items: center;
     font-size: 2rem;
-    font-family: 'Ubuntu Condensed', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 900;
     color: black;
     opacity: .9;
     
-
+    margin: 20px;
 
     border-radius: 15px;
-
 }
 
 .blue{
@@ -52,14 +51,14 @@
 .black{
     background: linear-gradient(to right, black, white);
 }
-@media (max-width: 736px) {
+/* @media (max-width: 736px) {
     .datapicker {
         width: 70vw;
         font-size: 6vw;
 
     }
    
-}
+} */
 
 /*   @media (max-width: 400px) {
     .datapicker {
@@ -73,50 +72,59 @@
     display: flex;
     justify-content: center;
     padding: 4vh;
+ 
 }
 
 
 .exceded {
-    color: red;
+    color: white;
+    font-size: 1rem;
+    background-color: red;
+    
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+.exceded span{display: block;}
 
 .inputNumber {
-    width: 6vw;
-    height: 6vh;
+    width: 4rem;
+    height: 4rem;
     font-size: 20px;
     text-align: center;
     display: block;
     background-color: black;
     color: greenyellow;
     font-weight: 900;
+   
 }
 
 .spanInput {
     display: flex;
-    flex-direction: column;
+    font-size: 1.5rem;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 2rem;
     padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-bottom: 1.5rem;
+    
 }
 
-.datetime input {}
 
-.range {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+
+.range { width: 100%;} 
 
 .datetime {
     display: flex;
     flex-direction: column;
-    /*  border: 1px solid red; */
+    /*  border: 10px solid yellow; */
     gap: 10px;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
+
+ width: 100%;
+ 
 
 }
 
@@ -124,13 +132,56 @@
     width: 40vw;
 }
 
-.tittleCaptureHors {
-    font-size: 40px;
-    font-family: 'Ubuntu Condensed', sans-serif;
-    padding-top: 2.5rem;
-
-    margin-top: 15px;
+.gridTitles{
+  
+  display: grid;
+  grid-template-areas: "a a"
+                        "b c";
+                        
+                        grid-template-rows: 1fr auto auto ;
+                    
+                     margin-top: 15px;
+                        
+}
+.gridTitles div {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
     text-align: center;
+     
+
+}
+
+.gridTitles div:nth-child(1){
+    grid-area: a;
+   
+    text-align: center;
+    
+    
+}
+.gridTitles div:nth-child(2){
+    grid-area: b;
+   
+    >p span{
+        display: block;
+    }
+   
+}
+.displayblock{display: block;}
+.gridTitles div:nth-child(3){
+    grid-area: c;
+    
+    >p span{
+        display: block;
+    }
+}
+
+
+
+.tittleCaptureHors {
+    font-size: 2rem;
     color: white
 }
 
@@ -173,4 +224,11 @@
        
         width: 20vw;
     }
+}
+
+.capturateTime{
+    display: flex;
+    font-size: 1.5rem;
+    gap: 1.3rem;
+    padding: 10px;
 }

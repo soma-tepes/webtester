@@ -1,4 +1,4 @@
-import React, { useContext,useState } from 'react';
+import React, { useContext, useState } from 'react';
 import TimePicker from 'react-time-picker';
 import moment from 'moment';
 import 'react-time-picker/dist/TimePicker.css';
@@ -53,13 +53,15 @@ const SubDataPicker = () => {
   }
 
   return (
-    <div className={`datapicker ${changeColor ? "black":"blue"}`}>
+    <div className={`datapicker ${changeColor ? "black" : "blue"}`}>
       <div className='range'>
         {/*     <input type="text" name="wo" value={wo} onChange={(e)=>setWo(e.target.value)} placeholder='ingrese WO here!' /> */}
-        <h3 className='tittleCaptureHors'>-- Hours Data -- </h3>
+        <div className='gridTitles'>
+          <div><h3 className='tittleCaptureHors'>-- Hours Data -- </h3> </div>
+          <div><p className={rangeTime == "No exceder 12 Hours" && "exceded"}>{`Efective Time:`} <span>{`[${rangeTime}%]`}</span> </p></div>
+          <div><p >{`Time Range:`} <span>{` ${getTimeDifference().toFixed(2)} hours`}</span></p></div>
 
-        <p className={rangeTime == "No exceder 12 Hours" ? "exceded" : ""}> {`Efective Time: [${rangeTime}%]`}</p>
-        <p>{`Time Range: ${getTimeDifference().toFixed(2)} hours`}</p>
+        </div>
       </div>
 
       <div className='datetime'>
@@ -83,19 +85,25 @@ const SubDataPicker = () => {
       </div>
 
       <div className='spanInput'>
-        <span>Capture Employe!</span>
-        <input className='inputNumber' min="0" type="number" value={input} onChange={e => setinput(e.target.value)} />
+        <div><span>Number of Operator(s)</span></div>
+        <div>  <input className='inputNumber' min="0" type="number" value={input} onChange={e => setinput(e.target.value)} /></div>
+
+
         {/*  <form onSubmit={handleSubmit}>
         
         <button>Send</button>
         </form> */}
 
       </div>
-
-      <span>Time data capturate</span>   {input && input < 0 ? "No se aceptan datos negativos" : dataFinal.toFixed(2) == 'NaN' ? "Not Processable" :
+       <div className='capturateTime'>
+      <div><span>Time data capturate</span>  </div>
+      <div>  
+        {
+          input && input < 0 ? "No se aceptan datos negativos" : dataFinal.toFixed(2) == 'NaN' ? "Not Processable" :
         <span className='captureResult'> {dataFinal.toFixed(2)}</span>
-      }
-
+         }
+      </div>
+      </div>
     </div>
   )
 }
