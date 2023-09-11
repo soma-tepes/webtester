@@ -19,7 +19,7 @@
 .sub_ima {
     position: relative;
    /*  border: 1px solid yellow; */
-  border-radius: 10px;
+    border-radius: 10px;
     background-size: cover;
     background-repeat: no-repeat;
     min-width: 60%;

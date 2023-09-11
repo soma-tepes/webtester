@@ -10,7 +10,7 @@ import "../../Styles/Carrousel.css"
 import { Link } from 'react-router-dom';
 
 const Carrousel = () => {
-    var settings = {
+    const settings = {
         className: "",
         dots: true,
         infinite: true,

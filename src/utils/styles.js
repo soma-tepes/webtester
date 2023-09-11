@@ -1,4 +1,6 @@
 import image from "../assets/css/images/banner.jpg";
+import image2 from "../assets/css/images/dark.png"
+import image3 from "../assets/css/images/cal.webp"
 
 const estyle = (changeColor) => ({
   backgroundImage: changeColor
@@ -12,4 +14,17 @@ const estyle2 = (changeColor) => ({
     : `url(${image})`,
 });
 
-export { estyle, estyle2 };
+const backImage = (changeColor) => ({
+  backgroundImage: changeColor
+    ? `url(${image2})`
+    : `url(${image3})`,
+})
+
+const colorLetter = (changeColor)=>({
+  color : changeColor
+  ? "white"
+  :
+    "black"
+})
+
+export { estyle, estyle2,backImage,colorLetter };

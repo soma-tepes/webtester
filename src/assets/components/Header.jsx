@@ -6,6 +6,7 @@ import AppContext from "../../Context/AppContext";
 import useStore, { calculateTitlesById } from "../../utils/store";
 import useFetchData from "../../utils/hookEfect";
 import { estyle, contenedor, styleNav } from "../../utils/header.styles";
+import sun from "../css/images/soleado.png"
 const Header = () => {
   const { changeColor, setChangeColor } = useContext(AppContext);
   const [hovered, setHovered] = useState(false);
@@ -34,8 +35,10 @@ const Header = () => {
   };
 
   return (
-    <div id="header-wrapper" style={estyleTwo}>
+    <div id="header-wrapper" style={estyleTwo} >
+       <i className="inconHeaderChange" onClick={handleChange} >{changeColor ? "🌒":"☀" }</i>
       <div className="container">
+       
         <div className="row">
           <div className="col-12">
             <div id="header" style={estyleOne}>

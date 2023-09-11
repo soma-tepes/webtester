@@ -1,19 +1,18 @@
-.headerHeader{
+.headerHeader {
     background-image: -moz-linear-gradient(top, #008dab, #007294);
-    background-image: -webkit-linear-gradient(top,black, rgb(241, 237, 237));
+    background-image: -webkit-linear-gradient(top, black, rgb(241, 237, 237));
     background-image: -ms-linear-gradient(top, #008dab, #007294);
     background-image: linear-gradient(top, #008dab, #007294);
     background-color: black;
 }
-.icoS{
-    height: 30px;
-    width: 30px;
-    
-}
 
 
-.icoMoon{
+
+.inconHeaderChange {
     position: absolute;
-    left: 85vw;
-    bottom: 8vh;
+    top: 7.5vh;
+    right: 5vw;
+    font-size: 2vw;
+    color: yellow;
+  
 }
