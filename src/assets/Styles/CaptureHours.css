@@ -30,27 +30,40 @@
     display: flex;
     flex-direction: column;
     height: 28rem;
-   
     width: 25rem;
-    
     align-items: center;
     font-size: 2rem;
     font-family: 'Roboto', sans-serif;
     font-weight: 900;
     color: black;
     opacity: .9;
-    
     margin: 20px;
-
     border-radius: 15px;
 }
 
-.blue{
-    background: linear-gradient(to right, #008dad, #3b69a9);
+
+
+.blue {
+    background: linear-gradient(45deg, #008dad, #3b69a9,rgb(175, 175, 173),rgb(12, 12, 12));
+    background-size: 200% auto;
+    animation: moverFondo 5s infinite linear alternate;
 }
-.black{
+
+
+.black {
     background: linear-gradient(to right, black, white);
+    background-size: 200% auto;
+    animation: moverFondo 5s infinite linear alternate;
 }
+@keyframes moverFondo {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+
 /* @media (max-width: 736px) {
     .datapicker {
         width: 70vw;
@@ -72,7 +85,7 @@
     display: flex;
     justify-content: center;
     padding: 4vh;
- 
+
 }
 
 
@@ -80,13 +93,16 @@
     color: white;
     font-size: 1rem;
     background-color: red;
-    
+
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.exceded span{display: block;}
+
+.exceded span {
+    display: block;
+}
 
 .inputNumber {
     width: 4rem;
@@ -97,7 +113,7 @@
     background-color: black;
     color: greenyellow;
     font-weight: 900;
-   
+
 }
 
 .spanInput {
@@ -108,12 +124,14 @@
     gap: 2rem;
     padding-top: 1rem;
     padding-bottom: 1.5rem;
-    
+
 }
 
 
 
-.range { width: 100%;} 
+.range {
+    width: 100%;
+}
 
 .datetime {
     display: flex;
@@ -123,8 +141,8 @@
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
 
- width: 100%;
- 
+    width: 100%;
+
 
 }
 
@@ -132,48 +150,54 @@
     width: 40vw;
 }
 
-.gridTitles{
-  
-  display: grid;
-  grid-template-areas: "a a"
-                        "b c";
-                        
-                        grid-template-rows: 1fr auto auto ;
-                    
-                     margin-top: 15px;
-                        
+.gridTitles {
+
+    display: grid;
+    grid-template-areas: "a a"
+        "b c";
+
+    grid-template-rows: 1fr auto auto;
+
+    margin-top: 15px;
+
 }
+
 .gridTitles div {
-    
+
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 25px;
     text-align: center;
-     
+
 
 }
 
-.gridTitles div:nth-child(1){
+.gridTitles div:nth-child(1) {
     grid-area: a;
-   
+
     text-align: center;
-    
-    
+
+
 }
-.gridTitles div:nth-child(2){
+
+.gridTitles div:nth-child(2) {
     grid-area: b;
-   
-    >p span{
+
+    >p span {
         display: block;
     }
-   
+
 }
-.displayblock{display: block;}
-.gridTitles div:nth-child(3){
+
+.displayblock {
+    display: block;
+}
+
+.gridTitles div:nth-child(3) {
     grid-area: c;
-    
-    >p span{
+
+    >p span {
         display: block;
     }
 }
@@ -221,12 +245,12 @@
 
 @media (max-width: 736px) {
     .inputNumber {
-       
+
         width: 20vw;
     }
 }
 
-.capturateTime{
+.capturateTime {
     display: flex;
     font-size: 1.5rem;
     gap: 1.3rem;
