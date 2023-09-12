@@ -9,10 +9,12 @@
 } 
 .dateTimePicker{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content:center ;
     align-items: center;
-    font-size: 25px;
-    width: 7vw;
+    font-size: 1.4rem;
     color: white;
+   gap: 10px;
+   color: whi;
+   padding: 10px;
 }
