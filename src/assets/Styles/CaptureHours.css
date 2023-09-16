@@ -58,28 +58,13 @@
 @keyframes moverFondo {
     0% {
       background-position: 0% 50%;
+      border: 5px solid rgb(17, 159, 159);
     }
     100% {
       background-position: 100% 50%;
+      border: 5px solid rgb(51, 51, 51);
     }
   }
-
-/* @media (max-width: 736px) {
-    .datapicker {
-        width: 70vw;
-        font-size: 6vw;
-
-    }
-   
-} */
-
-/*   @media (max-width: 400px) {
-    .datapicker {
- 
-    width: 50vh;
-   
-    }
-  } */
 
 .captureh2 {
     display: flex;
@@ -208,6 +193,8 @@
     font-size: 2rem;
     color: white
 }
+
+
 
 .captureResult {
     font-size: 30px;

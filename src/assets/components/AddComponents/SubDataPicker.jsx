@@ -57,7 +57,7 @@ const SubDataPicker = () => {
       <div className='range'>
         {/*     <input type="text" name="wo" value={wo} onChange={(e)=>setWo(e.target.value)} placeholder='ingrese WO here!' /> */}
         <div className='gridTitles'>
-          <div><h3 className='tittleCaptureHors'>-- Hours Data -- </h3> </div>
+          <div><h3 className='tittleCaptureHors'>-- Hours Data --By  <span>N</span><span>1</span><span>2</span> </h3> </div>
           <div><p className={rangeTime == "No exceder 12 Hours" && "exceded"}>{`Efective Time:`} <span>{`[${rangeTime}%]`}</span> </p></div>
           <div><p >{`Time Range:`} <span>{` ${getTimeDifference().toFixed(2)} hours`}</span></p></div>
 
