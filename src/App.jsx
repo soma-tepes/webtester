@@ -9,6 +9,7 @@ import Header from "./assets/components/Header";
 import Footer from "./assets/components/Footer";
 import CaptureHores from "./assets/components/AddComponents/CaptureHores";
 import Received from "./assets/components/AddComponents/Received";
+import LectorMain from "./assets/components/QRLector/LectorMain";
 function App() {
   return (
     <>
@@ -19,6 +20,7 @@ function App() {
           <Route path="/add" element={<AddLink />} />
           <Route path="/admin" element={<Received />} />
           <Route path="/capturehours" element={<CaptureHores />} />
+          <Route path="/lector" element={<LectorMain />} />
           <Route path="*" element={<Undefined />} />
         </Routes>
         <Footer />
