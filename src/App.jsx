@@ -10,6 +10,7 @@ import Footer from "./assets/components/Footer";
 import CaptureHores from "./assets/components/AddComponents/CaptureHores";
 import Received from "./assets/components/AddComponents/Received";
 import LectorMain from "./assets/components/QRLector/LectorMain";
+import Dashboard from "./assets/components/Dasboard/Dashboard";
 function App() {
   return (
     <>
@@ -20,6 +21,7 @@ function App() {
           <Route path="/add" element={<AddLink />} />
           <Route path="/admin" element={<Received />} />
           <Route path="/capturehours" element={<CaptureHores />} />
+          <Route path="/dash" element={<Dashboard />} />
           <Route path="/lector" element={<LectorMain />} />
           <Route path="*" element={<Undefined />} />
         </Routes>

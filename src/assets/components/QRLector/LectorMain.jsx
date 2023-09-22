@@ -8,7 +8,7 @@ const LectorMain = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-      
+
         const data = e.target.datas.value.split(" ").filter(e => e != "" && e)
         console.log(data)
         if (data.length === 18) {
@@ -72,25 +72,25 @@ const LectorMain = () => {
 
 
 
-   
-}
-   
-const handleSubmit2 = (e)=>{
-e.preventDefault()
-const data = {
-    name: e.target.name.value,
-    lote: e.target.lote.value,
-    qty: e.target.qty.value,
-    wo: e.target.qty.value,
-}
 
-e.target.name.value=""
-e.target.lote.value=""
-e.target.qty.value =""
-e.target.wo.value =""
-setInputScan([...inputScan, data])
-}
-console.log(inputScan)
+    }
+
+    const handleSubmit2 = (e) => {
+        e.preventDefault()
+        const data = {
+            name: e.target.name.value,
+            lote: e.target.lote.value,
+            qty: e.target.qty.value,
+            wo: e.target.qty.value,
+        }
+
+        e.target.name.value = ""
+        e.target.lote.value = ""
+        e.target.qty.value = ""
+        e.target.wo.value = ""
+        setInputScan([...inputScan, data])
+    }
+    console.log(inputScan)
 
     return (
         <div className='containerLector'>
@@ -103,13 +103,13 @@ console.log(inputScan)
                         <button>Send</button>
 
                     </form>
-                    <button onClick={()=>activeForm ? setActiveForm(false) : setActiveForm(true)}>Add Manual</button>
-                    { activeForm &&
+                    <button onClick={() => activeForm ? setActiveForm(false) : setActiveForm(true)}>Add Manual</button>
+                    {activeForm &&
                         <form onSubmit={handleSubmit2}>
-                            Model <input type="text" required name='name'/>
-                            Lote  <input type="text" required name='lote'/>
-                            QTY   <input type="text" required name='qty'/>
-                            WO    <input type="text" required name='wo'/>
+                            Model <input type="text" required name='name' />
+                            Lote  <input type="text" required name='lote' />
+                            QTY   <input type="text" required name='qty' />
+                            WO    <input type="text" required name='wo' />
                             <button>Save</button>
                         </form>
                     }
