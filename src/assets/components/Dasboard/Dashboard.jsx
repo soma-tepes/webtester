@@ -1,36 +1,56 @@
-import React from 'react'
-import '../../Styles/Dashboard.css'
-import { useState } from 'react'
+import React, { useState } from 'react';
+import '../../Styles/Dashboard.css';
+import CaptureHores from '../AddComponents/CaptureHores';
+
 const Dashboard = () => {
+    const [frameOne, setFrameOne] = useState(false);
+    const [frameTwo, setFrameTwo] = useState(false);
 
-    const [frameOne, setFrameOne] = useState(false)
-    const [frameTwo, setFrameTwo] = useState(false)
+    const [hiddenDash, setHiddenDash] = useState(true)
+
+    const handleClick = (parameter) => {
+        if (parameter == 'admin') {
+            setFrameTwo(true);
+            setFrameOne(false);
+        }
+        if (parameter == 'capture') {
+            setFrameTwo(false);
+            setFrameOne(true);
+        }
+    };
+
+
     return (
-        <div className='containerDash'>
+        <div className= {`containerDash ${hiddenDash ? "showSidebar" : "hideSidebar"}`} >
 
-            <div>Dash
-                <div onClick={() => frameOne ? setFrameOne(false) : setFrameOne(true)}>Admin</div>
-                <div onClick={() => frameTwo ? setFrameTwo(false) : setFrameTwo(true)}>Capture Hours</div>
-                <div>Lector QR</div>
+            <div className='posi'>
+                Dash
+                {
+                   hiddenDash &&
+                    <>
+                        <div onClick={() => handleClick('admin')}>Admin</div>
+                        <div onClick={() => handleClick('capture')}>Capture Hours</div>
+                        <div>Lector QR</div>
+                    </>
 
+                }
+
+                <i onClick={()=>hiddenDash ?setHiddenDash(false): setHiddenDash(true)} className='icono_dash'>📦</i>
             </div>
-            <div>
 
+
+
+            <div className='div2'>
                 Page
-
-                {frameTwo ? frameOne = false : frameOne ?
+                {frameOne && (
                     <iframe src="http://localhost:5173/capturehours" height="100%" width="100%"></iframe>
-                    : null
-                }
-                {frameOne? frameTwo = false: frameTwo ?
-                    <iframe src="http://localhost:5173/lector" height="100%" width="100%"></iframe>
-                              :null
-                }
+                )}
+                {frameTwo && (
+                   <CaptureHores/>
+                )}
             </div>
-
-
         </div>
-    )
-}
+    );
+};
 
-export default Dashboard
+export default Dashboard;
