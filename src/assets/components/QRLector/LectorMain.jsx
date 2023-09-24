@@ -10,7 +10,7 @@ const LectorMain = () => {
 
 
         const data = e.target.datas.value.split(" ").filter(e => e != "" && e)
-        console.log(data)
+    
         if (data.length === 18) {
 
             const dataGral = {
@@ -90,7 +90,7 @@ const LectorMain = () => {
         e.target.wo.value = ""
         setInputScan([...inputScan, data])
     }
-    console.log(inputScan)
+   
 
     return (
         <div className='containerLector'>

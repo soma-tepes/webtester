@@ -7,6 +7,7 @@
     display: flex;
     transition: margin-left 0.5s;
 
+   
     >div:nth-child(1) {
         border: 1px solid black;
         width: 100%;
@@ -16,11 +17,15 @@
         padding: 5px;
         gap: 10px;
         position: relative;
+       background-color: #333333;
+        color: #ffffff;
+        font-size: 18px;
 
         >div {
-
-            font-size: 30px;
-            font-family: 'Roboto', ;
+            background-color: #333333;
+            font-size: 18px;
+            font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+            font-weight: 400;
         }
 
         >div:hover {
@@ -33,7 +38,12 @@
         border: 1px solid black;
         width:auto;
         flex: 7;
-       
+       >div:nth-child(1){
+        background-color: #333333;
+        font-size: 25px;
+        color: #ffffff;
+        padding: 10px;
+       }
        
     }
 }

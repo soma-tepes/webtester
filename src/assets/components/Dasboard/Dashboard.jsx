@@ -1,53 +1,68 @@
 import React, { useState } from 'react';
 import '../../Styles/Dashboard.css';
 import CaptureHores from '../AddComponents/CaptureHores';
+import LectorMain from '../QRLector/LectorMain';
+import AddLink from '../AddComponents/AddLink';
 
 const Dashboard = () => {
-    const [frameOne, setFrameOne] = useState(false);
-    const [frameTwo, setFrameTwo] = useState(false);
+
+    const [frameData, setFrameData] = useState({
+        frameOne: false,
+        frameTwo: false,
+        frame3: false
+    })
+
+    const { frameOne, frameTwo, frame3 } = frameData
 
     const [hiddenDash, setHiddenDash] = useState(true)
 
+   const updatingDatas = (datas)=>{
+    setFrameData(e=>({...e,...datas}))
+   }
+
     const handleClick = (parameter) => {
-        if (parameter == 'admin') {
-            setFrameTwo(true);
-            setFrameOne(false);
-        }
-        if (parameter == 'capture') {
-            setFrameTwo(false);
-            setFrameOne(true);
-        }
+          updatingDatas({
+            frameOne: parameter === 'capture',
+            frameTwo: parameter === 'admin',
+            frame3: parameter === 'lector'
+          })
     };
 
 
     return (
-        <div className= {`containerDash ${hiddenDash ? "showSidebar" : "hideSidebar"}`} >
+        <div className={`containerDash ${hiddenDash ? "showSidebar" : "hideSidebar"}`} >
 
             <div className='posi'>
-                Dash
+           <p> Dash</p>    
                 {
-                   hiddenDash &&
+                    hiddenDash &&
                     <>
                         <div onClick={() => handleClick('admin')}>Admin</div>
                         <div onClick={() => handleClick('capture')}>Capture Hours</div>
-                        <div>Lector QR</div>
+                        <div onClick={() => handleClick('lector')} >Lector QR</div>
+                        <div></div>
                     </>
 
                 }
 
-                <i onClick={()=>hiddenDash ?setHiddenDash(false): setHiddenDash(true)} className='icono_dash'>📦</i>
+               {/*  <i onClick={() => hiddenDash ? setHiddenDash(false) : setHiddenDash(true)} className='icono_dash'>📦</i> */}
             </div>
 
 
 
             <div className='div2'>
-                Page
+             <div onClick={() => hiddenDash ? setHiddenDash(false) : setHiddenDash(true)}>📩</div>
                 {frameOne && (
-                    <iframe src="http://localhost:5173/capturehours" height="100%" width="100%"></iframe>
+                   <AddLink/>
                 )}
                 {frameTwo && (
-                   <CaptureHores/>
+                    (<CaptureHores />)
+                    
                 )}
+
+                {
+                    frame3 && <LectorMain />
+                }
             </div>
         </div>
     );
