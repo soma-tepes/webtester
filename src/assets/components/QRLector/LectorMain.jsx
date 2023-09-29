@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import '../../Styles/Lector.css'
+import QrReader from 'react-qr-scanner';
+import LectorQRComponent from './LectorQRComponent';
+
 const LectorMain = () => {
 
     const [inputScan, setInputScan] = useState([])
@@ -81,7 +84,7 @@ const LectorMain = () => {
             name: e.target.name.value,
             lote: e.target.lote.value,
             qty: e.target.qty.value,
-            wo: e.target.qty.value,
+            wo: e.target.wo.value,
         }
 
         e.target.name.value = ""
@@ -99,7 +102,9 @@ const LectorMain = () => {
                     <form onSubmit={handleSubmit}>
                         Scan <input type="text" required name='datas' />
 
-
+                           <div>
+                          <LectorQRComponent/>
+                           </div>
                         <button>Send</button>
 
                     </form>
