@@ -17,14 +17,18 @@ const LectorQRComponent = () => {
   };
 
   return (
-    <QrReader
-    delay={300}
-    onError={handleError}
-    onScan={handleScan}
-    style={{ width: '100%' }}
-    facingMode="environment"
-  />
-  
+    <>
+     <QrReader
+          delay={300}
+          onError={handleError}
+          onScan={handleScan}
+          style={{ width: '100%',border:'1px solid black' }}
+          facingMode="environment"
+        />
+        <div>{inputScan && inputScan.map(e=>e)}</div>
+    </>
+   
+        
   )
 }
 
