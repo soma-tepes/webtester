@@ -29,7 +29,7 @@
         }
 
         >div:hover {
-            border: 1px solid red;
+        
             cursor: pointer;
         }
     }
@@ -65,3 +65,10 @@
     margin-left: -150px; 
   }
   
+.icona{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 5px;
+}
+
+

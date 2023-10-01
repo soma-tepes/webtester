@@ -103,7 +103,7 @@ const LectorMain = () => {
                         Scan <input type="text" required name='datas' />
 
                            <div>
-                          <LectorQRComponent/>
+                          <LectorQRComponent/>                                                                                 
                            </div>
                         <button>Send</button>
 
@@ -122,7 +122,7 @@ const LectorMain = () => {
                 </div>
 
                 <div>
-                    <table className='tableLector' >
+                    <table className='tableLector' key={inputScan} >
                         <tr>
                             <th>Model</th>
                             <th>Description</th>

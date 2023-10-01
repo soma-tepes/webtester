@@ -25,7 +25,7 @@ const LectorQRComponent = () => {
           style={{ width: '100%',border:'1px solid black' }}
           facingMode="environment"
         />
-        <div>{inputScan && inputScan.map(e=>e)}</div>
+        <div>{inputScan && inputScan.map}</div>
     </>
    
         
