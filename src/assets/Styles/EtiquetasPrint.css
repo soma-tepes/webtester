@@ -1,3 +1,56 @@
-.ticket{
-    border: 1px solid black;
+.titleTiket{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  
+  background-color: white;
+  font-size: 30px;
 }
+.containerTicket {
+  background: linear-gradient(to top left, #ffcccc 0%, #669999 100%);
+  width: 100%;
+  min-height: 40vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 20px;
+}
+
+.ticket {
+  border-radius: 10px;
+  background-color: white;
+  cursor: pointer;
+  width: 101.50mm;
+  height: 65mm;
+  transition: background 0.2s ease, border 0.3s ease;
+
+}
+
+.ticket:hover {
+  background: linear-gradient(to top left, #ccffff 0%, #666699 100%);
+
+  border: none;
+}
+
+.ticket2 {
+  border-radius: 10px;
+  background-color: white;
+  cursor: pointer;
+  width: 103.112mm;
+  height: 51.516mm;
+  transition: background 0.2s ease, border 0.3s ease;
+}
+
+.ticket2:hover {
+  background: linear-gradient(to top left, #ccffff 0%, #666699 100%);
+  border: none;
+}
+
+/* @media print {
+  .ticket {
+    transform: rotate(90deg);
+  }
+} */
