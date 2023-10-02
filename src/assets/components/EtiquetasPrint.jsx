@@ -12,6 +12,10 @@ import s2d from "../css/images/ticketsegunda/segundaD2.svg"
 import s3d from "../css/images/ticketsegunda/segundaD3.svg"
 import pcn from "../css/images/ticketsegunda/pcn.svg"
 import peso from "../css/images/ticketsegunda/peso.svg"
+import ind1 from "../css/images/ticketsegunda/idv1.svg"
+import ind2 from "../css/images/ticketsegunda/idv2.svg"
+import ind3 from "../css/images/ticketsegunda/idv3.svg"
+import prime from "../css/images/ticketsegunda/prime.svg"
 
 import standar from "../css/images/aaticket.svg"
 import "../Styles/EtiquetasPrint.css";
@@ -50,6 +54,11 @@ const [turnoData1, setturnoData1] = useState(true)
   const componentRef11 = React.useRef();
   const componentRef12 = React.useRef();
   const componentRef13 = React.useRef();
+
+  const componentRef14 = React.useRef();
+  const componentRef15 = React.useRef();
+  const componentRef16 = React.useRef();
+  const componentRef17 = React.useRef();
 
   const handlePrint1 = useReactToPrint({
     content: () => componentRef1.current
@@ -100,7 +109,18 @@ const [turnoData1, setturnoData1] = useState(true)
     content: () => componentRef13.current
   });
 
-
+  const handlePrint14 = useReactToPrint({
+    content: () => componentRef14.current
+  });
+  const handlePrint15 = useReactToPrint({
+    content: () => componentRef15.current
+  });
+  const handlePrint16 = useReactToPrint({
+    content: () => componentRef16.current
+  });
+  const handlePrint17 = useReactToPrint({
+    content: () => componentRef17.current
+  });
 
   let arrayImages = [a, b, c, d, e]
 
@@ -125,6 +145,11 @@ const [turnoData1, setturnoData1] = useState(true)
         <div onClick={handlePrint13}>
           <ComponentToPrint ref={componentRef13} imageSrc={peso} className="ticket" />
           {/*  <button onClick={handlePrint13}>Imprimir</button> */}
+        </div>
+
+        <div onClick={handlePrint17}>
+          <ComponentToPrint ref={componentRef17} imageSrc={prime} className="ticket" />
+          {/*  <button onClick={handlePrint1}>Imprimir</button> */}
         </div>
     {   turnoData1&& 
       <> 
@@ -170,6 +195,18 @@ const [turnoData1, setturnoData1] = useState(true)
         </div>
         <div onClick={handlePrint12}>
           <ComponentToPrint ref={componentRef12} imageSrc={s3d} className="ticket2" />
+          {/*   <button onClick={handlePrint12}>Imprimir</button> */}
+        </div>
+        <div onClick={handlePrint14}>
+          <ComponentToPrint ref={componentRef14} imageSrc={ind1} className="ticket2" />
+          {/*   <button onClick={handlePrint12}>Imprimir</button> */}
+        </div>
+        <div onClick={handlePrint15}>
+          <ComponentToPrint ref={componentRef15} imageSrc={ind2} className="ticket2" />
+          {/*   <button onClick={handlePrint12}>Imprimir</button> */}
+        </div>
+        <div onClick={handlePrint16}>
+          <ComponentToPrint ref={componentRef16} imageSrc={ind3} className="ticket2" />
           {/*   <button onClick={handlePrint12}>Imprimir</button> */}
         </div>
       </>
