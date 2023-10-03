@@ -27,7 +27,7 @@ import { useState } from "react";
 
 
 
-const ComponentToPrint = React.forwardRef(({ imageSrc, className, name }, ref) => (
+const ComponentToPrint = React.forwardRef(({ imageSrc, className }, ref) => (
 
   <div ref={ref}>
     {
@@ -60,13 +60,19 @@ const EtiquetasPrint = () => {
   ] = componentRefs;
 
 
-  const handlePrint1 = useReactToPrint({
+  const [handlePrint1, handlePrint2] = [useReactToPrint({
     content: () => componentRef1.current
-  });
+  }), useReactToPrint({
+    content: () => componentRef1.current
+  })]
 
-  const handlePrint2 = useReactToPrint({
+  /* const handlePrint1 = useReactToPrint({
+    content: () => componentRef1.current
+  }); */
+
+  /* const handlePrint2 = useReactToPrint({
     content: () => componentRef2.current
-  });
+  }); */
   const handlePrint3 = useReactToPrint({
     content: () => componentRef3.current
   });
