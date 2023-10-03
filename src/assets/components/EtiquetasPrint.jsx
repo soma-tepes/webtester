@@ -16,6 +16,7 @@ import ind1 from "../css/images/ticketsegunda/idv1.svg"
 import ind2 from "../css/images/ticketsegunda/idv2.svg"
 import ind3 from "../css/images/ticketsegunda/idv3.svg"
 import prime from "../css/images/ticketsegunda/prime.svg"
+import template from "../css/images/ticketsegunda/template.svg"
 
 import standar from "../css/images/aaticket.svg"
 import "../Styles/EtiquetasPrint.css";
@@ -26,11 +27,21 @@ import { useState } from "react";
 
 
 
-const ComponentToPrint = React.forwardRef(({ imageSrc, className }, ref) => (
+const ComponentToPrint = React.forwardRef(({ imageSrc, className, name }, ref) => (
+
   <div ref={ref}>
-    <div className="areaImprimir">
-      <img className={className} src={imageSrc} alt="" />
-    </div>
+    {
+      className == "ticket" &&
+      <div className="areaImprimir ">
+        <img className={className} src={imageSrc} alt="" />
+      </div>
+    }
+    {className == "ticket2" &&
+      <div className="areaImprimir2 ">
+        <img className={className} src={imageSrc} alt="" />
+      </div>
+    }
+
   </div>
 ));
 
@@ -38,27 +49,16 @@ const ComponentToPrint = React.forwardRef(({ imageSrc, className }, ref) => (
 
 const EtiquetasPrint = () => {
 
-const [turnoData1, setturnoData1] = useState(true)
+  const [turnoData1, setturnoData1] = useState(true)
+  const componentRefs = Array.from({ length: 18 }, () => React.useRef());
+  const [
+    componentRef1, componentRef2, componentRef3, componentRef4,
+    componentRef5, componentRef6, componentRef7, componentRef8,
+    componentRef9, componentRef10, componentRef11, componentRef12,
+    componentRef13, componentRef14, componentRef15, componentRef16,
+    componentRef17, componentRef18
+  ] = componentRefs;
 
-  const componentRef1 = React.useRef();
-  const componentRef2 = React.useRef();
-  const componentRef3 = React.useRef();
-  const componentRef4 = React.useRef();
-  const componentRef5 = React.useRef();
-  const componentRef6 = React.useRef();
-
-  const componentRef7 = React.useRef();
-  const componentRef8 = React.useRef();
-  const componentRef9 = React.useRef();
-  const componentRef10 = React.useRef();
-  const componentRef11 = React.useRef();
-  const componentRef12 = React.useRef();
-  const componentRef13 = React.useRef();
-
-  const componentRef14 = React.useRef();
-  const componentRef15 = React.useRef();
-  const componentRef16 = React.useRef();
-  const componentRef17 = React.useRef();
 
   const handlePrint1 = useReactToPrint({
     content: () => componentRef1.current
@@ -121,8 +121,12 @@ const [turnoData1, setturnoData1] = useState(true)
   const handlePrint17 = useReactToPrint({
     content: () => componentRef17.current
   });
+  const handlePrint18 = useReactToPrint({
+    content: () => componentRef18.current
+  });
 
-  let arrayImages = [a, b, c, d, e]
+
+
 
   return (
 
@@ -130,88 +134,98 @@ const [turnoData1, setturnoData1] = useState(true)
     <>
       <div className="titleTiket">
         <div>Ticket </div>
-        <button onClick={()=>turnoData1 ? setturnoData1(false):setturnoData1(true)}>Turno1</button>
+        <button onClick={() => turnoData1 ? setturnoData1(false) : setturnoData1(true)}>Turno1</button>
         <button>Turno2</button>
         <button>Turno3</button>
       </div>
       <div className="containerTicket">
+        <div className="containerTicketSub">
+          <div className="contanerText" onClick={handlePrint18}>
+
+            <ComponentToPrint ref={componentRef18} imageSrc={template} className="ticket" />
+            <h1 className="textTemplate">Text</h1>
 
 
-        <div onClick={handlePrint1}>
-          <ComponentToPrint ref={componentRef1} imageSrc={pcn} className="ticket" />
-          {/*  <button onClick={handlePrint1}>Imprimir</button> */}
+            {/*  <button onClick={handlePrint1}>Imprimir</button> */}
+          </div>
+
+          <div onClick={handlePrint1}>
+            <ComponentToPrint ref={componentRef1} imageSrc={pcn} name="tik" className="ticket" />
+            {/*  <button onClick={handlePrint1}>Imprimir</button> */}
+          </div>
+
+          <div onClick={handlePrint13}>
+            <ComponentToPrint ref={componentRef13} imageSrc={peso} className="ticket" />
+            {/*  <button onClick={handlePrint13}>Imprimir</button> */}
+          </div>
+
+          <div onClick={handlePrint17}>
+            <ComponentToPrint ref={componentRef17} imageSrc={prime} className="ticket" />
+            {/*  <button onClick={handlePrint1}>Imprimir</button> */}
+          </div>
+          {turnoData1 &&
+            <>
+              <div onClick={handlePrint2}>
+                <ComponentToPrint ref={componentRef2} imageSrc={a} className="ticket2" />
+                {/*    <button onClick={handlePrint2}>Imprimir</button> */}
+              </div>
+              <div onClick={handlePrint3}>
+                <ComponentToPrint ref={componentRef3} imageSrc={b} className="ticket2" />
+                {/*    <button onClick={handlePrint3}>Imprimir</button> */}
+              </div>
+              <div onClick={handlePrint4}>
+                <ComponentToPrint ref={componentRef4} imageSrc={c} className="ticket2" />
+                {/*  <button onClick={handlePrint4}>Imprimir</button> */}
+              </div>
+              <div onClick={handlePrint5}>
+                <ComponentToPrint ref={componentRef5} imageSrc={d} className="ticket2" />
+                {/*    <button onClick={handlePrint5}>Imprimir</button> */}
+              </div>
+              <div onClick={handlePrint6}>
+                <ComponentToPrint ref={componentRef6} imageSrc={e} className="ticket2" />
+                {/*   <button onClick={handlePrint6}>Imprimir</button> */}
+              </div>
+              <div onClick={handlePrint7}>
+                <ComponentToPrint ref={componentRef7} imageSrc={s2d} className="ticket2" />
+                {/*   <button onClick={handlePrint7}>Imprimir</button> */}
+              </div>
+              <div onClick={handlePrint8}>
+                <ComponentToPrint ref={componentRef8} imageSrc={s1} className="ticket2" />
+                {/*  <button onClick={handlePrint8}>Imprimir</button> */}
+              </div>
+              <div onClick={handlePrint9}>
+                <ComponentToPrint ref={componentRef9} imageSrc={s2} className="ticket2" />
+                {/*   <button onClick={handlePrint9}>Imprimir</button> */}
+              </div>
+              <div onClick={handlePrint10}>
+                <ComponentToPrint ref={componentRef10} imageSrc={s3} className="ticket2" />
+                {/*    <button onClick={handlePrint10}>Imprimir</button> */}
+              </div>
+              <div onClick={handlePrint11}>
+                <ComponentToPrint ref={componentRef11} imageSrc={s1d} className="ticket2" />
+                {/*    <button onClick={handlePrint11}>Imprimir</button> */}
+              </div>
+              <div onClick={handlePrint12}>
+                <ComponentToPrint ref={componentRef12} imageSrc={s3d} className="ticket2" />
+                {/*   <button onClick={handlePrint12}>Imprimir</button> */}
+              </div>
+              <div onClick={handlePrint14}>
+                <ComponentToPrint ref={componentRef14} imageSrc={ind1} className="ticket2" />
+                {/*   <button onClick={handlePrint12}>Imprimir</button> */}
+              </div>
+              <div onClick={handlePrint15}>
+                <ComponentToPrint ref={componentRef15} imageSrc={ind2} className="ticket2" />
+                {/*   <button onClick={handlePrint12}>Imprimir</button> */}
+              </div>
+              <div onClick={handlePrint16}>
+                <ComponentToPrint ref={componentRef16} imageSrc={ind3} className="ticket2" />
+                {/*   <button onClick={handlePrint12}>Imprimir</button> */}
+              </div>
+            </>
+          }
         </div>
 
-        <div onClick={handlePrint13}>
-          <ComponentToPrint ref={componentRef13} imageSrc={peso} className="ticket" />
-          {/*  <button onClick={handlePrint13}>Imprimir</button> */}
-        </div>
 
-        <div onClick={handlePrint17}>
-          <ComponentToPrint ref={componentRef17} imageSrc={prime} className="ticket" />
-          {/*  <button onClick={handlePrint1}>Imprimir</button> */}
-        </div>
-    {   turnoData1&& 
-      <> 
-       <div onClick={handlePrint2}>
-          <ComponentToPrint ref={componentRef2} imageSrc={a} className="ticket2" />
-          {/*    <button onClick={handlePrint2}>Imprimir</button> */}
-        </div>
-        <div onClick={handlePrint3}>
-          <ComponentToPrint ref={componentRef3} imageSrc={b} className="ticket2" />
-          {/*    <button onClick={handlePrint3}>Imprimir</button> */}
-        </div>
-        <div onClick={handlePrint4}>
-          <ComponentToPrint ref={componentRef4} imageSrc={c} className="ticket2" />
-          {/*  <button onClick={handlePrint4}>Imprimir</button> */}
-        </div>
-        <div onClick={handlePrint5}>
-          <ComponentToPrint ref={componentRef5} imageSrc={d} className="ticket2" />
-          {/*    <button onClick={handlePrint5}>Imprimir</button> */}
-        </div>
-        <div onClick={handlePrint6}>
-          <ComponentToPrint ref={componentRef6} imageSrc={e} className="ticket2" />
-          {/*   <button onClick={handlePrint6}>Imprimir</button> */}
-        </div>
-        <div onClick={handlePrint7}>
-          <ComponentToPrint ref={componentRef7} imageSrc={s2d} className="ticket2" />
-          {/*   <button onClick={handlePrint7}>Imprimir</button> */}
-        </div>
-        <div onClick={handlePrint8}>
-          <ComponentToPrint ref={componentRef8} imageSrc={s1} className="ticket2" />
-          {/*  <button onClick={handlePrint8}>Imprimir</button> */}
-        </div>
-        <div onClick={handlePrint9}>
-          <ComponentToPrint ref={componentRef9} imageSrc={s2} className="ticket2" />
-          {/*   <button onClick={handlePrint9}>Imprimir</button> */}
-        </div>
-        <div onClick={handlePrint10}>
-          <ComponentToPrint ref={componentRef10} imageSrc={s3} className="ticket2" />
-          {/*    <button onClick={handlePrint10}>Imprimir</button> */}
-        </div>
-        <div onClick={handlePrint11}>
-          <ComponentToPrint ref={componentRef11} imageSrc={s1d} className="ticket2" />
-          {/*    <button onClick={handlePrint11}>Imprimir</button> */}
-        </div>
-        <div onClick={handlePrint12}>
-          <ComponentToPrint ref={componentRef12} imageSrc={s3d} className="ticket2" />
-          {/*   <button onClick={handlePrint12}>Imprimir</button> */}
-        </div>
-        <div onClick={handlePrint14}>
-          <ComponentToPrint ref={componentRef14} imageSrc={ind1} className="ticket2" />
-          {/*   <button onClick={handlePrint12}>Imprimir</button> */}
-        </div>
-        <div onClick={handlePrint15}>
-          <ComponentToPrint ref={componentRef15} imageSrc={ind2} className="ticket2" />
-          {/*   <button onClick={handlePrint12}>Imprimir</button> */}
-        </div>
-        <div onClick={handlePrint16}>
-          <ComponentToPrint ref={componentRef16} imageSrc={ind3} className="ticket2" />
-          {/*   <button onClick={handlePrint12}>Imprimir</button> */}
-        </div>
-      </>
-    }
-       
       </div>
     </>
 

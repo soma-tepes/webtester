@@ -10,22 +10,38 @@
   background: linear-gradient(to top left, #ffcccc 0%, #669999 100%);
   width: 100%;
   min-height: 40vh;
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 20px;
 
+  padding: 20px; */
+}
+.containerTicketSub{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
   padding: 20px;
+}
+.containerTicketSub div {
+width: 300px;
+height: 200px;
+border-radius: 10px;
+border: 1px solid black;
+overflow: hidden;
+
 }
 
 .ticket {
   border-radius: 10px;
   background-color: white;
   cursor: pointer;
-  width: 101.50mm;
-  height: 65mm;
+  width: 100%;
+  height: 100%;
   transition: background 0.2s ease, border 0.3s ease;
+  
 
 }
 
@@ -39,8 +55,8 @@
   border-radius: 10px;
   background-color: white;
   cursor: pointer;
-  width: 103.112mm;
-  height: 51.516mm;
+  width: 100%;
+  height: 100%;
   transition: background 0.2s ease, border 0.3s ease;
 }
 
@@ -54,3 +70,32 @@
     transform: rotate(90deg);
   }
 } */
+
+.contanerText{
+  position: relative;
+
+}
+.textTemplate{
+ position: absolute;
+  top: 10px;
+  
+  font-size: 80px;
+}
+
+.areaImprimir{
+  border-radius: 10px;
+  background-color: white;
+  cursor: pointer;
+  width: 101.50mm;
+  height: 65mm;
+  transition: background 0.2s ease, border 0.3s ease;
+}
+
+.areaImprimir2{
+  border-radius: 10px;
+  background-color: white;
+  cursor: pointer;
+  width: 103.112mm;
+  height: 51.516mm;
+  transition: background 0.2s ease, border 0.3s ease;
+}
