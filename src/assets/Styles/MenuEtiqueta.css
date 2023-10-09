@@ -1,0 +1,14 @@
+.titleTiket {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    background: linear-gradient(to bottom, #f7f4f4 35%, #6699ff 100%);
+    color: black;
+    font-size: 3rem;
+    border-radius: 10px;
+}
+
+.titleTiket  button{ 
+    font-size: 20px;
+    border-radius: 5px;
+}

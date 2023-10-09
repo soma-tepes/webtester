@@ -1,5 +1,5 @@
 import React from 'react'
-
+import "../Styles/MenuEtiqueta.css"
 const MenuEtiquetas = ({setturnoData1}) => {
 
  
@@ -9,7 +9,7 @@ const update = (datas) => {
     }    
 const handleOption = (option)=>{
 
-    console.log(option)
+
    update({
     boton: option =="btn1",
     botonb: option =="btn2",
@@ -23,11 +23,11 @@ const handleOption = (option)=>{
   return (
  <>
   <div className="titleTiket">
-        <div>Ticket </div>
+        <div className='btnOption'>Etiquetas </div>
         <button onClick={()=>handleOption('btn1')}>Turno1</button>
         <button onClick={()=>handleOption('btn2')}>Turno2</button>
         <button onClick={()=>handleOption('btn3')} >Turno3</button>
-        <button onClick={() =>handleOption('btn4')}>New Template</button>
+        <button onClick={() =>handleOption('btn4')}>Etiqueta Manual</button>
       </div>
  </>
   )

@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-const EtiquetaSvg = () => {
+const EtiquetaSvg = ({changeText}) => {
   const printSVG = () => {
     const svg = document.getElementById('svg5'); // Obtener el elemento SVG por su ID
     const svgString = new XMLSerializer().serializeToString(svg); // Convertir el SVG a una cadena de texto
@@ -20,6 +20,7 @@ const EtiquetaSvg = () => {
 
   return (
     <div>
+     
       <button onClick={printSVG}>Imprimir SVG</button>
       <svg
         width="101.5mm"
@@ -52,7 +53,7 @@ const EtiquetaSvg = () => {
             x="126.43555"
             y="0"
           >
-            <tspan x="40.122182" y="69.660612">Data servcice</tspan>
+            <tspan x="40.122182" y="69.660612">{changeText&&changeText}</tspan>
           </text>
         </g>
       </svg>

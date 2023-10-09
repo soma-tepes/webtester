@@ -1,36 +1,26 @@
-.titleTiket{
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  
-  background-color: white;
-  font-size: 30px;
-}
+
+
 .containerTicket {
-  background: linear-gradient(to top left, #ffcccc 0%, #669999 100%);
+  background: linear-gradient(to bottom, #000000 35%, #6699ff 100%);
   width: 100%;
   min-height: 40vh;
-  /* display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
-  gap: 20px;
 
-  padding: 20px; */
 }
-.containerTicketSub{
+
+.containerTicketSub {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
   padding: 20px;
 }
+
 .containerTicketSub div {
-width: 300px;
-height: 200px;
-border-radius: 10px;
-border: 1px solid black;
-overflow: hidden;
+  width: 300px;
+  height: 200px;
+  border-radius: 10px;
+  border: 1px solid black;
+  overflow: hidden;
 
 }
 
@@ -41,9 +31,11 @@ overflow: hidden;
   width: 100%;
   height: 100%;
   transition: background 0.2s ease, border 0.3s ease;
-  
+
 
 }
+
+
 
 .ticket:hover {
   background: linear-gradient(to top left, #ccffff 0%, #666699 100%);
@@ -65,27 +57,26 @@ overflow: hidden;
   border: none;
 }
 
-/* @media print {
-  .ticket {
-    transform: rotate(90deg);
-  }
-} */
-
-.contanerText{
+.contanerText {
   position: relative;
 
 }
-.textTemplate{
- position: absolute;
- bottom:0;
- padding-left: 15px;
-  font-size: 18px;
-  color: red;
- cursor: pointer;
- 
+
+.textTemplate {
+  position: absolute;
+  top: 2px;
+  font-family: 'Spline Sans Mono', monospace;
+  right: 5px;
+  font-size: 1.3rem;
+  color: rgb(17, 17, 17);
+  cursor: pointer;
+  border-top: 5px solid #0782a0;
+  border-bottom: 5px solid #0782a0;
+
 }
 
-.areaImprimir{
+
+.areaImprimir {
   border-radius: 10px;
   background-color: white;
   cursor: pointer;
@@ -94,11 +85,73 @@ overflow: hidden;
   transition: background 0.2s ease, border 0.3s ease;
 }
 
-.areaImprimir2{
+.areaImprimir2 {
   border-radius: 10px;
   background-color: white;
   cursor: pointer;
   width: 103.112mm;
   height: 51.516mm;
   transition: background 0.2s ease, border 0.3s ease;
+}
+.containerTicket2{
+  background: linear-gradient(to top, #333300 0%, #0066ff 100%);
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+min-height: 50vh;
+gap: 20px;
+
+}
+
+.containerTicketSubTemplate{
+  width: 103.50mm;
+  height: 65mm;
+ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ticket3 {
+  border-radius: 10px;
+  background-color: white;
+  cursor: pointer;
+  width: 103.50mm;
+  height: 65mm;
+  transition: background 0.2s ease, border 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: black;
+  font-size: auto;
+}
+
+
+.areaImprimir3 {
+  border-radius: 10px;
+  width: 103.50mm;
+  height: 65mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  text-align: center;
+  background-color: white;
+  color: black;
+  font-size: min(9rem);
+  letter-spacing: -8px;
+  
+}
+
+.len6{font-size: min(7rem);letter-spacing: -9px;}
+.len7{font-size: min(7rem);letter-spacing: -9px;}
+
+.inputPrinter{
+  height: 2rem;
+  width: 20rem;
+  text-decoration: double;
+  text-align: center;
 }

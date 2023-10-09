@@ -11,8 +11,14 @@
 .inconHeaderChange {
     position: absolute;
     top: 7.5vh;
-    right: 5vw;
+    right: 2rem;
     font-size: 2vw;
-    color: yellow;
-  
+    
+
+}
+
+.noche {
+    width: 30px;
+    height: 30px;
+    
 }
