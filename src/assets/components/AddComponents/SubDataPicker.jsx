@@ -8,7 +8,7 @@ import AppContext from '../../../Context/AppContext';
 
 
 
-const SubDataPicker = () => {
+const SubDataPicker = ({rangeTime}) => {
 
   const { changeColor, setChangeColor } = useContext(AppContext);
 
@@ -16,7 +16,7 @@ const SubDataPicker = () => {
   const [time2, setTime2] = useState('00:00');
   const [input, setinput] = useState("")
   const [wo, setWo] = useState()
-  let rangeTime = (21 / 24) * 100;
+ 
 
 
 
@@ -32,7 +32,7 @@ const SubDataPicker = () => {
     const hours = duration.asHours();
 
     if (hours > 12) {
-      rangeTime = "No exceder 12 Hours"
+      rangeTime  = "No exceder 12 Hours"
     }
 
     return hours * rangeTime / 100;
@@ -56,8 +56,10 @@ const SubDataPicker = () => {
     <div className={`datapicker ${changeColor ? "black" : "blue"}`}>
       <div className='range'>
         {/*     <input type="text" name="wo" value={wo} onChange={(e)=>setWo(e.target.value)} placeholder='ingrese WO here!' /> */}
+          
         <div className='gridTitles'>
-          <div><h3 className='tittleCaptureHors'>-- Hours Data --By  <span>N</span><span>1</span><span>2</span> </h3> </div>
+          <div><h3 className='tittleCaptureHors'>-- Hours Data --By <span>N</span><span>1</span><span>2</span> </h3> </div>
+          
           <div><p className={rangeTime == "No exceder 12 Hours" && "exceded"}>{`Efective Time:`} <span>{`[${rangeTime}%]`}</span> </p></div>
           <div><p >{`Time Range:`} <span>{` ${getTimeDifference().toFixed(2)} hours`}</span></p></div>
 

@@ -2,13 +2,29 @@
     display: flex;
     justify-content: center;
     gap: 20px;
-    background: linear-gradient(to bottom, #f7f4f4 35%, #6699ff 100%);
-    color: black;
+    background: black;
+    color:white;
     font-size: 3rem;
-    border-radius: 10px;
+    border-radius: 1px;
+    border-bottom: 5px solid white;
+    >.btnOption span{
+        font-size: 1.9rem;
+       
+    }
 }
 
+
 .titleTiket  button{ 
-    font-size: 20px;
+    font-size: 1rem;
     border-radius: 5px;
+    background-color: #008dab;
+    color: white;
+    cursor: pointer;
+    width: 10vw;
+   
+}
+.titleTiket button:hover{
+    background-color: black;
+    color: white;
+    transition: 3ms ease background;
 }
