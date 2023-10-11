@@ -56,7 +56,7 @@ const EtiquetasPrint = () => {
 
 
     <>
-      <MenuEtiquetas setturnoData1={setturnoData1} />
+      <MenuEtiquetas setturnoData1={setturnoData1} turnoData1={turnoData1} />
 
       <>
 

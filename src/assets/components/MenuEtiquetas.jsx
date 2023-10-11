@@ -1,6 +1,6 @@
 import React from 'react'
 import "../Styles/MenuEtiqueta.css"
-const MenuEtiquetas = ({setturnoData1}) => {
+const MenuEtiquetas = ({setturnoData1 , turnoData1}) => {
 
  
     
@@ -24,10 +24,10 @@ const handleOption = (option)=>{
  <>
   <div className="titleTiket">
         <div className='btnOption'><span >Etiquetas</span></div>
-        <button onClick={()=>handleOption('btn1')}>Turno 1</button>
-        <button onClick={()=>handleOption('btn2')}>Turno 2</button>
-        <button onClick={()=>handleOption('btn3')} >Turno 3</button>
-        <button onClick={() =>handleOption('btn4')}>Etiqueta Manual</button>
+        <button className={`${turnoData1.boton? "onMenuTicket": ""}`} onClick={()=>handleOption('btn1')}>Turno 1</button>
+        <button  className={`${turnoData1.botonb? "onMenuTicket": ""}`}  onClick={()=>handleOption('btn2')}>Turno 2</button>
+        <button className={`${turnoData1.botonc? "onMenuTicket": ""}`}  onClick={()=>handleOption('btn3')} >Turno 3</button>
+        <button  className={`${turnoData1.botond? "onMenuTicket": ""}`} onClick={() =>handleOption('btn4')}>Etiqueta Manual</button>
       </div>
  </>
   )

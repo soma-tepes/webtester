@@ -6,7 +6,6 @@ import '../../Styles/Datapicker.css';
 const CaptureHores = () => {
   const [menuData, setmenuData] = useState({ A: false, B: false });
   const [rangeTime, setRangeTime] = useState(null);
-
   const handleMenu = (option) => {
     setmenuData({ A: option === "product", B: option === "molding" });
     setRangeTime((option === "product" ? (21 / 24)  : (24 / 24))  * 100);

@@ -4,7 +4,7 @@ import React from 'react'
 const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, componentRefs }) => {
     return (
         <>
-            <div className="containerTicket2">
+            <div className="containerTicket2" >
                 <div>
                     <article>
                         <span>Add Text </span>
