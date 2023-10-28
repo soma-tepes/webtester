@@ -32,7 +32,7 @@ const EtiquetasPrint = () => {
 
 
   const [changeText, setChangeText] = useState("")
-  const arrayImag = 18
+  const arrayImag = 19
   const [turnoData1, setturnoData1] = useState(
     {
       boton: false,//turno 1
@@ -44,7 +44,7 @@ const EtiquetasPrint = () => {
   )
   const componentRefs = Array.from({ length: arrayImag }, () => React.useRef());
   const handlePrint = componentRefs.map((ref) => useReactToPrint({ content: () => ref.current }));
-  const waterMark = <h3 className="textTemplate">{"JAE"}</h3>
+  const waterMark = <h3 className={`${turnoData1.botond ? "textTemplate backgroudText": "textTemplate"}`}>{"JAE"}</h3>
 
 
   const handleChange = (e) => {

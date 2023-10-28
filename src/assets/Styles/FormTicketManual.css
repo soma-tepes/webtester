@@ -1,0 +1,31 @@
+.typeTicketMenu{
+    background-color: black;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.typeLabelMenuTittle{
+    font-size: 2rem;
+    color: white;
+
+
+}
+
+.labelMenuButton{
+    border-radius: 10px;
+    font-size: 1.4rem;
+    background-color: transparent;
+    color: var(--color-jae);
+    font-weight: 500;
+    border: 3px solid var(--color-jae);
+    cursor: pointer;
+}
+
+.label2menu{
+    display: flex;
+   
+}

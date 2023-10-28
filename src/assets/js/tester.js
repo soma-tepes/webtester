@@ -1,3 +1,11 @@
-const items = [1, 2, 3];
-console.log(items); // [1, 2, 3]
+const data={
 
+    name:"alfred",
+    years:12,
+    type:["a","b"]
+}
+
+
+console.log(data.type.push("c"))
+
+console.log(data)
