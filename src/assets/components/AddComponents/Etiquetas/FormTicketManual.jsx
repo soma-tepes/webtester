@@ -61,9 +61,9 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
         <>
             <div className='typeTicketMenu'>
                 <div><span className='typeLabelMenuTittle'>Sub Label Menu</span></div>
-                <div key={LabelMenu}>
+                <div className='btnMenuLabel' key={LabelMenu}>
                     {
-                        LabelMenu.map((e, i) => <button className='labelMenuButton' onClick={() => handleLabelMenu(i)}>{e}</button>)
+                        LabelMenu.map((e, i) => <button className={`${ menuLabel[i] ? "onnMenuTicket":""} labelMenuButton`} onClick={() => handleLabelMenu(i)}>{e}</button>)
                     }
                 </div>
 
