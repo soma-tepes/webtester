@@ -44,7 +44,9 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
         });
     };
 
-    const LabelMenu = ["Label Quick", "Label Remache/Twis/Process", "Label Identificator"]
+    /* const LabelMenu =  ["Label Quick", "Label Remache/Twis/Process", "Label Identificator"] */
+    const [LabelMenu, setLabelMenu] = useState(["Label Quick", "Label Remache/Twis/Process", "Label Identificator"] )
+
     const handleLabelMenu = (index) => {
         const updatedMenuLabel = menuLabel.map((item, i) => {
             if (i === index) {
@@ -57,6 +59,13 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
         setMenuLabel(updatedMenuLabel);
     }
 
+    const hadleButton = (e) =>{
+        e.preventDefault()
+        const updateData = e.target.element.value
+         setLabelMenu([...LabelMenu,updateData])
+
+    }
+
     return (
         <>
             <div className='typeTicketMenu'>
@@ -66,7 +75,11 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
                         LabelMenu.map((e, i) => <button className={`${ menuLabel[i] ? "onnMenuTicket":""} labelMenuButton`} onClick={() => handleLabelMenu(i)}>{e}</button>)
                     }
                 </div>
-
+                {/*   <div>Add an button 
+                    <form onSubmit={hadleButton}>
+                    <input type="text" placeholder='element here!' name='element' />
+                    </form>
+                  </div> */}
             </div>
             <div className="containerTicket2" >
                 {menuLabel[0] &&

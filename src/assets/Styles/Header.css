@@ -10,15 +10,15 @@
 
 .inconHeaderChange {
     position: absolute;
-    top: 7.5vh;
-    right: 2rem;
-    font-size: 2vw;
+    top: 3.5rem;
+    right: .5rem;
+    
     
 
 }
 
 .noche {
-    width: 30px;
-    height: 30px;
+    width: 1.5rem;
+    height: 1.5rem;
     
 }
