@@ -5,15 +5,20 @@
     background-image: linear-gradient(top, #008dab, #007294);
     background-color: black;
 }
-
-
+/* 
+.iconSunAndDark{
+    position: fixed;
+    width: 100%;
+  
+ border: 50px solid red;
+} */
 
 .inconHeaderChange {
     position: absolute;
     top: 3.5rem;
     right: .5rem;
     
-    
+
 
 }
 

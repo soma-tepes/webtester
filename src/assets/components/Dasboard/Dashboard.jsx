@@ -4,30 +4,29 @@ import CaptureHores from '../AddComponents/CaptureHores';
 import LectorMain from '../QRLector/LectorMain';
 import AddLink from '../AddComponents/AddLink';
 import EtiquetasPrint from '../EtiquetasPrint';
+import ConverterJson from '../ConverterJSON/ConverterJson';
 
 const Dashboard = () => {
 
 
     const [showModal, setShowModal] = useState(false);
 
-    const handleMouseEnter = () => {
+   /*  const handleMouseEnter = () => {
         setShowModal(true);
     }
 
     const handleMouseLeave = () => {
         setShowModal(false);
     }
+ */
+
+const [menuDasboard, setMenuDasboard] = useState(Array(4).fill(null))
 
 
 
-    const [frameData, setFrameData] = useState({
-        frameOne: false,
-        frameTwo: false,
-        frame3: false,
-        frame4:false
-    })
+    const [frameData, setFrameData] = useState({})
 
-    const { frameOne, frameTwo, frame3,frame4 } = frameData
+    const { frameOne , frameTwo, frame3, frame4, frame5 } = frameData
 
     const [hiddenDash, setHiddenDash] = useState(false)
 
@@ -40,17 +39,29 @@ const Dashboard = () => {
             frameOne: parameter === 'admin',
             frameTwo: parameter === 'capture',
             frame3: parameter === 'lector',
-            frame4: parameter === 'hoja'
+            frame4: parameter === 'hoja',
+            frame5: parameter === 'converter'
         })
     };
 
+   
+    const dataForm = {};
+
+    const icons = {
+      admin: hiddenDash ? "Admin" : "🦓",
+      capture: hiddenDash ? "Capture Hours" : "⌚",
+      lector: hiddenDash ? "Lector QR" : "🚧",
+      hoja: hiddenDash ? "Printer" : "📝",
+      converter: hiddenDash ? "Converter" : "🔁",
+    };
     
-    const dataForm = {
-        a: <div className={`${hiddenDash ? "" : "icona"}`} onClick={() => handleClick('admin')}>{`${hiddenDash ? "Admin" : "🦓"}`}  </div>,
-        b: <div className={`${hiddenDash ? "" : "icona"}`} onClick={() => handleClick('capture')}>{`${hiddenDash ? "Capture Hours" : "⌚"}`}</div>,
-        c: <div className={`${hiddenDash ? "" : "icona"}`} onClick={() => handleClick('lector')} >{`${hiddenDash ? "Lector QR" : "🚧"}`} </div>,
-        d: <div className={`${hiddenDash ? "" : "icona"}`} onClick={() => handleClick('hoja')} >{`${hiddenDash ? "Printer" : "📝"}`} </div>,
-    }
+    Object.keys(icons).forEach((key) => {
+      dataForm[key] = (
+        <div className={`${hiddenDash ? "" : "icona"}`} onClick={() => handleClick(key)}>
+          {icons[key]}
+        </div>
+      );
+    });
 
     return (
         <div className={`containerDash ${hiddenDash ? "showSidebar" : "hideSidebar"}`} >
@@ -85,7 +96,7 @@ const Dashboard = () => {
                 <div onClick={() => hiddenDash ? setHiddenDash(false) : setHiddenDash(true)}>📩</div>
               
               
-                { frameOne ? <AddLink /> : frameTwo ?  <CaptureHores /> : frame3 ? <LectorMain /> :  frame4 ? <EtiquetasPrint /> : "" }
+                { frameOne ? <AddLink /> : frameTwo ?  <CaptureHores /> : frame3 ? <LectorMain /> :  frame4 ? <EtiquetasPrint /> : frame5 ? <ConverterJson/> :""}
               
               
             </div>

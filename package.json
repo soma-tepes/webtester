@@ -30,6 +30,7 @@
     "react-to-print": "^2.14.13",
     "slick": "^1.12.2",
     "slick-carousel": "^1.8.1",
+    "xlsx": "^0.18.5",
     "zustand": "^4.4.1"
   },
   "devDependencies": {

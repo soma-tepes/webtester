@@ -11,6 +11,7 @@ import pcn from "../../../css/images/ticketsegunda/pcn.svg";
 import peso from "../../../css/images/ticketsegunda/peso.svg";
 import ind1 from "../../../css/images/ticketsegunda/idv1.svg";
 import s1d from "../../../css/images/ticketsegunda/segundaD1.svg";
+import standarTicker from "../../../css/images/ticketsegunda/basicstandar.svg";
 
 const TiketTurno1 = ({ handlePrint, componentRefs, waterMark, ComponentToPrint }) => {
   const images = [
@@ -26,7 +27,8 @@ const TiketTurno1 = ({ handlePrint, componentRefs, waterMark, ComponentToPrint }
     { src: pcn, className: "ticket" },
     { src: peso, className: "ticket" },
     { src: ind1, className: "ticket2" },
-    { src: s1d, className: "ticket2" }
+    { src: s1d, className: "ticket2" },
+    { src: standarTicker, className: "ticket" }
   ];
 
   const handleImageClick = (index) => {

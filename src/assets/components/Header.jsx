@@ -36,7 +36,7 @@ const Header = () => {
   };
 
   return (
-    <div id="header-wrapper" style={estyleTwo} >
+    <div className="iconSunAndDark" id="header-wrapper" style={estyleTwo} >
        <i className="inconHeaderChange" onClick={handleChange} >
         {changeColor ?  <img className="noche" src={noche} alt="" />:<img className="noche" src={dom} alt="" /> }</i>
       <div className="container">
