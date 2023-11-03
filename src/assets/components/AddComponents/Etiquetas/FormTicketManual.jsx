@@ -4,8 +4,10 @@ import "../../../Styles/EtiquetasPrint.css"
 import { useStore2 } from '../../../../utils/store'
 import LabelRemacheManual from './subetiquetasmanuales/LabelRemacheManual'
 import LabelManualBasic from './subetiquetasmanuales/LabelManualBasic'
-import ex from "../../../css/images/ticketsegunda/ex.svg"
+
 import LabelBasicEditable from './subetiquetasmanuales/LabelBasicEditable'
+import SubFormLabelEditable from './subetiquetasmanuales/SubFormLabelEditable'
+import LabelGood from './subetiquetasmanuales/LabelGood'
 
 const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, componentRefs }) => {
     const { data } = useStore2()
@@ -13,13 +15,21 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
 
     const [datasForm, setDatasForm] = useState({
 
-        model: null, description: null, qty: null, wo: null, date: null, employe: null, turn: null, selectA: null, line: null, nbox : null,
+        model: null, description: null, qty: null, 
+        wo: null, date: null, employe: null,
+        turn: null, selectA: null, line: null, nbox: null,
+        fontSizeModel : null,
         optionTypeCables: ["KOMAX CABLE REMACHADO", "KOMAX CABLE PROCESADO", "KOMAX CABLE TWISTEADO"],
-        optionTurn: ["Turno 1", "Turno 2", "Turno 3", "Turno 4"]
+        optionTurn: ["Turno 1", "Turno 2", "Turno 3", "Turno 4"],
+
+        prodTitle1: "PRODUCT CONTROL LABEL",
+        
     })
 
+    const [consecutivo, setConsecutivo] = useState(1);
+    const [menuLabel, setMenuLabel] = useState(Array(4).fill(false))
+    const [LabelMenu, setLabelMenu] = useState(["Label Quick", "Label Remache/Twis/Process", "Label Identificator","LabelGood"])
 
-    const [menuLabel, setMenuLabel] = useState(Array(3).fill(false))
 
     const handleDataAdd = (e) => {
         e.preventDefault()
@@ -46,8 +56,7 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
     };
 
     /* const LabelMenu =  ["Label Quick", "Label Remache/Twis/Process", "Label Identificator"] */
-    const [LabelMenu, setLabelMenu] = useState(["Label Quick", "Label Remache/Twis/Process", "Label Identificator"])
-
+    
     const handleLabelMenu = (index) => {
         const updatedMenuLabel = menuLabel.map((item, i) => {
             if (i === index) {
@@ -67,13 +76,27 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
 
     }
     const comparative = modelBD.data.filter(e => e.__EMPTY_4).find(e => e.__EMPTY_4 == datasForm?.model?.toUpperCase())
-    const hello = "Hello"
+  
 
     const [dataLabel, setDataLabel] = useState(51)
-    const handleLa = (e)=>{
+    const handleLa = (e) => {
         e.preventDefault()
-        const data = e.target.value 
+        const data = e.target.value
         setDataLabel(data)
+
+
+
+    }
+const [arraySave, setArraySave] = useState()
+    const handleSave =(e) =>{
+        e.preventDefault()
+   
+        const stringer = e.target.dateA.value
+        const newStringer = stringer.split(" ").filter(e=>e);
+       
+   setArraySave(newStringer)
+   console.log(newStringer)
+        
     }
     return (
         <>
@@ -106,30 +129,44 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
                 {menuLabel[2] &&
                     <>
                         <div className='labelEditManualTester'>
-                            {/*    <img hello={hello} src={ex} alt="" /> */}
+                             
 
-                            <LabelBasicEditable dataLabel= {dataLabel} handleChangeData={handleChangeData} datasForm={datasForm} 
-                            handlePrint={handlePrint}
-                            componentRefs={componentRefs}
+                            <LabelBasicEditable dataLabel={dataLabel} handleChangeData={handleChangeData} datasForm={datasForm}
+                                handlePrint={handlePrint} comparative={comparative}
+                                componentRefs={componentRefs}
                             />
                         </div>
-                        <form action=""><input type="number" placeholder='%' value={dataLabel} onChange={handleLa} /></form>
-                        
-                        <div><h3>Datas</h3>
-                        <form >
-                        <input type="text" name="line"  onChange={handleChangeData} placeholder='Ingrese Linea'/>
-                        <input type="date" name="date"  onChange={handleChangeData} placeholder='' />
-                        <input type="text" name="model" onChange={handleChangeData}  placeholder='Ingrese Modelo'/>
-                        <input type="text" name="wo"  onChange={handleChangeData}  placeholder='Ingrese Orden'/>
-                        <input type="text" name="qty" onChange={handleChangeData}  placeholder='Ingrese QTY'/>
-                        <input type="text" name="nbox" onChange={handleChangeData}  placeholder='Numero de Box'/>
-                      
-                        </form></div>
+
+                     <>
+                      <SubFormLabelEditable dataLabel={dataLabel} handleLa={handleLa} handleChangeData={handleChangeData}/>
+                     </>
                     </>
 
 
                 }
-               
+
+                {
+                    menuLabel[3] && 
+                    <>
+                    <div className='labelEditManualTester'>
+                         
+
+                        <LabelGood dataLabel={dataLabel} handleChangeData={handleChangeData} datasForm={datasForm}
+                            handlePrint={handlePrint} comparative={comparative}
+                            componentRefs={componentRefs} arraySave = {arraySave}
+                        />
+                    </div>
+
+                 <>
+                  <SubFormLabelEditable dataLabel={dataLabel} handleLa={handleLa} handleChangeData={handleChangeData}/>
+                  
+                   <form onSubmit={handleSave}>
+                    <input type="text" name='dateA' placeholder='ingrese el valor de bloc de notas'/>Lector de etiqueta
+                   </form>
+                 </>
+                </>
+                }
+
             </div>
         </>
     )
