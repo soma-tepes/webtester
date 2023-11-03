@@ -301,3 +301,8 @@
   font-weight: 800;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.labelEditManualTester{
+  background-color: white;
+  border-radius: 10px;
+}

@@ -1,0 +1,19 @@
+.ex{
+    fill: black;
+    font-size: 7px;
+    font-family: Arial;
+    letter-spacing: .3px;
+}
+
+.ex2{
+    fill: black;
+    font-size: 8px;
+    font-family: Arial;
+    letter-spacing: .3px;
+}
+
+.exa{
+    font-size: 5px;
+    letter-spacing: .3px;
+    font-weight: 700;
+}
