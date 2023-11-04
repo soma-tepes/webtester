@@ -8,7 +8,7 @@ const LectorQRComponent = () => {
   const handleError = (error) => {
     console.error(error);
   };
-  
+  const a = "a"
   const handleScan = (data) => {
     if (data) {
       // Aquí puedes procesar el dato escaneado, por ejemplo:
