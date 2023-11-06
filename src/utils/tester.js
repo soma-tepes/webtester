@@ -18,4 +18,4 @@ for (let clave in objet) {
 
 console.log(objet)
 
-console.log(Object.keys(objet).length;)
+console.log(Object.keys(objet).length)

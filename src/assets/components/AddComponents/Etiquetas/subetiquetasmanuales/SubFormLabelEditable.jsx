@@ -59,7 +59,8 @@ const SubFormLabelEditable = ({ dataLabel, handleLa, handleChangeData }) => {
                         <input type="text" name="wo" onChange={handleChangeData} placeholder='Ingrese Orden' />
                         <input type="text" name="qty" onChange={handleChangeData} placeholder='Ingrese QTY' />
                         <input type="text" name="nbox" onChange={handleChangeData} placeholder='Numero de Box' />
-
+                        <input type="text" name="turn" onChange={handleChangeData} placeholder='Ingrese Turno' />
+                        <input type="text" name="hour" onChange={handleChangeData} placeholder='Ingrese la hora' />
                     </form></div>
                   
             </div>

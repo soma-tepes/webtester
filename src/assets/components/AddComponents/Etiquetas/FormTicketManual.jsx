@@ -8,6 +8,8 @@ import LabelManualBasic from './subetiquetasmanuales/LabelManualBasic'
 import LabelBasicEditable from './subetiquetasmanuales/LabelBasicEditable'
 import SubFormLabelEditable from './subetiquetasmanuales/SubFormLabelEditable'
 import LabelGood from './subetiquetasmanuales/LabelGood'
+import LabelRastre from './subetiquetasmanuales/LabelRastre'
+
 
 const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, componentRefs }) => {
     const { data } = useStore2()
@@ -18,7 +20,7 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
         model: null, description: null, qty: null, 
         wo: null, date: null, employe: null,
         turn: null, selectA: null, line: null, nbox: null,
-        fontSizeModel : null,
+        fontSizeModel : null,  hour : null ,
         optionTypeCables: ["KOMAX CABLE REMACHADO", "KOMAX CABLE PROCESADO", "KOMAX CABLE TWISTEADO"],
         optionTurn: ["Turno 1", "Turno 2", "Turno 3", "Turno 4"],
 
@@ -27,9 +29,9 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
     })
 
     const [consecutivo, setConsecutivo] = useState(1);
-    const [menuLabel, setMenuLabel] = useState(Array(4).fill(false))
-    const [LabelMenu, setLabelMenu] = useState(["Label Quick", "Label Remache/Twis/Process", "Label Identificator","LabelGood"])
 
+    const [LabelMenu, setLabelMenu] = useState(["Label Quick", "Label Remache/Twis/Process", "Label Identificator","LabelGood","LabelRastreabilidad1"])
+    const [menuLabel, setMenuLabel] = useState(Array(LabelMenu.length).fill(false))
 
     const handleDataAdd = (e) => {
         e.preventDefault()
@@ -156,6 +158,28 @@ const [arraySave, setArraySave] = useState()
                          
 
                         <LabelGood dataLabel={dataLabel} handleChangeData={handleChangeData} datasForm={datasForm}
+                            handlePrint={handlePrint} comparative={comparative}
+                            componentRefs={componentRefs} arraySave = {arraySave}
+                        />
+                    </div>
+
+                 <>
+                  <SubFormLabelEditable dataLabel={dataLabel} handleLa={handleLa} handleChangeData={handleChangeData}/>
+                  
+                   <form onSubmit={handleSave}>
+                    <input type="text" name='dateA' placeholder='ingrese el valor de bloc de notas'/>Lector de etiqueta
+                   </form>
+                 </>
+                </>
+                }
+
+{
+                    menuLabel[4] && 
+                    <>
+                    <div className='labelEditManualTester'>
+                         
+
+                        <LabelRastre dataLabel={dataLabel} handleChangeData={handleChangeData} datasForm={datasForm}
                             handlePrint={handlePrint} comparative={comparative}
                             componentRefs={componentRefs} arraySave = {arraySave}
                         />
