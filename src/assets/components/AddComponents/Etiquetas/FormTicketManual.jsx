@@ -92,10 +92,14 @@ const [arraySave, setArraySave] = useState()
         e.preventDefault()
    
         const stringer = e.target.dateA.value
-        const newStringer = stringer.split(" ").filter(e=>e);
-       
-   setArraySave(newStringer)
-   console.log(newStringer)
+        const newStringer = stringer.split(",").filter(e=>e);
+        const objet  = Object.assign({},newStringer)
+        for (let clave in objet) {
+            objet[clave] = objet[clave].replace(/"/g, '').trim();
+        }
+        
+   setArraySave(objet)
+   console.log(objet)
         
     }
     return (
