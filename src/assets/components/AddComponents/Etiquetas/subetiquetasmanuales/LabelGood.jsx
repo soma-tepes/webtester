@@ -9,7 +9,7 @@ import Barcode from 'react-barcode';
 const LabelGood = ({ dataLabel, datasForm, handlePrint, componentRefs, comparative ,arraySave}) => {
  
 const [dataQr, setSavedArray] = useState([])  
-const [first, setFirst] = useState("texto")
+
 useEffect(() => {
   if (Object.keys(arraySave ?? {}).length - 1 === 27) {
     setSavedArray([arraySave?.[19],arraySave?.[20],arraySave?.[21],
@@ -61,14 +61,14 @@ useEffect(() => {
         <text className='title2' x="24%" y="56%" >{arraySave?.[15]}</text>
 
         <text className='title3' x="2%" y="60%" >Drawing No.</text>
-        <text className='title3' x="20%" y="60%" >{arraySave?.[2]}</text>
-        <QRCode x={"4%"} y={"65%"} size={20} value={dataQr} /> <div>hello</div>
-        <text className='title3' x="50%" y="70%" >Box No.</text>
-        <text className='title3' x="60%" y="70%" >{arraySave?.[11]}</text>
+        <text className='title3' x="20%" y="60%" >{arraySave?.[0].startsWith("CBM") ? arraySave?.[2] : arraySave?.[1]}</text>
+        <QRCode x={"4%"} y={"65%"} size={20} value={dataQr} /> 
+        <text className='title3' x="53%" y="40%" >Box No.</text>
+        <text className='title2' x="64%" y="40%" >{arraySave?.[11]}</text>
 
-        <text className='title5Barcode' x="50%" y="75%" >{arraySave?.[11]}</text>
-      {/*   <Barcode fontSize={20} x={"60%"}  value={arraySave?.[11]} /> */}
-        <text className='title2' x="55%" y="80%" >{arraySave?.[11]}</text>
+       
+        <g transform="translate(40, 28)"><Barcode  fontSize={0}  width={0.25}  height={9}   value={arraySave?.[11]}/></g>
+        <text className='title2' x="59%" y="80%" >{arraySave?.[11]}</text>
         <text className='title3' x="50%" y="85%" >{arraySave?.[26]}</text>
         <text className='title3' x="80%" y="85%" >{arraySave?.[27]}</text>
         <text className='title3' x="40%" y="95%" >MFG.LOC.JOR</text>
@@ -112,15 +112,14 @@ useEffect(() => {
         
         <text className='title3' x="2%" y="75%" >   </text>
 
-        <QRCode x={"4%"} y={"65%"} size={20} value={dataQr} /> <div>hello</div>
+        <QRCode x={"4%"} y={"65%"} size={20} value={dataQr} /> 
 
-        <text className='title3' x="20%" y="60%" >{arraySave?.[2]}</text>
+        <text className='title3' x="20%" y="60%" >{arraySave?.[0].startsWith("CBM") ? arraySave?.[2] : arraySave?.[1]}</text>
 
-        <text className='title3' x="50%" y="70%" >Box No.</text>
-        <text className='title3' x="60%" y="70%" >{arraySave?.[10]}</text>
+        <text className='title2 zinde' x="53%" y="44%" >Box No.</text>
+        <text className='title2' x="63%" y="44%" >{arraySave?.[10]}</text>
 
-        <text className='title5Barcode' x="50%" y="75%" >{arraySave?.[10]}</text>
-  {/*  <Barcode value={arraySave?.[10]} /> */}
+        <g transform="translate(40, 28)"><Barcode  fontSize={0}  width={0.24}  height={7}   value={arraySave?.[10]}/></g>
         <text className='title2' x="55%" y="80%" >{arraySave?.[10]}</text>
         <text className='title3' x="50%" y="85%" >{arraySave?.[25]}</text>
         <text className='title3' x="80%" y="85%" >{arraySave?.[26]}</text>

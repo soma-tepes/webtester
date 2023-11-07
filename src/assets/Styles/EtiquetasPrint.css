@@ -306,3 +306,14 @@
   background-color: white;
   border-radius: 10px;
 }
+
+.inputLabelEdit{
+  width: 1020px;
+  height: 30px;
+  text-align: center;
+}
+
+.inputTitle{
+  color: black;
+  font-size: 20px;
+}

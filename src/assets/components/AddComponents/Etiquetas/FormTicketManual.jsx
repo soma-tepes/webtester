@@ -152,7 +152,7 @@ const [arraySave, setArraySave] = useState()
                 }
 
                 {
-                    menuLabel[3] && 
+                    menuLabel[3] &&  /*  <div>Espace De Etiqueta Good</div> */
                     <>
                     <div className='labelEditManualTester'>
                          
@@ -164,10 +164,12 @@ const [arraySave, setArraySave] = useState()
                     </div>
 
                  <>
-                  <SubFormLabelEditable dataLabel={dataLabel} handleLa={handleLa} handleChangeData={handleChangeData}/>
+                {/*   <SubFormLabelEditable dataLabel={dataLabel} handleLa={handleLa} handleChangeData={handleChangeData}/> */}
                   
                    <form onSubmit={handleSave}>
-                    <input type="text" name='dateA' placeholder='ingrese el valor de bloc de notas'/>Lector de etiqueta
+                   <p className='inputTitle'>Lector de etiqueta</p>
+                    <input type="text" className='inputLabelEdit' name='dateA' placeholder='Introducir Data'/>
+                  
                    </form>
                  </>
                 </>
