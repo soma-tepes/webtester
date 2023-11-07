@@ -8,7 +8,7 @@ import Barcode from 'react-barcode';
 
 const LabelGood = ({ dataLabel, datasForm, handlePrint, componentRefs, comparative ,arraySave}) => {
  
-const [dataQr, setSavedArray] = useState(null)  
+const [dataQr, setSavedArray] = useState([])  
 const [first, setFirst] = useState("texto")
 useEffect(() => {
   if (Object.keys(arraySave ?? {}).length - 1 === 27) {
@@ -19,7 +19,16 @@ useEffect(() => {
   }
 }, [arraySave]);
 
-console.log(first)
+useEffect(() => {
+  if (Object.keys(arraySave ?? {}).length - 1 === 28) {
+    setSavedArray([arraySave?.[20],arraySave?.[21],arraySave?.[22],
+      arraySave?.[23],arraySave?.[24]]
+      .join(",").replace(/,/g, '')
+      );
+  }
+}, [arraySave]);
+
+
   return (
     <>
    
@@ -53,12 +62,12 @@ console.log(first)
 
         <text className='title3' x="2%" y="60%" >Drawing No.</text>
         <text className='title3' x="20%" y="60%" >{arraySave?.[2]}</text>
-
+        <QRCode x={"4%"} y={"65%"} size={20} value={dataQr} /> <div>hello</div>
         <text className='title3' x="50%" y="70%" >Box No.</text>
         <text className='title3' x="60%" y="70%" >{arraySave?.[11]}</text>
 
         <text className='title5Barcode' x="50%" y="75%" >{arraySave?.[11]}</text>
-
+      {/*   <Barcode fontSize={20} x={"60%"}  value={arraySave?.[11]} /> */}
         <text className='title2' x="55%" y="80%" >{arraySave?.[11]}</text>
         <text className='title3' x="50%" y="85%" >{arraySave?.[26]}</text>
         <text className='title3' x="80%" y="85%" >{arraySave?.[27]}</text>
@@ -101,16 +110,9 @@ console.log(first)
 
         <text className='title3' x="2%" y="60%" >Drawing No.</text>
         
-        <text className='title3' x="2%" y="75%" > </text>
-        <Barcode 
-  value={dataQr} 
-  options={{ 
-    width: 1, 
-    height: 100, 
-    format: 'CODE128', 
-    displayValue: false
-  }}
-/>
+        <text className='title3' x="2%" y="75%" >   </text>
+
+        <QRCode x={"4%"} y={"65%"} size={20} value={dataQr} /> <div>hello</div>
 
         <text className='title3' x="20%" y="60%" >{arraySave?.[2]}</text>
 
@@ -118,7 +120,7 @@ console.log(first)
         <text className='title3' x="60%" y="70%" >{arraySave?.[10]}</text>
 
         <text className='title5Barcode' x="50%" y="75%" >{arraySave?.[10]}</text>
-
+  {/*  <Barcode value={arraySave?.[10]} /> */}
         <text className='title2' x="55%" y="80%" >{arraySave?.[10]}</text>
         <text className='title3' x="50%" y="85%" >{arraySave?.[25]}</text>
         <text className='title3' x="80%" y="85%" >{arraySave?.[26]}</text>
