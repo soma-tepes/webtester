@@ -1,11 +1,11 @@
-const data={
+const {a,b,c,d,e} =
 
-    name:"alfred",
-    years:12,
-    type:["a","b"]
-}
+['000000000090462780                 C2777-MX49-39']
+['11430AA011Y1-TJ  81-276-1787  MEX-TIJUANA']
+['20231109 20251108 Y N SMC23B9046500 240']
+['1 091123-008                        EA']
+['240               EA  MC20231109-0465 1022759193']
+['0010']
 
 
-console.log(data.type.push("c"))
-
-console.log(data)
+console.log(b)
