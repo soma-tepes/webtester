@@ -29,8 +29,8 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
         prodTitle1: "PRODUCT CONTROL LABEL",
          googReceived :"Goods Received Label"
     })
-console.log(datasForm?.barcodeB)
-    const [consecutivo, setConsecutivo] = useState(1);
+
+
 
     const [LabelMenu, setLabelMenu] = useState
     (["Label Quick", "Label Remache/Twis/Process", "Label Identificator", "LabelGood", "LabelRastreabilidad1", 
@@ -61,7 +61,7 @@ console.log(datasForm?.barcodeB)
         });
     };
 
-    /* const LabelMenu =  ["Label Quick", "Label Remache/Twis/Process", "Label Identificator"] */
+
 
     const handleLabelMenu = (index) => {
         const updatedMenuLabel = menuLabel.map((item, i) => {
@@ -101,7 +101,7 @@ console.log(datasForm?.barcodeB)
         const newStringer = stringer.split(",")
         const objet = Object.assign({}, newStringer)
         for (let clave in objet) {
-            objet[clave] = objet[clave].replace(/"/g, '').trim();
+            objet[clave] = objet[clave].replace(/"/g, '')
         }
 
         setArraySave(objet)
@@ -114,10 +114,10 @@ console.log(datasForm?.barcodeB)
     const handleSaveB = (e) => {
         e.preventDefault()
         const stringer = e.target.dateB.value
-        const newStringer = stringer.split(",").filter(e => e);
+        const newStringer = stringer.split(",")
         const objet = Object.assign({}, newStringer)
         for (let clave in objet) {
-            objet[clave] = objet[clave].replace(/"/g, '').trim();
+            objet[clave] = objet[clave].replace(/"/g, '')
         }
 
         setRastreSaveComponents(objet)
