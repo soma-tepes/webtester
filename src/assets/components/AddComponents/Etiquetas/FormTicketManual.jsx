@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import "../../../Styles/FormTicketManual.css"
 import "../../../Styles/EtiquetasPrint.css"
 import { useStore2 } from '../../../../utils/store'
@@ -11,6 +11,9 @@ import LabelGood from './subetiquetasmanuales/LabelGood'
 import LabelRastre from './subetiquetasmanuales/LabelRastre'
 import LabelRastreComponentes from './subetiquetasmanuales/LabelRastreComponentes'
 import LabelGenerateBarcode from './subetiquetasmanuales/LabelGenerateBarcode'
+import ReactToPrint, { useReactToPrint } from 'react-to-print'
+import LabelFat from './subetiquetasmanuales/LabelFat'
+
 
 
 const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, componentRefs }) => {
@@ -22,19 +25,16 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
         model: null, description: null, qty: null,
         wo: null, date: null, employe: null,
         turn: null, selectA: null, line: null, nbox: null,
-        fontSizeModel: null, hour: null, barcodeB : null,
+        fontSizeModel: null, hour: null, barcodeB: null,
         optionTypeCables: ["KOMAX CABLE REMACHADO", "KOMAX CABLE PROCESADO", "KOMAX CABLE TWISTEADO"],
         optionTurn: ["Turno 1", "Turno 2", "Turno 3", "Turno 4"],
 
         prodTitle1: "PRODUCT CONTROL LABEL",
-         googReceived :"Goods Received Label"
+        googReceived: "Goods Received Label"
     })
-
-
-
     const [LabelMenu, setLabelMenu] = useState
-    (["Label Quick", "Label Remache/Twis/Process", "Label Identificator", "LabelGood", "LabelRastreabilidad1", 
-    "LabelRastreComponentes","CreateBarcode"])
+        (["Label Quick", "Label Remache/Twis/Process", "Label Identificator", "LabelGood", "LabelRastreabilidad1",
+            "LabelRastreComponentes", "CreateBarcode", "LabelFat"])
     const [menuLabel, setMenuLabel] = useState(Array(LabelMenu.length).fill(false))
 
     const handleDataAdd = (e) => {
@@ -75,12 +75,7 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
         setMenuLabel(updatedMenuLabel);
     }
 
-    const hadleButton = (e) => {
-        e.preventDefault()
-        const updateData = e.target.element.value
-        setLabelMenu([...LabelMenu, updateData])
 
-    }
     const comparative = modelBD.data.filter(e => e.__EMPTY_4).find(e => e.__EMPTY_4 == datasForm?.model?.toUpperCase())
 
 
@@ -89,116 +84,178 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
         e.preventDefault()
         const data = e.target.value
         setDataLabel(data)
-
-
-
     }
-    const [arraySave, setArraySave] = useState()
-    const handleSave = (e) => {
-        e.preventDefault()
-
-        const stringer = e.target.dateA.value
-        const newStringer = stringer.split(",")
-        const objet = Object.assign({}, newStringer)
-        for (let clave in objet) {
-            objet[clave] = objet[clave].replace(/"/g, '')
-        }
-
-        setArraySave(objet)
-        console.log(objet)
-
-    }
-
-
     const [rastreSaveComponents, setRastreSaveComponents] = useState()
-    const handleSaveB = (e) => {
-        e.preventDefault()
-        const stringer = e.target.dateB.value
-        const newStringer = stringer.split(",")
-        const objet = Object.assign({}, newStringer)
-        for (let clave in objet) {
-            objet[clave] = objet[clave].replace(/"/g, '')
+    const [whiteDat, setWhiteDat] = useState(null)
+
+    const handleFile = (e) => {
+        const file = e.target.files[0]
+
+        if (file) {
+            const reader = new FileReader()
+            reader.onload = (e) => {
+                const contect = e.target.result
+                setWhiteDat(contect)
+            }
+            reader.readAsText(file)
+        } else {
+            setWhiteDat(null)
         }
 
-        setRastreSaveComponents(objet)
-        console.log(objet)
     }
 
+
+    const [finalLabelSeparator, setFinalLabelSeparator] = useState()
+
+    const handleSeparatorLabel = (e) => {
+        e.preventDefault()
+        const separatorLabelObjet = {};
+        const separatorLabel = whiteDat?.split("\n");
+  
+        for (const key in separatorLabel) {
+            separatorLabelObjet[key] = separatorLabel[key].split(",");
+        }
+
+
+        const newObject = Object.keys(separatorLabelObjet).reduce((acc, key) => {
+            const value = separatorLabelObjet[key];
+            acc[key] = value.reduce((obj, item, index) => {
+                obj[index] = item.replace(/"/g, '');
+
+                return obj;
+            }, {});
+            return acc;
+        }, {});
+
+        const dataArray = Object.entries(newObject).map(([key, value]) => value);
+        setFinalLabelSeparator(dataArray)
+
+    }
+    const componentRef = useRef();
+    const handlePrintAll = useReactToPrint({
+        content: () => componentRef.current.print(),
+    });
+    /*  useEffect(() => {
+       handlePrintAll();
+     }, [finalLabelSeparator]); */
+
+    /*  const handlePrint = () => {
+        componentRef.current.print();
+      };
+       */
     return (
         <>
             <div className='typeTicketMenu'>
-                <div><span className='typeLabelMenuTittle'>Sub Label Menu</span></div>
+                <div><span className='typeLabelMenuTittle'>Label Manual Submenu</span></div>
                 <div className='btnMenuLabel' key={LabelMenu}>
                     {
                         LabelMenu.map((e, i) => <button className={`${menuLabel[i] ? "onnMenuTicket" : ""} labelMenuButton`} onClick={() => handleLabelMenu(i)}>{e}</button>)
                     }
                 </div>
-                {/*   <div>Add an button 
-                    <form onSubmit={hadleButton}>
-                    <input type="text" placeholder='element here!' name='element' />
-                    </form>
-                  </div> */}
+
             </div>
             <div className="containerTicket2" >
-                {menuLabel[0] &&
-                    <LabelManualBasic handleChange={handleChange} changeText={changeText} handlePrint={handlePrint}
-                        componentRefs={componentRefs} waterMark={waterMark}
-                    />}
-                {menuLabel[1] &&
-                    <>
-                        <LabelRemacheManual handlePrint={handlePrint} changeText={changeText} datasForm={datasForm} componentRefs={componentRefs}
-                            waterMark={waterMark} handleChangeData={handleChangeData} comparative={comparative} handleDataAdd={handleDataAdd}
-                        />
+                <div className='SubContainerLabel'>
+                    {menuLabel[0] &&
+                        <LabelManualBasic handleChange={handleChange} changeText={changeText} handlePrint={handlePrint}
+                            componentRefs={componentRefs} waterMark={waterMark}
+                        />}
+                </div>
 
-                    </>
-                }
-                {menuLabel[2] &&
-                    <>
-                        <div className='labelEditManualTester'>
-
-
-                            <LabelBasicEditable dataLabel={dataLabel} handleChangeData={handleChangeData} datasForm={datasForm}
-                                handlePrint={handlePrint} comparative={comparative}
-                                componentRefs={componentRefs}
+                {/* Label Remache/Twist/Process */}
+                <div >
+                    {menuLabel[1] &&
+                        <>
+                            <LabelRemacheManual handlePrint={handlePrint} changeText={changeText} datasForm={datasForm} componentRefs={componentRefs}
+                                waterMark={waterMark} handleChangeData={handleChangeData} comparative={comparative} handleDataAdd={handleDataAdd}
                             />
-                        </div>
+
+                        </>
+                    }
+                </div>
+                { /* End Label Remache/Twist/Process */}
+
+                {/* Information Label Provitional Manual */}
+                <div className='labelEditManualTester2'>
+                    {menuLabel[2] &&
+                        <>
+                            <div className='sublabelEditManualTester2'>
+
+
+                                <LabelBasicEditable dataLabel={dataLabel} handleChangeData={handleChangeData} datasForm={datasForm}
+                                    handlePrint={handlePrint} comparative={comparative}
+                                    componentRefs={componentRefs}
+                                />
+                            </div>
+
+                            <>
+                                <div>
+                                    <SubFormLabelEditable dataLabel={dataLabel} handleLa={handleLa} handleChangeData={handleChangeData} />
+                                </div>
+
+                            </>
+                        </>
+
+
+                    }
+                </div>
+                {/* End  Information Label Provitional Manual */}
+
+                {/* Information data Label Good! */}
+                <div className='subGoodLabel'>
+                    {
+                        menuLabel[3] &&
+
 
                         <>
-                            <SubFormLabelEditable dataLabel={dataLabel} handleLa={handleLa} handleChangeData={handleChangeData} />
+                            <div ref={componentRef} className='goodCss'>
+                                <div className='labelEditManualTester'>
+
+                                    {finalLabelSeparator?.map((datosE, i) =>
+                                        !datosE?.[0] ? "" :
+
+                                            <>
+                                                <div className='boxDad'>
+                                                    <div className='boxiii' onClick={handlePrint[i]} ref={componentRefs[i]}>
+                                                        <LabelGood datosE={datosE} dataLabel={dataLabel} handleChangeData={handleChangeData} datasForm={datasForm}
+                                                            handlePrint={handlePrint} comparative={comparative}
+                                                            componentRefs={componentRefs} finalLabelSeparator={finalLabelSeparator}
+                                                        />
+
+                                                    </div>
+                                                </div>
+
+                                            </>
+
+                                    )}
+                                </div>
+                                
+                            </div>
+
+                            <>
+                              <div>
+                              <form onSubmit={handleSeparatorLabel}>
+                                        <p className='inputTitle'>Lector de etiqueta</p>
+                                        <input type="text" className='inputLabelEdit2' value={whiteDat} /* name='dateA' */ placeholder='Introducir Data' />
+                                    </form>
+                                    <input type="file" onChange={handleFile} />
+                                   {/*  <button onClick={handlePrinter}>Tester Print Direct</button> */}
+                                    <ReactToPrint trigger={() => <button>Imprimir</button>} content={() => componentRef.current} />
+                              </div>
+                                   
+                           
+
+                            </>
                         </>
-                    </>
+                    }
+                </div>
+                {/* End Information data Label Good! */}
 
-
-                }
-
-                {
-                    menuLabel[3] &&  /*  <div>Espace De Etiqueta Good</div> */
-                    <>
-                        <div className='labelEditManualTester'>
-
-
-                            <LabelGood dataLabel={dataLabel} handleChangeData={handleChangeData} datasForm={datasForm}
-                                handlePrint={handlePrint} comparative={comparative}
-                                componentRefs={componentRefs} arraySave={arraySave}
-                            />
-                        </div>
-
-                        <>
-                            {/*   <SubFormLabelEditable dataLabel={dataLabel} handleLa={handleLa} handleChangeData={handleChangeData}/> */}
-
-                            <form onSubmit={handleSave}>
-                                <p className='inputTitle'>Lector de etiqueta</p>
-                                <input type="text" className='inputLabelEdit' name='dateA' placeholder='Introducir Data' />
-
-                            </form>
-                        </>
-                    </>
-                }
-
-                {
+                <div>
+                    {/* {
                     menuLabel[4] &&
                     <>
-                        <div className='labelEditManualTester'>
+                          <div className='labelEditManualTester'>
 
 
                             <LabelRastre dataLabel={dataLabel} handleChangeData={handleChangeData} datasForm={datasForm}
@@ -210,57 +267,101 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
                         <>
                             <SubFormLabelEditable dataLabel={dataLabel} handleLa={handleLa} handleChangeData={handleChangeData} />
 
-                            <form onSubmit={handleSave}>
+                              <form onSubmit={handleSave}>
                                 <input type="text" name='dateA' placeholder='ingrese el valor de bloc de notas' />Lector de etiqueta
                             </form>
                         </>
                     </>
-                }
-                {
-                    menuLabel[5] &&
-                    <>
-                        <div className='labelEditManualTester'>
-
-
-                            <LabelRastreComponentes dataLabel={dataLabel} handleChangeData={handleChangeData} datasForm={datasForm}
-                                handlePrint={handlePrint} comparative={comparative}
-                                componentRefs={componentRefs}  rastreSaveComponents={rastreSaveComponents}
-                            />
-                        </div>
-
+                } */}
+                </div>
+                <div>
+                    {
+                        menuLabel[5] &&
                         <>
+                            <div ref={componentRef}>
+                                <div className='labelEditManualTester'>
+                                    <div className='subContainerTiquetManualtrees'>
+                                        {finalLabelSeparator?.map((datosE, i) =>
+                                            !datosE?.[0] ? "" :
+
+                                                <>
+
+                                                    <div className='boxiii' onClick={handlePrint[i]} ref={componentRefs[i]}>
+                                                        <LabelRastreComponentes datosE={datosE} dataLabel={dataLabel} handleChangeData={handleChangeData} datasForm={datasForm}
+                                                            handlePrint={handlePrint} comparative={comparative}
+                                                            componentRefs={componentRefs} finalLabelSeparator={finalLabelSeparator}
+                                                        />
+
+                                                    </div>
+                                                </>
+
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <>
 
 
-                            <form onSubmit={handleSaveB}>
-                                <input type="text" className='inputLabelEdit' name='dateB' placeholder='ingrese el valor de bloc de notas' />Lector de etiqueta
-                            </form>
+                                <form onSubmit={handleSeparatorLabel}>
+                                    <p className='inputTitle'>Lector de etiqueta</p>
+                                    <input type="text" className='inputLabelEdit2' value={whiteDat} /* name='dateA' */ placeholder='Introducir Data' />
+                                </form>
+                                <input type="file" onChange={handleFile} />
+                                <button onClick={handlePrintAll}>Imprimir todo</button>
+                            </>
                         </>
-                    </>
 
-                }
+                    }
 
-{
-                    menuLabel[6] &&
-                    <>
-                        <div className='labelEditManualTester'>
-
-
-                            <LabelGenerateBarcode dataLabel={dataLabel} handleChangeData={handleChangeData} datasForm={datasForm}
-                                handlePrint={handlePrint} comparative={comparative}
-                                componentRefs={componentRefs}  rastreSaveComponents={rastreSaveComponents}
-                            />
-                        </div>
-
+                </div>
+                <div>
+                    {
+                        menuLabel[6] &&
                         <>
+                            <div className='labelEditManualTester'>
 
 
-                          
+                                <LabelGenerateBarcode dataLabel={dataLabel} handleChangeData={handleChangeData} datasForm={datasForm}
+                                    handlePrint={handlePrint} comparative={comparative}
+                                    componentRefs={componentRefs} rastreSaveComponents={rastreSaveComponents}
+                                />
+                            </div>
+
+                            <>
+
+
+
                                 <input type="text" className='inputLabelEdit' name='barcodeB' onChange={handleChangeData} placeholder='ingrese el valor de bloc de notas' />Lector de etiqueta
-                      
-                        </> 
-                    </>
 
-                }
+                            </>
+                        </>
+
+                    }
+                </div>
+                <div>
+                    {
+                        menuLabel[7] &&
+                        <>
+                            <div className='labelFatSize'>
+                                <div className='labelEditManualTester'>
+                                    <LabelFat componentRefs={componentRefs} handlePrint={handlePrint} />
+                                </div>
+                            </div>
+
+
+                        </>
+                    }
+                </div>
+
+
+
+
+
+
+
+
+
 
             </div>
         </>

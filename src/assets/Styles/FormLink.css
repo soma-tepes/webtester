@@ -47,7 +47,7 @@
 .showDataFormLisks {
   
     display: flex;
-    border-bottom: 1px solid black;
+  
     justify-content: space-between;
 }
 
@@ -66,4 +66,8 @@
    justify-content: center;
     align-items: center;
     border: none;
+}
+.boxDad{
+  
+   width: 100mm;
 }

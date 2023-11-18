@@ -8,7 +8,7 @@ const LabelBasicEditable = ({ dataLabel, datasForm, handlePrint, componentRefs, 
   return (
     <>
    
-    <div onClick={handlePrint[18]}   ref={componentRefs[18]}>
+    <div className='LabelEditableSvg'  onClick={handlePrint[18]}   ref={componentRefs[18]}>
     
        <svg width="101.5mm" height="63.5mm" viewBox="0 0 101.5 63.5">
       <g>

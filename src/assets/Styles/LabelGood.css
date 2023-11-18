@@ -1,3 +1,7 @@
+
+svg {
+    overflow: hidden;
+  }
 .title1{
 
     font-size: 2px;
@@ -55,4 +59,9 @@
       max-width: 20%;
       max-width:  20%;
       background-color: aqua;
+    }
+
+
+    .barcoceGood{
+       overflow: visible;
     }

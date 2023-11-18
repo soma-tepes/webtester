@@ -7,6 +7,7 @@ import FormTicketManual from "./AddComponents/Etiquetas/FormTicketManual";
 import TiketTurno1 from "./AddComponents/Etiquetas/TiketTurno1";
 import TicketTurno3 from "./AddComponents/Etiquetas/TicketTurno3";
 import TicketTurno2 from "./AddComponents/Etiquetas/TicketTurno2";
+
 const ComponentToPrint = React.forwardRef(({ imageSrc, className }, ref) => (
 
   <div ref={ref}>
@@ -15,7 +16,7 @@ const ComponentToPrint = React.forwardRef(({ imageSrc, className }, ref) => (
       <div className="areaImprimir ">
 
         <img className={className} src={imageSrc} alt="" />
-
+       
       </div>
     }
     {className == "ticket2" &&
@@ -64,6 +65,7 @@ const EtiquetasPrint = () => {
           <>
             <FormTicketManual handleChange={handleChange} waterMark={waterMark} componentRefs={componentRefs}
               changeText={changeText} handlePrint={handlePrint} />
+             
           </>
                : turnoData1.botonc ?
 
