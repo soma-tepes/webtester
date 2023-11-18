@@ -344,7 +344,7 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
                         menuLabel[7] &&
                         <>
                             <div className='labelFatSize'>
-                                <div className='labelEditManualTester'>
+                                <div className='labelFatSubContainer'>
                                     <LabelFat componentRefs={componentRefs} handlePrint={handlePrint} />
                                 </div>
                             </div>
