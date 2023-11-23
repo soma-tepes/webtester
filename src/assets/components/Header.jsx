@@ -45,11 +45,11 @@ const Header = () => {
           <div className="col-12">
             <div id="header" style={estyleOne}>
               <Link to={"/capturehours"}>
-                <h1>{titlesById?.[1]}</h1>
+                <h1>{titlesById?.[1] ? titlesById?.[1] : "Jae Oregon"}</h1>
               </Link>
               <h1>
                 <Link to="" id="logo">
-                  {titlesById?.[1]}
+                  {titlesById?.[1] ? titlesById?.[1] : "Jae Oregon"}
                 </Link>
               </h1>
               <nav id="nav" style={estyleThree}>

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import AppContext from "../../Context/AppContext";
 import useStore, { calculateTitlesById } from "../../utils/store";
 import useFetchData from "../../utils/hookEfect";
-import { estyle, estyle2, backImage, colorLetter } from "../../utils/styles";
+import { estyle, estyle2, backImage, colorLetter,backgroundChange } from "../../utils/styles";
 import Carrousel from "./EfectAditional/Carrousel";
 import abc from "../css/images/abc.webp"
 
@@ -16,7 +16,7 @@ const Banner = () => {
   const titlesById = calculateTitlesById(data);
 
   return (
-    <div id="banner-wrapper" style={{ ...estyle(changeColor), backgroundImage: `url(${abc})` }}>
+    <div id="banner-wrapper" style={{  ...backgroundChange(changeColor) }}>
       <div className="container">
 
         <div id="banner" className="flexTitles"

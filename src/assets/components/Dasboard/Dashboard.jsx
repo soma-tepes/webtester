@@ -5,12 +5,17 @@ import LectorMain from '../QRLector/LectorMain';
 import AddLink from '../AddComponents/AddLink';
 import EtiquetasPrint from '../EtiquetasPrint';
 import ConverterJson from '../ConverterJSON/ConverterJson';
+import AppContext from '../../../Context/AppContext';
+import { useContext } from 'react';
+
+
 
 const Dashboard = () => {
 
 
     const [showModal, setShowModal] = useState(false);
 
+    const { changeColor } = useContext(AppContext);
    /*  const handleMouseEnter = () => {
         setShowModal(true);
     }
@@ -64,7 +69,7 @@ const [menuDasboard, setMenuDasboard] = useState(Array(4).fill(null))
     });
 
     return (
-        <div className={`containerDash ${hiddenDash ? "showSidebar" : "hideSidebar"}`} >
+        <div className={`containerDash ${hiddenDash ? "showSidebar" : "hideSidebar"}`} style={changeColor ? {background: 'black'} :{}} >
 
             <div className='posi'>
 

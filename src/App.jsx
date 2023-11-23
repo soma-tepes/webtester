@@ -25,10 +25,13 @@ function App() {
           <Route path="/dash" element={<Dashboard />} />
           <Route path="/lector" element={<LectorMain />} />
           <Route path="/ticket" element={<EtiquetasPrint />} />
+          
           <Route path="*" element={<Undefined />} />
+          
         </Routes>
         <Footer />
       </div>
+    
     </>
   );
 }

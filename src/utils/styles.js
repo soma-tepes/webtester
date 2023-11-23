@@ -1,6 +1,7 @@
 import image from "../assets/css/images/banner.jpg";
 import image2 from "../assets/css/images/dark.png"
 import image3 from "../assets/css/images/cal.webp"
+import nuev from "../assets/css/images/cap.png"
 
 const estyle = (changeColor) => ({
   backgroundImage: changeColor
@@ -16,15 +17,20 @@ const estyle2 = (changeColor) => ({
 
 const backImage = (changeColor) => ({
   backgroundImage: changeColor
-    ? `url(${image2})`
-    : `url(${image3})`,
+    ?"-webkit-radial-gradient(gray, black)" 
+    : "-webkit-radial-gradient(gray, white)" ,
 })
 
 const colorLetter = (changeColor)=>({
   color : changeColor
   ? "white"
-  :
-    "black"
+  : "black"
 })
 
-export { estyle, estyle2,backImage,colorLetter };
+const backgroundChange = (changeColor) => ({
+  backgroundImage: changeColor
+    ? "-webkit-radial-gradient( white, black)"
+    : "-webkit-linear-gradient( var(--color-jae), white)"
+});
+
+export { estyle, estyle2,backImage,colorLetter,backgroundChange };

@@ -20,79 +20,39 @@ const Carrousel = () => {
         autoplay: true,  // Añade esta línea para activar el autoplay
         autoplaySpeed: 7000, // Puedes ajustar la velocidad del autoplay en milisegundos (en este caso 2 segundos)
     };
+
+
+    const insertDataCarrousel = [
+        { images: img, class: "sub_ima", message: "Data1" },
+        { images: nue, class: "sub_ima", message: "Data2" },
+        { images: mol, class: "sub_ima", message: "Data3" },
+        { images: hrs, class: "sub_ima", message: "Data4" },
+    ]
+
     return (
 
 
         <Slider {...settings}>
-               {/*  <h3>Jae Oregon</h3> */}
-            <div className='carru_ima'>
-           
-                <div className='carru_subcontainer'>
-                    
-                    <div className='sub_ima' style={{ backgroundImage: `url(${img})` }} >
-                   
-                        <p className='carruText'>Hello</p>
+            {/*  <h3>Jae Oregon</h3> */}
+
+            {insertDataCarrousel?.map(e =>
+                <div className='carru_ima'>
+
+                    <div className='carru_subcontainer'>
+
+                        <div className='CarruImage'  >
+                            <div  className='sub_ima' 
+                             style={{ backgroundImage: `url(${e?.images})`,width:"100%",height:"100%",backgroundSize:"cover" }}></div>
+                            <p className='carruText'>{e?.message} ...</p>
+                        </div>
                     </div>
-                </div>
 
 
 
-            </div>
-            <div className='carru_ima'>
-                <div className='carru_subcontainer'>
-                    <div className='sub_ima' style={{ backgroundImage: `url(${nue})` }} >
+                </div>)
 
-                        <p className='carruText'>Hello</p>
-                    </div>
-                </div>
+            }
 
-
-
-            </div>
-            <div className='carru_ima'>
-                <div className='carru_subcontainer'>
-                    <div className='sub_ima' style={{ backgroundImage: `url(${img})` }} >
-
-                        <p className='carruText'>Hello</p>
-                    </div>
-                </div>
-
-
-
-            </div>
-            <div className='carru_ima'>
-                <div className='carru_subcontainer'>
-                    <div className='sub_ima' style={{ backgroundImage: `url(${mol})` }} >
-
-                        <p className='carruText'>Hello</p>
-                    </div>
-                </div>
-
-
-
-            </div>
-            <div className='carru_ima'>
-                <div className='carru_subcontainer'>
-                    <div className='sub_ima' style={{ backgroundImage: `url(${mol})` }} >
-
-                        <p className='carruText'>Hello</p>
-                    </div>
-                </div>
-
-
-
-            </div>
-            <div className='carru_ima'>
-                <div className='carru_subcontainer'>
-                    <div className='sub_ima' style={{ backgroundImage: `url(${hrs})` }} >
-
-                   <Link to={"/capturehours"}><p className='carruText'>Ver mas....</p>  </Link>     
-                    </div>
-                </div>
-
-
-
-            </div>
 
 
         </Slider>
