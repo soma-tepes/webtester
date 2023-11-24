@@ -13,85 +13,40 @@ import { useContext } from 'react';
 const Dashboard = () => {
 
 
-    const [showModal, setShowModal] = useState(false);
 
     const { changeColor } = useContext(AppContext);
-   /*  const handleMouseEnter = () => {
-        setShowModal(true);
-    }
-
-    const handleMouseLeave = () => {
-        setShowModal(false);
-    }
- */
-
-const [menuDasboard, setMenuDasboard] = useState(Array(4).fill(null))
-
-
-
-    const [frameData, setFrameData] = useState({})
-
-    const { frameOne , frameTwo, frame3, frame4, frame5 } = frameData
-
+    const [frameData, setFrameData] = useState([])
     const [hiddenDash, setHiddenDash] = useState(false)
 
-    const updatingDatas = (datas) => {
-        setFrameData(e => ({ ...e, ...datas }))
-    }
+    const addList =
+        [
+            { Mode: "Admin", SubMode: "Ⓜ", page: <AddLink /> },
+            { Mode: "Capture Hours", SubMode: "⌚", page: <CaptureHores /> },
+            { Mode: "Scanner ", SubMode: "🚧", page: <LectorMain /> },
+            { Mode: "Label", SubMode: "📝", page: <EtiquetasPrint /> },
+            { Mode: "Json to Excel", SubMode: "🔁", page: <ConverterJson /> },
+        ]
+  
 
     const handleClick = (parameter) => {
-        updatingDatas({
-            frameOne: parameter === 'admin',
-            frameTwo: parameter === 'capture',
-            frame3: parameter === 'lector',
-            frame4: parameter === 'hoja',
-            frame5: parameter === 'converter'
-        })
-    };
+        const data = addList.filter(e => (e.Mode == parameter))
+        setFrameData(data)
 
-   
-    const dataForm = {};
-
-    const icons = {
-      admin: hiddenDash ? "Admin" : "🦓",
-      capture: hiddenDash ? "Capture Hours" : "⌚",
-      lector: hiddenDash ? "Lector QR" : "🚧",
-      hoja: hiddenDash ? "Printer" : "📝",
-      converter: hiddenDash ? "Converter" : "🔁",
     };
-    
-    Object.keys(icons).forEach((key) => {
-      dataForm[key] = (
-        <div className={`${hiddenDash ? "" : "icona"}`} onClick={() => handleClick(key)}>
-          {icons[key]}
-        </div>
-      );
-    });
+    const [isHovering, setIsHovering] = useState(false);
 
     return (
-        <div className={`containerDash ${hiddenDash ? "showSidebar" : "hideSidebar"}`} style={changeColor ? {background: 'black'} :{}} >
+        <div className={`containerDash ${hiddenDash ? "showSidebar" : "hideSidebar"}`} style={changeColor ? { background: 'black' } : {}} >
 
             <div className='posi'>
 
                 <p> Dash</p>
-
-
-                {<>
                 {
-                            Object.values(dataForm).map((element, index) => (
-                                <div key={index}>
-                                    {element}
-                                </div>
-                            ))
-                        }
-                         </>
-
+                    addList?.map((e) =>
+                        <div  onMouseEnter={() => setIsHovering(true)} 
+                        onMouseLeave={() => setIsHovering(false)} className={`${hiddenDash ? "" : "icona"}`} onClick={() => handleClick(e?.Mode)}>{hiddenDash ? e?.Mode : e?.SubMode}</div>
+                    )
                 }
-                {showModal && (
-                    <div className="modal">
-                        <p>Contenido del modal</p>
-                    </div>
-                )}
                 {/*  <i onClick={() => hiddenDash ? setHiddenDash(false) : setHiddenDash(true)} className='icono_dash'>📦</i> */}
             </div>
 
@@ -99,13 +54,13 @@ const [menuDasboard, setMenuDasboard] = useState(Array(4).fill(null))
 
             <div className='div2'>
                 <div onClick={() => hiddenDash ? setHiddenDash(false) : setHiddenDash(true)}>📩</div>
-              
-              
-                { frameOne ? <AddLink /> : frameTwo ?  <CaptureHores /> : frame3 ? <LectorMain /> :  frame4 ? <EtiquetasPrint /> : frame5 ? <ConverterJson/> :""}
-              
-              
+                { frameData?.map(e => e.page) }
             </div>
-
+            {isHovering && (
+        <div>
+        {}
+        </div>
+      )}
         </div>
     );
 };
