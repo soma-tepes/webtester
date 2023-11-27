@@ -26,7 +26,7 @@ const Dashboard = () => {
             { Mode: "Label", SubMode: "📝", page: <EtiquetasPrint /> },
             { Mode: "Json to Excel", SubMode: "🔁", page: <ConverterJson /> },
         ]
-  
+
 
     const handleClick = (parameter) => {
         const data = addList.filter(e => (e.Mode == parameter))
@@ -35,32 +35,41 @@ const Dashboard = () => {
     };
     const [isHovering, setIsHovering] = useState(false);
 
+
     return (
         <div className={`containerDash ${hiddenDash ? "showSidebar" : "hideSidebar"}`} style={changeColor ? { background: 'black' } : {}} >
 
-            <div className='posi'>
+            <div className='posi '>
 
                 <p> Dash</p>
                 {
                     addList?.map((e) =>
-                        <div  onMouseEnter={() => setIsHovering(true)} 
-                        onMouseLeave={() => setIsHovering(false)} className={`${hiddenDash ? "" : "icona"}`} onClick={() => handleClick(e?.Mode)}>{hiddenDash ? e?.Mode : e?.SubMode}</div>
+                        <div
+                            style={{ position: 'relative' }}  // Asegura que el tooltip se posicione en relación con este div
+                            onMouseEnter={() => setIsHovering(e?.Mode)}
+                            onMouseLeave={() => setIsHovering(false)}
+                            className={`${hiddenDash ? "" : "icona"} modalDash`}
+                            onClick={() => handleClick(e?.Mode)}
+                        >
+                            {hiddenDash ? e?.Mode : e?.SubMode}
+                            {!hiddenDash && isHovering == e?.Mode &&
+                                <span className='otherDash'>{isHovering}</span>
+                            }
+                        </div>
                     )
                 }
                 {/*  <i onClick={() => hiddenDash ? setHiddenDash(false) : setHiddenDash(true)} className='icono_dash'>📦</i> */}
+
+
             </div>
 
 
 
             <div className='div2'>
                 <div onClick={() => hiddenDash ? setHiddenDash(false) : setHiddenDash(true)}>📩</div>
-                { frameData?.map(e => e.page) }
+                {frameData?.map(e => e.page)}
             </div>
-            {isHovering && (
-        <div>
-        {}
-        </div>
-      )}
+
         </div>
     );
 };
