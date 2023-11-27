@@ -22,7 +22,7 @@ const Dashboard = () => {
         [
             { Mode: "Admin", SubMode: "Ⓜ", page: <AddLink /> },
             { Mode: "Capture Hours", SubMode: "⌚", page: <CaptureHores /> },
-            { Mode: "Scanner ", SubMode: "🚧", page: <LectorMain /> },
+            { Mode: "Scanner ", SubMode: "🖨", page: <LectorMain /> },
             { Mode: "Label", SubMode: "📝", page: <EtiquetasPrint /> },
             { Mode: "Json to Excel", SubMode: "🔁", page: <ConverterJson /> },
         ]
@@ -58,7 +58,7 @@ const Dashboard = () => {
             </div>
             {isHovering && (
         <div>
-        {}
+    
         </div>
       )}
         </div>
