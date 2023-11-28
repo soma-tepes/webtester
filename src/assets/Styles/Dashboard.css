@@ -76,11 +76,8 @@
 .otherDash {
  
     position: absolute;
-    /* Ajusta estos valores para posicionar el tooltip correctamente */
-    
     left: 100%; 
     bottom: 0;
-    /* Añade estos estilos para que el tooltip se vea como un cuadro independiente */
     background:#333333;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -91,7 +88,9 @@
     justify-content: center;
     align-items: center;
     color: white;
-    width: 150px;
+    width: 110px;
+    padding: 0;
+    margin: 0;
     height: 30px;
     font-size: 16px;
     font-weight: 500;
@@ -107,16 +106,18 @@
 .modalDash {
    
     
-  
+    
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
     padding: 12px 16px;
     text-align: center;
   }
   .modalDash:hover{
-     background-color: red;
+    
      border: 1px solid var(--color-jae);
+
   }
+ 
 .modali{
 
    text-align: center;   
@@ -124,5 +125,8 @@
 }
   .modalDash:hover .modal {
     display: block;
-    border: 1px solid red;
+   
+  }
+  .borderDashOn{
+    border: 1px solid white;
   }

@@ -19,7 +19,7 @@ import LabelFat from './subetiquetasmanuales/LabelFat'
 const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, componentRefs }) => {
     const { data } = useStore2()
     const modelBD = { data }
-
+    
     const [datasForm, setDatasForm] = useState({
 
         model: null, description: null, qty: null,
