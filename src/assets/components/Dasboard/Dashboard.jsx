@@ -18,7 +18,7 @@ const Dashboard = () => {
     const [frameData, setFrameData] = useState([])
     const [hiddenDash, setHiddenDash] = useState(false)
 
-    const addList =
+    const [addList,setAddList] = useState (
         [
             { Mode: "Admin", SubMode: "Ⓜ", page: <AddLink /> },
             { Mode: "Capture Hours", SubMode: "⌚", page: <CaptureHores /> },
@@ -26,7 +26,7 @@ const Dashboard = () => {
             { Mode: "Label", SubMode: "📝", page: <EtiquetasPrint /> },
             { Mode: "Json to Excel", SubMode: "🔁", page: <ConverterJson /> },
         ]
-
+    )
 
     const handleClick = (parameter) => {
         const data = addList.filter(e => (e.Mode == parameter))
