@@ -10,6 +10,8 @@ import { useContext } from 'react';
 
 
 
+
+
 const Dashboard = () => {
 
 
@@ -18,13 +20,15 @@ const Dashboard = () => {
     const [frameData, setFrameData] = useState([])
     const [hiddenDash, setHiddenDash] = useState(false)
 
-    const [addList,setAddList] = useState (
+    const addList =
         [
+            
             { Mode: "Admin", SubMode: "Ⓜ", page: <AddLink /> },
             { Mode: "Capture Hours", SubMode: "⌚", page: <CaptureHores /> },
             { Mode: "Scanner ", SubMode: "🖨", page: <LectorMain /> },
             { Mode: "Label", SubMode: "📝", page: <EtiquetasPrint /> },
             { Mode: "Json to Excel", SubMode: "🔁", page: <ConverterJson /> },
+            { Mode: "Login", SubMode: "🌐", page: <ConverterJson /> },
         ]
     )
 
@@ -33,24 +37,22 @@ const Dashboard = () => {
         setFrameData(data)
 
     };
-    const [isHovering, setIsHovering] = useState(false);
 
 
     return (
         <div className={`containerDash ${hiddenDash ? "showSidebar" : "hideSidebar"}`} style={changeColor ? { background: 'black' } : {}} >
 
-            <div className='posi '>
+            <div className={`posi `}>
 
                 <p> Dash</p>
                 {
                     addList?.map((e) =>
                         <div
-                            style={{ position: 'relative' }}  // Asegura que el tooltip se posicione en relación con este div
-                            onMouseEnter={() => setIsHovering(e?.Mode)}
-                            onMouseLeave={() => setIsHovering(false)}
-                            className={`${hiddenDash ? "" : "icona"} modalDash`}
-                            onClick={() => handleClick(e?.Mode)}
-                        >
+                            style={{ position: 'relative' }}  
+                            className={`${hiddenDash ? "" : "icona"} ${e?.Mode == frameData?.[0]?.Mode ? "borderDashOn" : ""}  modalDash`}
+                            onMouseEnter={() => setIsHovering(e?.Mode)} onMouseLeave={() => setIsHovering(false)} 
+                            onClick={() => handleClick(e?.Mode)}> 
+
                             {hiddenDash ? e?.Mode : e?.SubMode}
                             {!hiddenDash && isHovering == e?.Mode &&
                                 <span className='otherDash'>{isHovering}</span>
@@ -62,9 +64,6 @@ const Dashboard = () => {
 
 
             </div>
-
-
-
             <div className='div2'>
                 <div onClick={() => hiddenDash ? setHiddenDash(false) : setHiddenDash(true)}>📩</div>
                 {frameData?.map(e => e.page)}

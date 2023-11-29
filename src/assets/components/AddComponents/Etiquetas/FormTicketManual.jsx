@@ -4,7 +4,6 @@ import "../../../Styles/EtiquetasPrint.css"
 import { useStore2 } from '../../../../utils/store'
 import LabelRemacheManual from './subetiquetasmanuales/LabelRemacheManual'
 import LabelManualBasic from './subetiquetasmanuales/LabelManualBasic'
-
 import LabelBasicEditable from './subetiquetasmanuales/LabelBasicEditable'
 import SubFormLabelEditable from './subetiquetasmanuales/SubFormLabelEditable'
 import LabelGood from './subetiquetasmanuales/LabelGood'
@@ -19,7 +18,7 @@ import LabelFat from './subetiquetasmanuales/LabelFat'
 const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, componentRefs }) => {
     const { data } = useStore2()
     const modelBD = { data }
-
+    
     const [datasForm, setDatasForm] = useState({
 
         model: null, description: null, qty: null,
@@ -32,11 +31,12 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
         prodTitle1: "PRODUCT CONTROL LABEL",
         googReceived: "Goods Received Label"
     })
+    
     const [LabelMenu, setLabelMenu] = useState
         (["Label Quick", "Label Remache/Twis/Process", "Label Identificator", "LabelGood", "LabelRastreabilidad1",
             "LabelRastreComponentes", "CreateBarcode", "LabelFat"])
     const [menuLabel, setMenuLabel] = useState(Array(LabelMenu.length).fill(false))
-
+    const [dataQr, setSavedArray] = useState([])  
     const handleDataAdd = (e) => {
         e.preventDefault()
         const data = e.target.addelement.value
@@ -52,18 +52,13 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
     }
 
     const handleChangeData = (e) => {
-
-
-
-        setDatasForm({
+    setDatasForm({
             ...datasForm,
             [e.target.name]: e.target.value,
         });
     };
 
-
-
-    const handleLabelMenu = (index) => {
+   const handleLabelMenu = (index) => {
         const updatedMenuLabel = menuLabel.map((item, i) => {
             if (i === index) {
                 return true;
@@ -89,6 +84,7 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
     const [whiteDat, setWhiteDat] = useState(null)
 
     const handleFile = (e) => {
+        
         const file = e.target.files[0]
 
         if (file) {
@@ -96,8 +92,11 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
             reader.onload = (e) => {
                 const contect = e.target.result
                 setWhiteDat(contect)
+                 e.target.value = "";
+               
             }
             reader.readAsText(file)
+           
         } else {
             setWhiteDat(null)
         }
@@ -108,6 +107,7 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
     const [finalLabelSeparator, setFinalLabelSeparator] = useState()
 
     const handleSeparatorLabel = (e) => {
+        console.log(e.target.value)
         e.preventDefault()
         const separatorLabelObjet = {};
         const separatorLabel = whiteDat?.split("\n");
@@ -129,7 +129,7 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
 
         const dataArray = Object.entries(newObject).map(([key, value]) => value);
         setFinalLabelSeparator(dataArray)
-
+     
     }
     const componentRef = useRef();
     const handlePrintAll = useReactToPrint({
@@ -143,6 +143,8 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
         componentRef.current.print();
       };
        */
+
+      
     return (
         <>
             <div className='typeTicketMenu'>
@@ -220,6 +222,7 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
                                                         <LabelGood datosE={datosE} dataLabel={dataLabel} handleChangeData={handleChangeData} datasForm={datasForm}
                                                             handlePrint={handlePrint} comparative={comparative}
                                                             componentRefs={componentRefs} finalLabelSeparator={finalLabelSeparator}
+                                                            dataQr={dataQr} setSavedArray ={setSavedArray}
                                                         />
 
                                                     </div>
@@ -234,8 +237,8 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
 
                             <>
                               <div>
-                              <form onSubmit={handleSeparatorLabel}>
-                                        <p className='inputTitle'>Lector de etiqueta</p>
+                             <form onSubmit={handleSeparatorLabel}>
+                                        <p className='inputTitle'>Label Provitional  -Finish Goods!-</p>
                                         <input type="text" className='inputLabelEdit2' value={whiteDat} /* name='dateA' */ placeholder='Introducir Data' />
                                     </form>
                                     <input type="file" onChange={handleFile} />

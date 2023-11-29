@@ -6,10 +6,10 @@ import QRCode from 'react-qr-code';
 import { useState } from 'react'
 import Barcode from 'react-barcode';
 
-const LabelGood = ({ datosE, datasForm }) => {
+const LabelGood = ({ datosE, datasForm ,setSavedArray , dataQr }) => {
  
 
-const [dataQr, setSavedArray] = useState([])  
+
 
 useEffect(() => {
   if (Object.keys(datosE ?? {})) {

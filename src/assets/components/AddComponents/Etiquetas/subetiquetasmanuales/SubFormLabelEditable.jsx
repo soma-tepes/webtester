@@ -4,6 +4,11 @@ import { useState } from 'react'
 const SubFormLabelEditable = ({ dataLabel, handleLa, handleChangeData }) => {
 
     const array = ['linea', 'fecha', 'modelo', 'qty', 'box']
+
+    const [datasObject,setDatasObject] =  useState ( [{
+        datas: ["line","date","model","wo","qty","nbox","turn","hour",],
+        
+    }])
     const [dateForma, setDateForma] = useState(Array(5).fill(null))
 
     const handleLabelMenu = (index) => {
@@ -51,17 +56,14 @@ const SubFormLabelEditable = ({ dataLabel, handleLa, handleChangeData }) => {
                 </form>
 
 
-                <div><h3>Datas</h3>
-                    <form >
-                        <input type="text" name="line" onChange={handleChangeData} placeholder='Ingrese Linea' />
-                        <input type="date" name="date" onChange={handleChangeData} placeholder='' />
-                        <input type="text" name="model" onChange={handleChangeData} placeholder='Ingrese Modelo' />
-                        <input type="text" name="wo" onChange={handleChangeData} placeholder='Ingrese Orden' />
-                        <input type="text" name="qty" onChange={handleChangeData} placeholder='Ingrese QTY' />
-                        <input type="text" name="nbox" onChange={handleChangeData} placeholder='Numero de Box' />
-                        <input type="text" name="turn" onChange={handleChangeData} placeholder='Ingrese Turno' />
-                        <input type="text" name="hour" onChange={handleChangeData} placeholder='Ingrese la hora' />
-                    </form></div>
+                <div>
+                    <h3>Datas</h3>
+                
+                    {datasObject[0]?.datas?.map(e=> 
+                        <input type={`${e == "qty" ? "number": e == "date" ? "date" : "text"}`} 
+                        name={e}  placeholder={`Ingrese ${e}`} onChange={handleChangeData}/>
+                        )}
+                    </div>
                   
             </div>
 

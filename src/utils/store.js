@@ -7,6 +7,8 @@ const endpoints = ["a", "b", "c", "d", "e", "f", "addtitle"];
 
 const useStore = create((set) => ({
   data: [],
+  BD : datos,
+ 
   fetchData: () => {
     const requests = endpoints.map((endpoint) =>
       axios.get(`${BASE_URL}${endpoint}`)
