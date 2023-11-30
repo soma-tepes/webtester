@@ -84,30 +84,29 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
     const [whiteDat, setWhiteDat] = useState(null)
 
     const handleFile = (e) => {
-        
-        const file = e.target.files[0]
-
+        const file = e.target.files[0];
+        const input = e.target; // Guarda una referencia al input
+    
         if (file) {
-            const reader = new FileReader()
+            const reader = new FileReader();
             reader.onload = (e) => {
-                const contect = e.target.result
-                setWhiteDat(contect)
-                 e.target.value = "";
-               
-            }
-            reader.readAsText(file)
-           
+                const content = e.target.result;
+                setWhiteDat(content);
+    
+                // Vacía el input
+                input.value = "";
+            };
+            reader.readAsText(file);
         } else {
-            setWhiteDat(null)
+            setWhiteDat(null);
         }
-
-    }
+    };
 
 
     const [finalLabelSeparator, setFinalLabelSeparator] = useState()
 
     const handleSeparatorLabel = (e) => {
-        console.log(e.target.value)
+        
         e.preventDefault()
         const separatorLabelObjet = {};
         const separatorLabel = whiteDat?.split("\n");
@@ -129,7 +128,9 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
 
         const dataArray = Object.entries(newObject).map(([key, value]) => value);
         setFinalLabelSeparator(dataArray)
-     
+        setWhiteDat(null)
+      e.target.dateA.value =  ""
+   
     }
     const componentRef = useRef();
     const handlePrintAll = useReactToPrint({
@@ -239,8 +240,8 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
                               <div>
                              <form onSubmit={handleSeparatorLabel}>
                                         <p className='inputTitle'>Label Provitional  -Finish Goods!-</p>
-                                        <input type="text" className='inputLabelEdit2' value={whiteDat} /* name='dateA' */ placeholder='Introducir Data' />
-                                    </form>
+                                        <input type="text" className='inputLabelEdit2' value={whiteDat} name='dateA' placeholder='Introducir Data' />
+                            </form>
                                     <input type="file" onChange={handleFile} />
                                    {/*  <button onClick={handlePrinter}>Tester Print Direct</button> */}
                                     <ReactToPrint trigger={() => <button>Imprimir</button>} content={() => componentRef.current} />

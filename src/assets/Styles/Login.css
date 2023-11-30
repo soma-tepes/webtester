@@ -1,0 +1,46 @@
+.loginContainer{
+   
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   height: 100%;
+   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, var(--color-jae) 0%, rgba(0,0,0,0.2) 48%, white 100%);
+   background-size: 300% 100%;
+   animation: gradient 25s ease infinite;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+.subContainerLogin{
+    border: 1px solid white;
+    border-bottom:1px solid black ;
+    border-radius: 10px;
+    width: 28%;
+    height: 70%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: rgba(0, 0, 0, .400);
+   box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.8);
+  
+}
+
+.formLogin *{
+   background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+   color: white;
+    gap: 15px;
+}
+
+.formLogin input, button{
+    cursor: pointer;
+}

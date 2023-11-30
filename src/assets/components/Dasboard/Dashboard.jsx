@@ -7,6 +7,7 @@ import EtiquetasPrint from '../EtiquetasPrint';
 import ConverterJson from '../ConverterJSON/ConverterJson';
 import AppContext from '../../../Context/AppContext';
 import { useContext } from 'react';
+import Login from '../login/Login';
 
 
 
@@ -28,7 +29,7 @@ const Dashboard = () => {
             { Mode: "Scanner ", SubMode: "🚧", page: <LectorMain /> },
             { Mode: "Label", SubMode: "📝", page: <EtiquetasPrint /> },
             { Mode: "Json to Excel", SubMode: "🔁", page: <ConverterJson /> },
-            { Mode: "Login", SubMode: "🌐", page: <ConverterJson /> },
+            { Mode: "Login", SubMode: "🌐", page: <Login/> },
         ]
 
 
@@ -62,9 +63,9 @@ const Dashboard = () => {
                 }
                 {/*  <i onClick={() => hiddenDash ? setHiddenDash(false) : setHiddenDash(true)} className='icono_dash'>📦</i> */}
 
-
             </div>
             <div className='div2'>
+                
                 <div onClick={() => hiddenDash ? setHiddenDash(false) : setHiddenDash(true)}>📩</div>
                 {frameData?.map(e => e.page)}
             </div>
