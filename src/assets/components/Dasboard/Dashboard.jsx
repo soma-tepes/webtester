@@ -20,18 +20,18 @@ const Dashboard = () => {
     const { changeColor } = useContext(AppContext);
     const [frameData, setFrameData] = useState([])
     const [hiddenDash, setHiddenDash] = useState(false)
-    const [isHovering, setIsHovering] = useState(false);
+
     const addList =
         [
             
             { Mode: "Admin", SubMode: "Ⓜ", page: <AddLink /> },
             { Mode: "Capture Hours", SubMode: "⌚", page: <CaptureHores /> },
-            { Mode: "Scanner ", SubMode: "🚧", page: <LectorMain /> },
+            { Mode: "Scanner ", SubMode: "🖨", page: <LectorMain /> },
             { Mode: "Label", SubMode: "📝", page: <EtiquetasPrint /> },
             { Mode: "Json to Excel", SubMode: "🔁", page: <ConverterJson /> },
             { Mode: "Login", SubMode: "🌐", page: <Login/> },
         ]
-
+    )
 
     const handleClick = (parameter) => {
         const data = addList.filter(e => (e.Mode == parameter))
@@ -69,7 +69,11 @@ const Dashboard = () => {
                 <div onClick={() => hiddenDash ? setHiddenDash(false) : setHiddenDash(true)}>📩</div>
                 {frameData?.map(e => e.page)}
             </div>
-
+            {isHovering && (
+        <div>
+        {}
+        </div>
+      )}
         </div>
     );
 };
