@@ -1,6 +1,9 @@
 import React from 'react'
 import '../../Styles/Intruc.css'
 const Intruccion = () => {
+
+
+    
     return (
         <div>
             <div><h3>Intrucciones</h3></div>

@@ -8,6 +8,7 @@ import ConverterJson from '../ConverterJSON/ConverterJson';
 import AppContext from '../../../Context/AppContext';
 import { useContext } from 'react';
 import Login from '../login/Login';
+import DataGood from '../Backend/DataGood';
 
 
 
@@ -20,7 +21,7 @@ const Dashboard = () => {
     const { changeColor } = useContext(AppContext);
     const [frameData, setFrameData] = useState([])
     const [hiddenDash, setHiddenDash] = useState(false)
-
+    const [isHovering, setIsHovering] = useState(null)
     const addList =
         [
             
@@ -30,8 +31,9 @@ const Dashboard = () => {
             { Mode: "Label", SubMode: "📝", page: <EtiquetasPrint /> },
             { Mode: "Json to Excel", SubMode: "🔁", page: <ConverterJson /> },
             { Mode: "Login", SubMode: "🌐", page: <Login/> },
+            { Mode: "Back", SubMode: "🌐", page: <DataGood/> },
         ]
-    )
+    
 
     const handleClick = (parameter) => {
         const data = addList.filter(e => (e.Mode == parameter))
@@ -69,11 +71,7 @@ const Dashboard = () => {
                 <div onClick={() => hiddenDash ? setHiddenDash(false) : setHiddenDash(true)}>📩</div>
                 {frameData?.map(e => e.page)}
             </div>
-            {isHovering && (
-        <div>
-        {}
-        </div>
-      )}
+          
         </div>
     );
 };

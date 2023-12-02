@@ -2,14 +2,20 @@ import React, { useState } from 'react';
 import SubDataPicker from './SubDataPicker';
 import Intruccion from './Intruccion';
 import '../../Styles/Datapicker.css';
+import { getTimeData } from '../../js/gettimedata';
+import { useCustomState } from '../../js/usestates';
+
+
 
 const CaptureHores = () => {
-  const [menuData, setmenuData] = useState({ A: false, B: false });
-  const [rangeTime, setRangeTime] = useState(null);
+
+  const { menuData, setmenuData : getData, rangeTime, setRangeTime : timeRange, isHovering, setIsHovering } = useCustomState();
+
   const handleMenu = (option) => {
-    setmenuData({ A: option === "product", B: option === "molding" });
-    setRangeTime((option === "product" ? (21 / 24)  : (24 / 24))  * 100);
+    getData({ A: option === "product", B: option === "molding" });
+    timeRange((option === "product" ? (21 / 24) : (24 / 24)) * 100);
   };
+  const time = getTimeData()
 
   return (
     <div className='captureIndex'>
@@ -18,8 +24,33 @@ const CaptureHores = () => {
         <button className={menuData.A ? "off" : "on"} onClick={() => handleMenu("product")}>
           {menuData.A ? "Calculator Production" : "Producto Terminado"}
         </button>
+
         <button className={menuData.B ? "off" : "on"} onClick={() => handleMenu("molding")}>Capture Hrs Molding</button>
-        <button>Help Format hrs</button>
+
+        <button className='btnHoursInfo'
+          onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}  >
+
+          Help Format hrs
+          {isHovering &&
+
+            <table className='otherDash2'>
+              <tr>
+                <th>Formato 24 horas</th>
+                <th>Formato 12 horas</th>
+              </tr>
+              {time?.map(e => (
+                <>
+
+                  <tr>
+                    <td>{e?.a}</td>
+                    <td>{e?.b == "0 am" ? "12 am" : e?.b == "0 pm" ? "12 pm" : e?.b}</td>
+                  </tr>
+                </>
+              ))}
+
+            </table>
+          }
+        </button>
       </div>
       <div className='captureHrs'>
         {(menuData.A || menuData.B) && (
