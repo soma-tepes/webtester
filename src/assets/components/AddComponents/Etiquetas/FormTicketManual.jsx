@@ -12,7 +12,7 @@ import LabelRastreComponentes from './subetiquetasmanuales/LabelRastreComponente
 import LabelGenerateBarcode from './subetiquetasmanuales/LabelGenerateBarcode'
 import ReactToPrint, { useReactToPrint } from 'react-to-print'
 import LabelFat from './subetiquetasmanuales/LabelFat'
-
+import socketIOClient from 'socket.io-client';
 
 
 const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, componentRefs }) => {
@@ -102,14 +102,35 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
         }
     };
 
+/*  datas de backend */
 
+const [datos, setDatos] = useState([]);
+
+  useEffect(() => {
+    const socket = socketIOClient('http://localhost:3000', {
+      withCredentials: true,
+      extraHeaders: {
+        "Access-Control-Allow-Origin": "http://localhost:5173",
+      },
+    });
+  
+    socket.on('actualizarDatos', (nuevosDatos) => {
+      console.log('Datos actualizados recibidos:', nuevosDatos);
+      setDatos(nuevosDatos);
+    });
+  
+    return () => socket.disconnect();
+  }, []);                                                                                                                                    
+
+console.log(datos)
+/*  */
     const [finalLabelSeparator, setFinalLabelSeparator] = useState()
 
     const handleSeparatorLabel = (e) => {
         
         e.preventDefault()
         const separatorLabelObjet = {};
-        const separatorLabel = whiteDat?.split("\n");
+        const separatorLabel = datos?.split("\n");
   
         for (const key in separatorLabel) {
             separatorLabelObjet[key] = separatorLabel[key].split(",");
