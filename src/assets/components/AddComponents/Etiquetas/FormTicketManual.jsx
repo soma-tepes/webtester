@@ -106,31 +106,17 @@ const FormTicketManual = ({ handleChange, changeText, handlePrint, waterMark, co
 
 const [datos, setDatos] = useState([]);
 
-  useEffect(() => {
-    const socket = socketIOClient('http://localhost:3000', {
-      withCredentials: true,
-      extraHeaders: {
-        "Access-Control-Allow-Origin": "http://localhost:5173",
-      },
-    });
-  
-    socket.on('actualizarDatos', (nuevosDatos) => {
-      console.log('Datos actualizados recibidos:', nuevosDatos);
-      setDatos(nuevosDatos);
-    });
-  
-    return () => socket.disconnect();
-  }, []);                                                                                                                                    
 
-console.log(datos)
-/*  */
+
+const info = datos?.datos?.map(e=>e.split(",").map(e=>e.replace(/"/g ,"")))
+
     const [finalLabelSeparator, setFinalLabelSeparator] = useState()
 
     const handleSeparatorLabel = (e) => {
         
         e.preventDefault()
         const separatorLabelObjet = {};
-        const separatorLabel = datos?.split("\n");
+        const separatorLabel = whiteDat?.split("\n");
   
         for (const key in separatorLabel) {
             separatorLabelObjet[key] = separatorLabel[key].split(",");
@@ -153,19 +139,47 @@ console.log(datos)
       e.target.dateA.value =  ""
    
     }
+  
     const componentRef = useRef();
+
     const handlePrintAll = useReactToPrint({
+        content: () => componentRef.current,
+        onAfterPrint: () => {
+          // Código que se ejecutará después de imprimir
+        },
+      });
+
+ 
+
+  /*   const handlePrintAll = useReactToPrint({
         content: () => componentRef.current.print(),
-    });
-    /*  useEffect(() => {
-       handlePrintAll();
-     }, [finalLabelSeparator]); */
+    }); */
+     useEffect(() => {
+        if(dataQr){
+            handlePrintAll();
+        }
+      
+     }, [datos]);
 
     /*  const handlePrint = () => {
         componentRef.current.print();
       };
        */
-
+      useEffect(() => {
+        const socket = socketIOClient('http://localhost:3000', {
+          withCredentials: true,
+          extraHeaders: {
+            "Access-Control-Allow-Origin": "http://localhost:5173",
+          },
+        });
+      
+        socket.on('actualizarDatos', (nuevosDatos) => {
+          console.log('Datos actualizados recibidos:', nuevosDatos);
+          setDatos(nuevosDatos);
+        });
+      
+        return () => socket.disconnect();
+      }, []);    
       
     return (
         <>
@@ -235,7 +249,7 @@ console.log(datos)
                             <div ref={componentRef} className='goodCss'>
                                 <div className='labelEditManualTester'>
 
-                                    {finalLabelSeparator?.map((datosE, i) =>
+                                    {info?.map((datosE, i) =>
                                         !datosE?.[0] ? "" :
 
                                             <>
@@ -245,6 +259,7 @@ console.log(datos)
                                                             handlePrint={handlePrint} comparative={comparative}
                                                             componentRefs={componentRefs} finalLabelSeparator={finalLabelSeparator}
                                                             dataQr={dataQr} setSavedArray ={setSavedArray}
+                                                         
                                                         />
 
                                                     </div>
@@ -258,15 +273,16 @@ console.log(datos)
                             </div>
 
                             <>
-                              <div>
-                             <form onSubmit={handleSeparatorLabel}>
-                                        <p className='inputTitle'>Label Provitional  -Finish Goods!-</p>
-                                        <input type="text" className='inputLabelEdit2' value={whiteDat} name='dateA' placeholder='Introducir Data' />
-                            </form>
-                                    <input type="file" onChange={handleFile} />
-                                   {/*  <button onClick={handlePrinter}>Tester Print Direct</button> */}
-                                    <ReactToPrint trigger={() => <button>Imprimir</button>} content={() => componentRef.current} />
-                              </div>
+                            <div>
+        <form onSubmit={handleSeparatorLabel}>
+          <p className='inputTitle'>Etiqueta Provisional -Bienes Terminados!-</p>
+          <input type="text" className='inputLabelEdit2' value={whiteDat} name='dateA' placeholder='Introducir Datos' />
+        </form>
+        <input type="file" onChange={handleFile} />
+        {/* Descomenta la siguiente línea para imprimir automáticamente */}
+        <button onClick={handlePrintAll}>Imprimir Todo</button>
+        <ReactToPrint trigger={() => <button onClick={handlePrintAll}>Imprimir Todo</button>} content={() => componentRef.current} />
+      </div>
                                    
                            
 

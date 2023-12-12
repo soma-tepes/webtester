@@ -12,13 +12,13 @@ const LabelGood = ({ datosE, datasForm ,setSavedArray , dataQr }) => {
 
 
 useEffect(() => {
-  if (Object.keys(datosE ?? {})) {
+ 
     setSavedArray(
                   [datosE?.[39],datosE?.[40],datosE?.[41],
                   datosE?.[42],datosE?.[43],datosE?.[44]]
                   .join(",").replace(/,/g, '')
       );
-  }
+  
 }, [datosE]);
 
 
@@ -29,7 +29,7 @@ useEffect(() => {
    
     
     {
-     Object.keys(datosE ?? {}) &&
+    
        <svg width="101.5mm" height="63.5mm" viewBox="0 0 101.5 63.5">
       <g>
       <g className='barcoceGood' transform="translate(41, 28)">
